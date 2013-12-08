@@ -11,12 +11,14 @@ fs.readFile(filename, 'utf8', function(err, data) {
   var search = 'id=\"__VIEWSTATE" value=\"';
   var pos1 = data.indexOf(search);
   var pos2 = data.indexOf('"', pos1 + search.length);
-  var viewState = data.substr(pos1, pos2-pos1);
+  //console.log(pos1);
+  //console.log(pos2);
+  var viewState = data.substr(pos1 + search.length, pos2 - pos1 - search.length);
 
   search = "id=\"__EVENTVALIDATION\" value=\"";
   pos1 = data.indexOf(search);
   pos2 = data.indexOf('"', pos1 + search.length);
-  var eventValidation = data.substr(pos1, pos2-pos1);
+  var eventValidation = data.substr(pos1 + search.length, pos2 - pos1 - search.length);
 
   var userNameField = data.match("name=\"(.+?\\$txtUsername)\"")[1];
   var passwordField = data.match("name=\"(.+?\\$txtPassword)\"")[1];
@@ -37,7 +39,7 @@ fs.readFile(filename, 'utf8', function(err, data) {
   //console.log(data.length);
   //console.log(pos1);
   //console.log(pos2);
-
+/*
   var options = {
   hostname: 'www.google.com',
   port: 80,
@@ -64,8 +66,8 @@ req.on('error', function(e) {
 req.write('data\n');
 req.write('data\n');
 req.end();
-
+*/
 
 });
 
-console.log(squareNumber(5));
+//console.log(squareNumber(5));
