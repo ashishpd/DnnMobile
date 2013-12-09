@@ -20,9 +20,9 @@ namespace DnnWebApiWindowsClient
         {
             InitializeComponent();
 
-            txtSite.Text = "http://dnn4yk57i.trials.dnncloudservices.com";
-            txtUser.Text = "user1";
-            txtPassword.Text = "1234567";
+            txtSite.Text = "http://ashprasad.com";
+            txtUser.Text = "ash.prasad";
+            txtPassword.Text = "Mypassword3";
 
 
 
