@@ -139,24 +139,24 @@ namespace AshPrasad.DnnWebApiClient
 					const string str1 = "id=\"__VIEWSTATE\" value=\"";
 					var startIndex1 = input.IndexOf(str1, StringComparison.Ordinal) + str1.Length;
 					var num1 = input.IndexOf("\"", startIndex1, StringComparison.Ordinal);
-					var str2 = input.Substring(startIndex1, num1 - startIndex1);
+					var viewstate = input.Substring(startIndex1, num1 - startIndex1);
 					const string str3 = "id=\"__EVENTVALIDATION\" value=\"";
 					var startIndex2 = input.IndexOf(str3, StringComparison.Ordinal) + str3.Length;
 					var num2 = input.IndexOf("\"", startIndex2, StringComparison.Ordinal);
-					var str4 = input.Substring(startIndex2, num2 - startIndex2);
-					var str5 = Regex.Match(input, "name=\"(.+?\\$txtUsername)\"").Groups[1].Value;
-					var str6 = Regex.Match(input, "name=\"(.+?\\$txtPassword)\"").Groups[1].Value;
-					var str7 = Regex.Match(input, "'ScriptManager', 'Form', \\['(.+?)'").Groups[1].Value;
-					var str8 =
+					var eventValidation = input.Substring(startIndex2, num2 - startIndex2);
+					var username = Regex.Match(input, "name=\"(.+?\\$txtUsername)\"").Groups[1].Value;
+					var password = Regex.Match(input, "name=\"(.+?\\$txtPassword)\"").Groups[1].Value;
+					var scriptManager = Regex.Match(input, "'ScriptManager', 'Form', \\['(.+?)'").Groups[1].Value;
+					var webForm =
 						Regex.Match(input, "WebForm_PostBackOptions\\(&quot;(.+?\\$cmdLogin)&quot;").Groups[1].Value;
-					var str9 = Regex.Match(input, "id=\"(.+?_Login_UP)\"").Groups[1].Value;
+					var loginUp = Regex.Match(input, "id=\"(.+?_Login_UP)\"").Groups[1].Value;
 					var str10 = string.Format(
 						@"ScriptManager={6}%7C{7}&__EVENTTARGET={7}&__EVENTARGUMENT=&__VIEWSTATE={2}&" +
 						@"__VIEWSTATEENCRYPTED=&__EVENTVALIDATION={3}&{4}={0}&{5}={1}&__ASYNCPOST=true&RadAJAXControlID={8}",
-						_userName, _password, HttpUtility.UrlEncode(str2), HttpUtility.UrlEncode(str4),
-						HttpUtility.UrlEncode(str5),
-						HttpUtility.UrlEncode(str6), HttpUtility.UrlEncode(str7), HttpUtility.UrlEncode(str8),
-						HttpUtility.UrlEncode(str9));
+						_userName, _password, HttpUtility.UrlEncode(viewstate), HttpUtility.UrlEncode(eventValidation),
+						HttpUtility.UrlEncode(username),
+						HttpUtility.UrlEncode(password), HttpUtility.UrlEncode(scriptManager), HttpUtility.UrlEncode(webForm),
+						HttpUtility.UrlEncode(loginUp));
 					var bytes = Encoding.UTF8.GetBytes(str10);
 
 					var httpWebRequest2 = (HttpWebRequest)WebRequest.Create(requestUriString);
