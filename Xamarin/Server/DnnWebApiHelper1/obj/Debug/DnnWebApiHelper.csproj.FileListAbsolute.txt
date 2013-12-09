@@ -1,0 +1,5 @@
+C:\ash\Xamarin\DnnMobile\bin\MyServices.dll
+C:\ash\Xamarin\DnnMobile\bin\MyServices.pdb
+C:\ash\Xamarin\DnnMobile\Server\DnnWebApiHelper1\obj\Debug\DnnWebApiHelper.csprojResolveAssemblyReference.cache
+C:\ash\Xamarin\DnnMobile\Server\DnnWebApiHelper1\obj\Debug\MyServices.dll
+C:\ash\Xamarin\DnnMobile\Server\DnnWebApiHelper1\obj\Debug\MyServices.pdb

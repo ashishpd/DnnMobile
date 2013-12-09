@@ -1,0 +1,15 @@
+C:\ash\Xamarin\DnnMobile\DnnMobile\Mobile\WinForm\DnnWebApiWindowsClient\bin\Debug\DnnWebApiWindowsClient.exe.config
+C:\ash\Xamarin\DnnMobile\DnnMobile\Mobile\WinForm\DnnWebApiWindowsClient\bin\Debug\DnnWebApiWindowsClient.exe
+C:\ash\Xamarin\DnnMobile\DnnMobile\Mobile\WinForm\DnnWebApiWindowsClient\bin\Debug\DnnWebApiWindowsClient.pdb
+C:\ash\Xamarin\DnnMobile\DnnMobile\Mobile\WinForm\DnnWebApiWindowsClient\obj\Debug\DnnWebApiWindowsClient.csprojResolveAssemblyReference.cache
+C:\ash\Xamarin\DnnMobile\DnnMobile\Mobile\WinForm\DnnWebApiWindowsClient\obj\Debug\DnnWebApiWindowsClient.Form1.resources
+C:\ash\Xamarin\DnnMobile\DnnMobile\Mobile\WinForm\DnnWebApiWindowsClient\obj\Debug\DnnWebApiWindowsClient.Properties.Resources.resources
+C:\ash\Xamarin\DnnMobile\DnnMobile\Mobile\WinForm\DnnWebApiWindowsClient\obj\Debug\DnnWebApiWindowsClient.csproj.GenerateResource.Cache
+C:\ash\Xamarin\DnnMobile\DnnMobile\Mobile\WinForm\DnnWebApiWindowsClient\obj\Debug\DnnWebApiWindowsClient.exe
+C:\ash\Xamarin\DnnMobile\DnnMobile\Mobile\WinForm\DnnWebApiWindowsClient\obj\Debug\DnnWebApiWindowsClient.pdb
+C:\ash\Xamarin\DnnMobile\DnnMobile\Mobile\WinForm\DnnWebApiWindowsClient\bin\Debug\Newtonsoft.Json.dll
+C:\ash\Xamarin\DnnMobile\DnnMobile\Mobile\WinForm\DnnWebApiWindowsClient\bin\Debug\Newtonsoft.Json.xml
+C:\ash\Xamarin\DnnMobile\DnnMobile\Mobile\WinForm\DnnWebApiWindowsClient\bin\Debug\System.Net.Http.dll
+C:\ash\Xamarin\DnnMobile\DnnMobile\Mobile\WinForm\DnnWebApiWindowsClient\bin\Debug\System.Net.Http.Formatting.dll
+C:\ash\Xamarin\DnnMobile\DnnMobile\Mobile\WinForm\DnnWebApiWindowsClient\bin\Debug\System.Net.Http.xml
+C:\ash\Xamarin\DnnMobile\DnnMobile\Mobile\WinForm\DnnWebApiWindowsClient\bin\Debug\System.Net.Http.Formatting.xml

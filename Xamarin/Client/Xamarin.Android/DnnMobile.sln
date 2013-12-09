@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnnMobile", "DnnMobile.csproj", "{A0129576-B3EE-4F60-A504-B9F5EF0A9302}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0129576-B3EE-4F60-A504-B9F5EF0A9302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0129576-B3EE-4F60-A504-B9F5EF0A9302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0129576-B3EE-4F60-A504-B9F5EF0A9302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0129576-B3EE-4F60-A504-B9F5EF0A9302}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = DnnMobile.csproj
+		Policies = $0
+		$0.StandardHeader = $1
+		$1.Text = 
+		$1.IncludeInNewFiles = True
+	EndGlobalSection
+EndGlobal

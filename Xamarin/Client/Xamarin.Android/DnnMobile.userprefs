@@ -1,0 +1,44 @@
+﻿<Properties>
+  <AuthorInfo Name="Ash Prasad" Email="ashishpd@hotmail.com" Copyright="Ash Prasad" Company="" Trademark="" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Properties\AssemblyInfo.cs">
+    <Files>
+      <File FileName="Adapters\UserListAdapter.cs" Line="1" Column="1" />
+      <File FileName="..\DnnWebApiWindowsClient\Entities\RelationshipStatus.cs" Line="1" Column="1" />
+      <File FileName="MainActivity.cs" Line="1" Column="1" />
+      <File FileName="MembersActivity.cs" Line="20" Column="41" />
+      <File FileName="c:\ash\Xamarin\DnnMobile\DnnMobile\Client\DnnWebApiWindowsClient\Controllers\DnnWebApiClientController.cs" Line="1" Column="1" />
+      <File FileName="Properties\AssemblyInfo.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="DnnMobile" expanded="True">
+            <Node name="References" expanded="True" />
+            <Node name="Adapters" expanded="True" />
+            <Node name="Assets" expanded="True" />
+            <Node name="Controllers" expanded="True" />
+            <Node name="Entities" expanded="True">
+              <Node name="FriendDTO.cs" selected="True" />
+            </Node>
+            <Node name="Properties" expanded="True" />
+            <Node name="Resources" expanded="True">
+              <Node name="layout" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.DnnMobile AndroidDeviceId-Debug="emulator-5554" MonoForAntroid.PreferredDevice="3.7in WVGA (Nexus One)" />
+</Properties>
