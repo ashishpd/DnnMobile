@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
-    <id>com.ashprasad.dnnmobi</id>
+    <id>com.dnnmobi.dnnmobi</id>
     <name>DnnMobi</name>
     <version>1.0</version>
     <publisher>ashishprasad</publisher>
-    <url>http://www.ashprasad.com</url>
+    <url>http://www.dnnmobi.com</url>
     <description>not specified</description>
-    <copyright>2013 by ashishprasad</copyright>
+    <copyright>2014 by ashishprasad</copyright>
     <icon>appicon.png</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
@@ -15,7 +15,7 @@
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
     <analytics>true</analytics>
-    <guid>2823a643-a8a4-4557-8336-cb56afb1988a</guid>
+    <guid>72e4dc4f-c862-452a-9e55-138e74c1484c</guid>
     <property name="ti.ui.defaultunit" type="string">system</property>
     <iphone>
         <orientations device="iphone">
@@ -46,7 +46,7 @@
         <target device="mobileweb">true</target>
         <target device="tizen">false</target>
     </deployment-targets>
-    <sdk-version>3.1.3.GA</sdk-version>
+    <sdk-version>3.2.0.GA</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>

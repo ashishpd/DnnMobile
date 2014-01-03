@@ -1,8 +1,22 @@
 ".container": {
-	backgroundColor:"white"
+        backgroundColor:"white",
+        top: '30%'
 },
 "Label": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	color: "#000"
-} 
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        color: "#000",
+        top: '25dp',
+        left: '10%'
+},
+"TextField": {
+        width: '90%',
+        top: '5%',
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        returnKeyType: Ti.UI.RETURNKEY_DONE	
+}
+
+"#winLogin":{
+        layout: 'vertical',
+        barColor: '#a00'
+}

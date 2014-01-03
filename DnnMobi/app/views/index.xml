@@ -1,5 +1,8 @@
 <Alloy>
-	<Window class="container">
-		<Label id="label" onClick="doClick">Hello, World</Label>
+	<Window id="winLogin" class="container">
+		<Label>Site</Label>>
+		<TextField id="txtSiteName">www.ashprasad.com</TextField>
+		<TextField id="txtUserName" hintText="username"></TextField>
+		<TextField id="txtPassword" hintText="password" passwordMask="true"></TextField>
 	</Window>
 </Alloy>
