@@ -4,5 +4,6 @@
 		<TextField id="txtSiteName">www.ashprasad.com</TextField>
 		<TextField id="txtUserName" hintText="username"></TextField>
 		<TextField id="txtPassword" hintText="password" passwordMask="true"></TextField>
+		<Button id="btnLogin" onClick="doLogin" title="Login" top="10" width="100" height="50" />
 	</Window>
 </Alloy>
