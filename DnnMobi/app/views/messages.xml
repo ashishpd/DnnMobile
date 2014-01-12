@@ -1,0 +1,6 @@
+<Alloy>
+	<Window class="container">
+		<Label id="lblStatus"></Label>
+		<Label id="lblResponseText"></Label>
+	</Window>
+</Alloy>
