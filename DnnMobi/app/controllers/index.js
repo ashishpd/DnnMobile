@@ -1,5 +1,5 @@
 $.winLogin.open();
-//$.txtSiteName.value="http://www.ashprasad.com";
+//$.txtSiteName.value="http://www.dnnsoftware.com";
 $.txtSiteName.value="http://192.168.1.79/72ce";
 $.txtUserName.value="user1";
 $.txtPassword.value="1234567";
