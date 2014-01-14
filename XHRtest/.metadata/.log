@@ -1,0 +1,156 @@
+!SESSION 2013-12-08 12:36:13.207 -----------------------------------------------
+eclipse.buildId=3.1.3.201309132423
+java.version=1.7.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_CA
+Command-line arguments:  -os win32 -ws win32 -arch x86 -data C:\ash\BitBucket\dnnmobile\XHRtest
+
+!ENTRY com.appcelerator.titanium.alloy.ui 4 0 2013-12-08 12:36:24.646
+!MESSAGE (Build 3.1.3.201309132423) [ERROR]  Failed to add Alloy project templates
+!STACK 1
+org.eclipse.core.runtime.CoreException: 'node' is not recognized as an internal or external command,
+operable program or batch file.
+
+	at com.appcelerator.titanium.alloy.internal.ui.AlloyTemplateInstaller.getTemplatesWithNewCommand(AlloyTemplateInstaller.java:292)
+	at com.appcelerator.titanium.alloy.internal.ui.AlloyTemplateInstaller.getTemplates(AlloyTemplateInstaller.java:269)
+	at com.appcelerator.titanium.alloy.internal.ui.AlloyTemplateInstaller.access$0(AlloyTemplateInstaller.java:267)
+	at com.appcelerator.titanium.alloy.internal.ui.AlloyTemplateInstaller$1.run(AlloyTemplateInstaller.java:161)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 com.aptana.core 4 1 2013-12-08 12:36:24.647
+!MESSAGE 'node' is not recognized as an internal or external command,
+operable program or batch file.
+
+
+!ENTRY com.appcelerator.titanium.acs.ui 4 0 2013-12-08 12:36:24.990
+!MESSAGE (Build 3.1.3.201309132423) [ERROR]  Failed to log into Node.ACS: 'node' is not recognized as an internal or external command,
+operable program or batch file.
+
+
+!ENTRY com.appcelerator.titanium.mobile 4 0 2013-12-08 12:36:50.067
+!MESSAGE (Build 3.1.3.201309132423) [ERROR]  Error cleaning the project. A manual clean will be performed.
+
+!ENTRY org.eclipse.core.jobs 2 2 2013-12-08 12:38:30.340
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: com.aptana.usage.internal.DefaultAnalyticsEventHandler$1
+!SESSION 2013-12-08 12:38:33.610 -----------------------------------------------
+eclipse.buildId=3.1.3.201309132423
+java.version=1.7.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_CA
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 12:39:03.509
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_errorUpdatingAndroid in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 12:39:03.521
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_noUpdateRequired in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 12:39:03.526
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_updatingAndroid in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 12:39:03.530
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_failedToUpdate in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.core.jobs 2 2 2013-12-08 14:21:52.454
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: com.aptana.usage.internal.DefaultAnalyticsEventHandler$1
+!SESSION 2013-12-08 14:21:55.663 -----------------------------------------------
+eclipse.buildId=3.1.3.201309132423
+java.version=1.7.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_CA
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 14:22:28.757
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_errorUpdatingAndroid in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 14:22:28.771
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_noUpdateRequired in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 14:22:28.775
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_updatingAndroid in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 14:22:28.779
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_failedToUpdate in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.core.jobs 2 2 2013-12-08 14:31:26.237
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: com.aptana.usage.internal.DefaultAnalyticsEventHandler$1
+!SESSION 2013-12-08 14:31:26.672 -----------------------------------------------
+eclipse.buildId=3.1.3.201309132423
+java.version=1.7.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_CA
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 14:58:56.910
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_errorUpdatingAndroid in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 14:58:56.933
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_noUpdateRequired in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 14:58:56.936
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_updatingAndroid in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 14:58:56.939
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_failedToUpdate in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.core.jobs 2 2 2013-12-08 14:59:20.758
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: com.aptana.usage.internal.DefaultAnalyticsEventHandler$1
+!SESSION 2013-12-08 14:59:21.828 -----------------------------------------------
+eclipse.buildId=3.1.3.201309132423
+java.version=1.7.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_CA
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 15:08:36.405
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_errorUpdatingAndroid in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 15:08:36.414
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_noUpdateRequired in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 15:08:36.417
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_updatingAndroid in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 15:08:36.419
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_failedToUpdate in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.core.jobs 2 2 2013-12-08 15:14:43.237
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: com.aptana.usage.internal.DefaultAnalyticsEventHandler$1
+!SESSION 2013-12-08 15:14:40.926 -----------------------------------------------
+eclipse.buildId=3.1.3.201309132423
+java.version=1.7.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_CA
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 15:16:49.134
+!MESSAGE NLS missing message: BasicProjectCreationPage_crossPlatformWarningAndroid in: com.appcelerator.titanium.ui.wizard.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 15:16:49.140
+!MESSAGE NLS missing message: BasicProjectCreationPage_crossPlatformWarningIOS in: com.appcelerator.titanium.ui.wizard.messages
+!SESSION 2013-12-08 20:14:49.659 -----------------------------------------------
+eclipse.buildId=3.1.3.201309132423
+java.version=1.7.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_CA
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 20:15:14.373
+!MESSAGE NLS missing message: BasicProjectCreationPage_crossPlatformWarningAndroid in: com.appcelerator.titanium.ui.wizard.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 20:15:14.459
+!MESSAGE NLS missing message: BasicProjectCreationPage_crossPlatformWarningIOS in: com.appcelerator.titanium.ui.wizard.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 20:33:50.406
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_errorUpdatingAndroid in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 20:33:50.410
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_noUpdateRequired in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 20:33:50.413
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_updatingAndroid in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.osgi 2 1 2013-12-08 20:33:50.416
+!MESSAGE NLS missing message: MobileSDKConfigurationProcessor_failedToUpdate in: com.appcelerator.titanium.mobile.ui.portal.processor.messages
+
+!ENTRY org.eclipse.core.jobs 2 2 2013-12-08 21:45:01.112
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: com.aptana.usage.internal.DefaultAnalyticsEventHandler$1
