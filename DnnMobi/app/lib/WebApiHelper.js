@@ -18,6 +18,10 @@ exports.responseText = function(){
 	return _responseText;
 };
 
+exports.jsonData = function(){
+	return JSON.parse(_responseText);
+};
+
 var xhrPost = Ti.Network.createHTTPClient({
     onload: function(e) {
 		// function called in readyState DONE (4)
