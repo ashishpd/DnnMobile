@@ -1,50 +1,33 @@
 var args = arguments[0] || {};
 
-
-
-
-
-
-
-
-
-
 	var WebApiHelper = require('WebApiHelper');
 	WebApiHelper.xhrGet("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "64", "436");
 	
 	function waitForResponse () {           //  create a loop function
    		setTimeout(function () {    //  call a 3s setTimeout when the loop is called  	
-      		$.lblStatus.text = WebApiHelper.status();
-      		$.lblResponseText.text = WebApiHelper.responseText();
       		
-      		
-      		//$.listSection.setItems(WebApiHelper.responseText());
-      		var listView = Ti.UI.createListView();
-
-			var tasks = [
-			    {id: 'trash', name: 'Take Out the Trash', icon: 'trash.png'},
-			    {id: 'dishes', name: 'Do the Dishes', icon: 'dishes.png'},
-			    {id: 'doggie', name: 'Walk the Dog', icon: 'doggie.png'}
-			];
-			
 			var data = [];
-			var data1 = WebApiHelper.jsonData();
-			for (var i = 0; i < data1.Conversations.length; i++) {
-
+			var response = WebApiHelper.jsonData();
+			for (var i = 0; i < response.Conversations.length; i++) {
 			    data.push(
-			        { properties: {
-			            itemId: tasks[i].MessageID,
-			            title: data1.Conversations[i].From,
-			            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
-			            color: 'black'
-			        }
-			    });
+			        { 
+					    properties: {
+					    	itemId: response.Conversations[i].MessageID,
+				            title: response.Conversations[i].From,
+				            subtitle: response.Conversations[i].Subject + ' - ' + response.Conversations[i].Body,
+				            //image: 'http://192.168.1.79/72ce/profilepic.ashx?userId=1&h=64&w=64',
+				            //image: '/assets/iphone/appicon.png',
+				            image: 'KS_nav_views.png',
+				            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_DETAIL
+				        },
+				        template: Ti.UI.LIST_ITEM_TEMPLATE_SUBTITLE
+				    }  
+			    );
 			}
+					
+			var listSection = Ti.UI.createListSection({items: data});
+			var listView = Ti.UI.createListView({sections: [listSection]});
 			
-			var section = Ti.UI.createListSection();
-			
-			section.setItems(data);
-			listView.sections = [section];
 			/*
 			listView.addEventListener('itemclick', function(e){
 			    var item = section.getItemAt(e.itemIndex);
@@ -61,11 +44,7 @@ var args = arguments[0] || {};
 			*/
 			
 			$.winMessages.add(listView);
-      		
-      		
-      		
-      		
-      		
+
 		}, 4000);
 }
 

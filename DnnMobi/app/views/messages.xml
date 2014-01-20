@@ -1,24 +1,4 @@
 <Alloy>
 	<Window class="container" id="winMessages">
-		<Label id="lblStatus"></Label>
-		<Label id="lblResponseText"></Label>
-		
-		<ListView id="listView" defaultItemTemplate="template">
-            <Templates>
-
-                <!-- Define your item templates within the Templates tags or use the
-                     Require tag to include a view that only contains an ItemTemplate -->
-
-                <ItemTemplate name="template">
-                    <ImageView bindId="pic" id="icon" />
-                    <Label bindId="info" id="title" />
-                    <Label bindId="es_info" id="subtitle" />
-                    <Label bindId="from" id="from" />
-                </ItemTemplate>
-            </Templates>
-            <ListSection id="listSection">
-            </ListSection>
-        </ListView>
-		
 	</Window>
 </Alloy>
