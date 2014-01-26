@@ -65,7 +65,7 @@ exports.xhrGet = function(query, tabid, moduleid) {
 		//if(cookie.indexOf("=") > 0) {	
 			cookie = cookie.replace("HttpOnly, ","");
 			Ti.API.info(cookie);
-			xhrPost.setRequestHeader('Cookie',cookie);	
+			//xhrPost.setRequestHeader('Cookie',cookie);	
 		}
 	}
 	

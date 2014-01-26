@@ -45,7 +45,7 @@ var args = arguments[0] || {};
 			
 			$.winMessages.add(listView);
 
-		}, 4000);
+		}, 10000);
 }
 
 waitForResponse();

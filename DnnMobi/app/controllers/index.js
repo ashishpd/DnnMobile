@@ -5,7 +5,7 @@ $.txtUserName.value="user1";
 $.txtPassword.value="1234567";
 
 if (Titanium.Platform.name == 'iPhone OS') {
-    doLogin();
+    //doLogin();
 }
 
 
@@ -26,7 +26,7 @@ function doLogin(e){
 	 //     if (i < 10) {            //  if the counter < 10, call the loop function
 	 //        myLoop();             //  ..  again which will trigger another 
 	 //     }                        //  ..  setTimeout()
-   		}, 4000);
+   		}, 10000);
 }
 
 myLoop();                      //  start the loop	
