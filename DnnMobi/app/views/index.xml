@@ -2,9 +2,11 @@
 	<Window id="winLogin" class="container">
 		<Label>Site</Label>>
 		<TextField id="txtSiteName">www.ashprasad.com</TextField>
+		<Label>User</Label>>
 		<TextField id="txtUserName" hintText="username"></TextField>
+		<Label>Password</Label>>
 		<TextField id="txtPassword" hintText="password" passwordMask="true"></TextField>
-		<Button id="btnLogin" onClick="doLogin" title="Login" top="10" width="100" height="50" />
+		<Button id="btnLogin" onClick="doLogin" title="Login" />
 		<Label id="txtError"></Label>
 	</Window>
 </Alloy>

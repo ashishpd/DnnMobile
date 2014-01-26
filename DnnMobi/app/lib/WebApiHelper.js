@@ -37,8 +37,8 @@ var xhrPost = Ti.Network.createHTTPClient({
 		_responseText = this.responseText;
     },
     onerror: function(e) {
-		Ti.API.info('error, HTTP status = '+this.status);
-		alert(e.error + this.status + this.getAllResponseHeaders());
+		Ti.API.error('xhrPost Error, HTTP status = '+this.status);
+		Ti.API.error(e.error + this.getAllResponseHeaders());
     },
     timeout:30000  /* in milliseconds */
 });    
