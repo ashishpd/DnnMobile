@@ -24,6 +24,7 @@ exports.jsonData = function(){
 
 var xhrPost = Ti.Network.createHTTPClient({
     onload: function(e) {
+   		Ti.API.info('xhrPost called');
 		// function called in readyState DONE (4)
 		_cookies = this.getResponseHeader("Set-Cookie");
 		Ti.API.info(this.status + this.responseText);

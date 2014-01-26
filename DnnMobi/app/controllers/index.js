@@ -4,7 +4,10 @@ $.txtSiteName.value="http://192.168.1.79/72ce";
 $.txtUserName.value="user1";
 $.txtPassword.value="1234567";
 
-doLogin();
+if (Titanium.Platform.name == 'iPhone OS') {
+    doLogin();
+}
+
 
 function doLogin(e){
     var WebApiHelper = require('WebApiHelper');
