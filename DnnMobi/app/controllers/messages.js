@@ -1,7 +1,21 @@
 var args = arguments[0] || {};
 
 	var WebApiHelper = require('WebApiHelper');
-	WebApiHelper.xhrGet("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "64", "436");
+	
+	//laptop
+	//WebApiHelper.xhrGet("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "67", "446");
+	
+	//ashprasad.com
+	//WebApiHelper.xhrGet("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "65", "437");
+	
+	//www.dnnsoftware.com
+	//WebApiHelper.xhrGet("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "65", "437");
+	
+	//catalyst
+	WebApiHelper.xhrGet("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "124", "514");
+	
+	
+	
 	
 	function waitForResponse () {           //  create a loop function
    		setTimeout(function () {    //  call a 3s setTimeout when the loop is called  	

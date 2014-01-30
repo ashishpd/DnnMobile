@@ -1,8 +1,13 @@
 $.winLogin.open();
+//$.txtSiteName.value="http://ashprasad.com";
+//$.txtUserName.value="user1";
+//$.txtPassword.value="1234567";
+
 //$.txtSiteName.value="http://www.dnnsoftware.com";
-$.txtSiteName.value="http://192.168.1.79/72ce";
-$.txtUserName.value="user1";
-$.txtPassword.value="1234567";
+$.txtSiteName.value="http://catalyst.dnnsoftware.com";
+
+$.txtUserName.value="ashishpd";
+$.txtPassword.value="xxxxxx";
 
 if (Titanium.Platform.name == 'iPhone OS') {
     //doLogin();
