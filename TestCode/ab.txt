@@ -1,0 +1,21 @@
+HTTP/1.1 100 Continue
+
+HTTP/1.1 200 OK
+Cache-Control: no-cache
+Pragma: no-cache
+Content-Type: text/plain; charset=utf-8
+Content-Encoding: gzip
+Expires: -1
+Vary: Accept-Encoding
+Server: Microsoft-IIS/7.5
+X-AspNet-Version: 4.0.30319
+Set-Cookie: um_IsMobile=False; path=/; HttpOnly
+Set-Cookie: .ASPXANONYMOUS=EL_cbdVUzwEkAAAANDVhYWE1NDAtODQzYi00NjA1LWJkZmItYjI5OWZlMDlmOGI30; expires=Thu, 10-Apr-2014 15:56:26 GMT; path=/; HttpOnly
+Set-Cookie: language=en-US; path=/; HttpOnly
+Set-Cookie: authentication=DNN; path=/; HttpOnly
+Set-Cookie: .DNNSoftware=91F65F1B1A241462305576ECFB551B822575464C76CBB2EBAD9A440C50BBE57440DF6F76B7282B5737465743A69C4AC495BC9686BDEE94CBADE932172DAFFBB70F9F9E4FFFE893C899EC1824DE9F22652C7D6FA98540E6A4215D4BB88AB6FF0AE6D2F8ACE088E35CEF51B6A0; domain=.dnnsoftware.com; path=/; HttpOnly
+Set-Cookie: returnurl=; expires=Thu, 30-Jan-2014 05:16:26 GMT; path=/; HttpOnly
+X-Powered-By: ASP.NET
+Date: Fri, 31 Jan 2014 05:16:26 GMT
+Content-Length: 178
+

@@ -3,7 +3,8 @@ function squareNumber(x) {
 }
 
 var fs = require('fs');
-var filename = 'login.html';
+//var filename = 'login.html';
+var filename = 'login_dnnsoftware.html';
 fs.readFile(filename, 'utf8', function(err, data) {
   if (err) throw err;
   //console.log('OK: ' + filename);

@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html  lang="en-US">
+<head id="Head">
+<!--**********************************************************************************-->
+<!-- DotNetNuke - http://www.dotnetnuke.com                                          -->
+<!-- Copyright (c) 2002-2013                                                          -->
+<!-- by DotNetNuke Corporation                                                        -->
+<!--**********************************************************************************-->
+<title>
+	Secure Login | DNN CMS & Online Community Software
+</title><meta content="text/html; charset=UTF-8" http-equiv="Content-Type" /><meta content="text/javascript" http-equiv="Content-Script-Type" /><meta content="text/css" http-equiv="Content-Style-Type" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta id="MetaDescription" name="DESCRIPTION" content="Log in to your DNN (formerly DotNetNuke) open source software account." /><meta id="MetaKeywords" name="KEYWORDS" content=",DotNetNuke,DNN" /><meta id="MetaCopyright" name="COPYRIGHT" content="Copyright 2014 by DNN Corp" /><meta id="MetaGenerator" name="GENERATOR" content="DotNetNuke " /><meta id="MetaAuthor" name="AUTHOR" content="DNN Software" /><meta name="RESOURCE-TYPE" content="DOCUMENT" /><meta name="DISTRIBUTION" content="GLOBAL" /><meta id="MetaRobots" name="ROBOTS" content="INDEX, FOLLOW" /><meta name="REVISIT-AFTER" content="1 DAYS" /><meta name="RATING" content="GENERAL" /><meta http-equiv="PAGE-ENTER" content="RevealTrans(Duration=0,Transition=1)" /><style id="StylePlaceholder" type="text/css"></style><link href="/Portals/_default/default.css?cdv=85" type="text/css" rel="stylesheet"/><link href="/DesktopModules/HTML/module.css?cdv=85" type="text/css" rel="stylesheet"/><link href="/DesktopModules/Admin/Authentication/module.css?cdv=85" type="text/css" rel="stylesheet"/><link href="/Portals/_default/Skins/DNN/skin.css?cdv=85" type="text/css" rel="stylesheet"/><link href="/Portals/_default/Containers/DNN/container.css?cdv=85" type="text/css" rel="stylesheet"/><link href="/Portals/0/portal.css?cdv=85" type="text/css" rel="stylesheet"/><script src="/Resources/Shared/Scripts/jquery/jquery.min.js?cdv=85" type="text/javascript"></script><script src="/Resources/Shared/Scripts/jquery/jquery-ui.min.js?cdv=85" type="text/javascript"></script><!--[if lt IE 9]><link id="ie8" rel="stylesheet" type="text/css" href="/Portals/_default/Skins/DNN/css/ie8.css" /><![endif]--><link rel='SHORTCUT ICON' href='/Portals/0/favicon.ico' type='image/x-icon' />
+            
+			    <script type="text/javascript">
+			      var _gaq = _gaq || [];
+			      _gaq.push(['_setAccount', 'UA-2243389-4']);
+			      _gaq.push(['_setDomainName', 'dnnsoftware.com']);
+		              _gaq.push(['_setAllowHash', false]); 
+			      
+
+			      _gaq.push(['_trackPageview']);
+			 
+			      (function() {
+				    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+				    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			      })();
+			    </script>
+            
+		    <link href="/Telerik.Web.UI.WebResource.axd?compress=1&amp;_TSM_CombinedScripts_=%3b%3bTelerik.Web.UI%2c+Version%3d2013.1.403.40%2c+Culture%3dneutral%2c+PublicKeyToken%3d121fae78165ba3d4%3aen-US%3afdaa59bf-a0b7-4c68-afd9-0200924282da%3a45085116%3a27c5704c" type="text/css" rel="stylesheet" /><script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script></head>
+<body id="Body">
+    
+    <form method="post" action="/login?returnurl=/" id="Form" enctype="multipart/form-data">
+<div class="aspNetHidden">
+<input type="hidden" name="StylesheetManager_TSSM" id="StylesheetManager_TSSM" value="" />
+<input type="hidden" name="ScriptManager_TSM" id="ScriptManager_TSM" value="" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['Form'];
+if (!theForm) {
+    theForm = document.Form;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=8-TTGfvOSvDca5hansZCA-SJ_cv-MrZk02gTJiCC8e7J1q0GxYjv3m5pvwSG54v9uoUVTcCom1T6kFxg0&amp;t=635187451864337937" type="text/javascript"></script>
+
+
+<script src="/Telerik.Web.UI.WebResource.axd?_TSM_HiddenField_=ScriptManager_TSM&amp;compress=1&amp;_TSM_CombinedScripts_=%3b%3bSystem.Web.Extensions%2c+Version%3d4.0.0.0%2c+Culture%3dneutral%2c+PublicKeyToken%3d31bf3856ad364e35%3aen-US%3af01b1325-3d40-437a-8da2-df3d86714220%3aea597d4b%3ab25378d2%3bTelerik.Web.UI%2c+Version%3d2013.1.403.40%2c+Culture%3dneutral%2c+PublicKeyToken%3d121fae78165ba3d4%3aen-US%3afdaa59bf-a0b7-4c68-afd9-0200924282da%3a16e4e7cd%3af7645509%3aed16cbdc" type="text/javascript"></script>
+<script src="/js/dnn.js" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="SWpZ46qz5IK4WFTZkVhGt/P/KiGipS1fNGviTpMc/YgfoFdAVypJ79fpcOzptV45psYUBKyG12V2frCYrH4UsHiedT8AJ1XZ+CtHyX4V7WJAGST3kY0ru8jNdUBs6SfxjYpimeOQTZNBtCxO" />
+</div><script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ScriptManager', 'Form', ['tdnn$ctr619$dnn$ctr619$Login_UPPanel',''], [], [], 90, '');
+//]]>
+</script>
+
+        <script src="/js/dnn.modalpopup.js?cdv=85" type="text/javascript"></script><script src="/Resources/Shared/Scripts/jquery/jquery.hoverIntent.min.js?cdv=85" type="text/javascript"></script><script src="/Resources/Shared/Scripts/dnn.jquery.js?cdv=85" type="text/javascript"></script><script src="/js/dnncore.js?cdv=85" type="text/javascript"></script>
+        
+        
+
+
+
+<script type="text/javascript">
+var dnnVars= new Object();
+dnnVars.cdv = 85;
+dnnVars.PortalID = 0;
+dnnVars.PortalAlias = "www.dnnsoftware.com";
+dnnVars.PortalDesc = "DNN Software ";
+dnnVars.PortalName = "DNN Software";
+dnnVars.PortalRoot = "/Portals/0/";
+dnnVars.PageDesc = "Log in to your DNN (formerly DotNetNuke) open source software account.";
+dnnVars.PageLink = "https://www.dnnsoftware.com/login";
+dnnVars.PageName = "login";
+dnnVars.PageTitle = "Secure Login | DNN CMS & Online Community Software";
+dnnVars.PageID = 197;
+dnnVars.PageLevel = 0;
+dnnVars.SkinPath = "/Portals/_default/Skins/DNN/";
+</script><script type="text/javascript">
+document.write(unescape("%3Cscript src='" + document.location.protocol + "//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script src="//cdn.optimizely.com/js/279295853.js"></script>
+<script>Munchkin.init('758-ZNS-109');</script>
+
+<script>
+
+var N= navigator.appName, ua= navigator.userAgent, tem;
+  var M= ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
+  if(M && (tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
+if(M[1]=='Chrome' && M[2]=='29.0.1547.57')
+{
+navigator.__defineGetter__('userAgent', function(){
+		return( "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1468.0 Safari/537.36" );
+	});
+  
+}
+
+</script>
+
+
+
+
+<div id="Wrapper" class="default largeScreen">
+<div id="Masthead" class="brownGrad dropShadow">
+  <div id="ContactBar" class="brownGrad">
+    <div class="grid-container" itemscope itemtype="http://schema.org/Organization"> <a id="TopCTA" class="redGrad roundedBottom" galabel="Header | Trial Button - Try it Free" href="/Solutions/Try-DNN">try it free</a>
+ 
+      <i class="icon mini i-phone"></i> <a galabel="Header | Contact Us" itemprop="telephone" href="/About/Contact">CONTACT US</a>
+        
+    </div>
+  </div>
+  <nav>
+    <div class="grid-container">
+      <div id="Logo" class="grid-15"> <a galabel="Header | Logo" href="/">DNN</a> </div>
+      <div id="ToolsMenu" class="topMenu grid-20 push-65">
+        <ul class="grid-parent iconMenu">
+          <li class="grid-25" data-submenu-id="TMm" ><a class="roundedTop top">
+            
+            <i class="icon i-profile"></i>
+            
+            </a>
+            <div id="TMm" class="subMenu rounded dropShadow grid-parent">
+              
+<div id="dnn_dnnLogin_loginGroup" class="loginGroup">
+    <a id="dnn_dnnLogin_enhancedLoginLink" title="Login" class="LoginLink dnnSecondaryAction" href="https://www.dnnsoftware.com/login?returnurl=%2flogin">Login</a>
+</div><!--close loginGroup-->
+				<div class="adTile last"><a galabel="Header | Login > Become DNNizen" href='/Register?returnurl=%2flogin%3freturnurl%3d%2f' ><i class="icon lg i-profile"></i>Register<span class="adTitle">Become a DNNizen ></span></a></div>
+				
+              
+            </div>
+          </li>
+          <li class="grid-25" data-submenu-id="TMs" ><a class="roundedTop top"><i class="icon i-store"></i></a>
+            <div id="TMs" class="subMenu rounded dropShadow"> <i class="icon lg i-store right"></i>
+              <h3>DNN Store</h3>
+              <p>Get the hottest modules, skins, and goodies!</p>
+              <a galabel="Header | Store > Visit Store" href="http://store.dnnsoftware.com">Visit the DNN Store ></a> </div>
+          </li>
+          <li class="grid-25" data-submenu-id="TMd" ><a class="roundedTop top"><i class="icon i-download"></i></a>
+            <div id="TMd" class="subMenu rounded dropShadow">
+			
+				<div class="adTile first"><a galabel="Header | Download > Get Started" href="/Solutions/Try-DNN"><i class="icon lg i-cloud"></i>Get Started<span class="adTitle">Start Evoq FREE Trial ></span></a></div>
+				<div class="adTile"><a galabel="Header | Download > Download" href="/Community/Download"><i class="icon lg i-download"></i>Download<span class="adTitle">Get the DNN Platform ></span></a></div>
+				<div class="adTile"><a galabel="Header | Download > Learn More" href="/About/Resources/Whitepapers"><i class="icon lg i-learn"></i>Learn More<span class="adTitle">Browse Whitepapers ></span></a></div>
+				<div class="adTile last"><a galabel="Header | Download > Reference" href="/Community/Download/Manuals"><i class="icon lg i-learn"></i>Reference<span class="adTitle">Get Manuals ></span></a></div>
+			</div>
+          </li>
+          <li class="grid-25" data-submenu-id="TMf" ><a class="roundedTop top"><i class="icon i-search"></i></a>
+            <div id="TMf" class="subMenu rounded dropShadow">
+			<!--<span id="dnn_dnnSearch_ClassicSearch">
+    
+    
+    <input name="dnn$dnnSearch$txtSearch" type="text" maxlength="255" size="20" id="dnn_dnnSearch_txtSearch" class="NormalTextBox" onkeydown="return __dnn_KeyDown(&#39;13&#39;, &#39;javascript:__doPostBack(%27dnn$dnnSearch$cmdSearch%27,%27%27)&#39;, event);" />
+	<a id="dnn_dnnSearch_cmdSearch" class="SearchButton" href="javascript:__doPostBack(&#39;dnn$dnnSearch$cmdSearch&#39;,&#39;&#39;)">Search</a>
+</span>
+
+
+-->
+<input type="text" id="txtSearch" onkeydown="return __dnn_KeyDown('13', 'javascript:searchDNN();', event);"  />
+                            	<a href="javascript:searchDNN();" class="SearchButton">Submit</a>
+			<h3>Can't Find Something</h3>
+			<p>Contact us and we'll be happy to assist you.</p>
+			<a href="/About/Contact" galabel="Header | Search > Contact">Contact Information ></a>
+			</div>
+          </li>
+        </ul>
+      </div>
+      <div id="MainMenu" class="pull-20">
+        <!-- DDRmenu v02.00.01 - Simple template -->
+    <ul class="dnnNav">
+		
+	<li data-submenu-id="SubMenuID91" class="first">
+	
+		<a href="https://www.dnnsoftware.com/Solutions" galabel="Header | Solutions" class="" id="PageID91" target="">Solutions</a>
+	
+		<div class="subMenu" id="SubMenuID91">
+	    <ul>
+	    
+	<li data-submenu-id="SubMenuID198" class="first">
+	
+		<a href="https://www.dnnsoftware.com/Solutions" galabel="Header | Overview" class="" id="PageID198" target="">Overview</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID113" >
+	
+		<a href="https://www.dnnsoftware.com/Solutions/Evoq-Content-Management-System" galabel="Header | Evoq Content" class="" id="PageID113" target="">Evoq Content</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID114" >
+	
+		<a href="https://www.dnnsoftware.com/Solutions/Evoq-Social-Online-Community-Management" galabel="Header | Evoq Social" class="" id="PageID114" target="">Evoq Social</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID115" >
+	
+		<a href="https://www.dnnsoftware.com/Solutions/Evoq-in-the-Cloud" galabel="Header | Evoq in the Cloud" class="" id="PageID115" target="">Evoq in the Cloud</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID281" >
+	
+		<a href="https://www.dnnsoftware.com/About/Resources" galabel="Header | Resources" class="" id="PageID281" target="">Resources</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID204" >
+	
+		<a href="https://www.dnnsoftware.com/Solutions/Use-Cases" galabel="Header | Use Cases" class="" id="PageID204" target="">Use Cases</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID104" class="last">
+	
+		<a href="https://www.dnnsoftware.com/Solutions/Services" galabel="Header | Services" class="" id="PageID104" target="">Services</a>
+	
+	</li>
+
+	    </ul>
+		<div class="pullout"></div>
+		</div>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID94" >
+	
+		<a href="https://www.dnnsoftware.com/Platform" galabel="Header | Platform" class="" id="PageID94" target="">Platform</a>
+	
+		<div class="subMenu" id="SubMenuID94">
+	    <ul>
+	    
+	<li data-submenu-id="SubMenuID199" class="first">
+	
+		<a href="https://www.dnnsoftware.com/Platform" galabel="Header | Overview" class="" id="PageID199" target="">Overview</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID123" >
+	
+		<a href="https://www.dnnsoftware.com/Platform/Start" galabel="Header | Start" class="" id="PageID123" target="">Start</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID127" >
+	
+		<a href="https://www.dnnsoftware.com/Platform/Build" galabel="Header | Build" class="" id="PageID127" target="">Build</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID128" >
+	
+		<a href="https://www.dnnsoftware.com/Platform/Manage" galabel="Header | Manage" class="" id="PageID128" target="">Manage</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID129" class="last">
+	
+		<a href="https://www.dnnsoftware.com/Platform/Share" galabel="Header | Share" class="" id="PageID129" target="">Share</a>
+	
+	</li>
+
+	    </ul>
+		<div class="pullout"></div>
+		</div>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID92" >
+	
+		<a href="https://www.dnnsoftware.com/Partners" galabel="Header | Partners" class="" id="PageID92" target="">Partners</a>
+	
+		<div class="subMenu" id="SubMenuID92">
+	    <ul>
+	    
+	<li data-submenu-id="SubMenuID201" class="first">
+	
+		<a href="https://www.dnnsoftware.com/Partners" galabel="Header | Overview" class="" id="PageID201" target="">Overview</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID105" >
+	
+		<a href="https://www.dnnsoftware.com/Partners/Become-A-Partner" galabel="Header | Become A Partner" class="" id="PageID105" target="">Become A Partner</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID107" class="last">
+	
+		<a href="https://www.dnnsoftware.com/Partners/Find-A-Partner" galabel="Header | Find A Partner" class="" id="PageID107" target="">Find A Partner</a>
+	
+	</li>
+
+	    </ul>
+		<div class="pullout"></div>
+		</div>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID93" >
+	
+		<a href="https://www.dnnsoftware.com/Community" galabel="Header | Community" class="" id="PageID93" target="">Community</a>
+	
+		<div class="subMenu" id="SubMenuID93">
+	    <ul>
+	    
+	<li data-submenu-id="SubMenuID200" class="first">
+	
+		<a href="https://www.dnnsoftware.com/Community" galabel="Header | Overview" class="" id="PageID200" target="">Overview</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID130" >
+	
+		<a href="https://www.dnnsoftware.com/Community/Download" galabel="Header | Download" class="" id="PageID130" target="">Download</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID131" >
+	
+		<a href="https://www.dnnsoftware.com/Community/Connect" galabel="Header | Connect" class="" id="PageID131" target="">Connect</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID132" >
+	
+		<a href="https://www.dnnsoftware.com/Community/Learn" galabel="Header | Learn" class="" id="PageID132" target="">Learn</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID133" class="last">
+	
+		<a href="https://www.dnnsoftware.com/Community/Participate" galabel="Header | Participate" class="" id="PageID133" target="">Participate</a>
+	
+	</li>
+
+	    </ul>
+		<div class="pullout"></div>
+		</div>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID95" >
+	
+		<a href="https://www.dnnsoftware.com/Support" galabel="Header | Support" class="" id="PageID95" target="">Support</a>
+	
+		<div class="subMenu" id="SubMenuID95">
+	    <ul>
+	    
+	<li data-submenu-id="SubMenuID202" class="first">
+	
+		<a href="https://www.dnnsoftware.com/Support" galabel="Header | Overview" class="" id="PageID202" target="">Overview</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID232" class="last">
+	
+		<a href="https://www.dnnsoftware.com/Support/Success-Network" galabel="Header | Success Network" class="" id="PageID232" target="">Success Network</a>
+	
+	</li>
+
+	    </ul>
+		<div class="pullout"></div>
+		</div>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID60" >
+	
+		<a href="https://www.dnnsoftware.com/About" galabel="Header | About" class="" id="PageID60" target="">About</a>
+	
+		<div class="subMenu" id="SubMenuID60">
+	    <ul>
+	    
+	<li data-submenu-id="SubMenuID203" class="first">
+	
+		<a href="https://www.dnnsoftware.com/About" galabel="Header | Overview" class="" id="PageID203" target="">Overview</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID97" >
+	
+		<a href="https://www.dnnsoftware.com/About/Leadership/Management" galabel="Header | Leadership" class="" id="PageID97" target="">Leadership</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID98" >
+	
+		<a href="https://www.dnnsoftware.com/About/In-The-News/Articles" galabel="Header | In The News" class="" id="PageID98" target="">In The News</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID99" >
+	
+		<a href="https://www.dnnsoftware.com/About/Careers" galabel="Header | Careers" class="" id="PageID99" target="">Careers</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID100" >
+	
+		<a href="https://www.dnnsoftware.com/About/Resources" galabel="Header | Resources" class="" id="PageID100" target="">Resources</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID172" >
+	
+		<a href="https://www.dnnsoftware.com/About/Customers" galabel="Header | Customers" class="" id="PageID172" target="">Customers</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID101" class="last">
+	
+		<a href="https://www.dnnsoftware.com/About/Contact" galabel="Header | Contact" class="" id="PageID101" target="">Contact</a>
+	
+	</li>
+
+	    </ul>
+		<div class="pullout"></div>
+		</div>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID279" >
+	
+		<a href="http://store.dnnsoftware.com" galabel="Header | Store" class="" id="PageID279" target="_new">Store</a>
+	
+		<div class="subMenu" id="SubMenuID279">
+	    <ul>
+	    
+	<li data-submenu-id="SubMenuID283" class="first">
+	
+		<a href="http://store.dnnsoftware.com/top-sellers/top-modules" galabel="Header | DNN Modules" class="" id="PageID283" target="_new">DNN Modules</a>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID284" class="last">
+	
+		<a href="http://store.dnnsoftware.com/top-sellers/top-skins" galabel="Header | DNN Skins" class="" id="PageID284" target="_new">DNN Skins</a>
+	
+	</li>
+
+	    </ul>
+		<div class="pullout"></div>
+		</div>
+	
+	</li>
+
+	<li data-submenu-id="SubMenuID280" class="last">
+	
+		<a href="https://www.dnnsoftware.com/About/Resources/Webinars" galabel="Header | Webinars" class="" id="PageID280" target="">Webinars</a>
+	
+	</li>
+
+	</ul>
+
+
+
+
+      </div>
+    </div>
+  </nav>
+</div>
+<div id="PageInfoWrapper">
+  <div id="PageInfo" class="grid-container">
+    <div class="grid-80">
+      <div id="Breadcrumb">
+        <!-- DDRmenu v02.00.01 - Breadcrumb template --><ul class="breadcrumb">
+  <li itemprop="breadcrumb" itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" rel="Home" href="/" title="DNN Software Home"><i class="icon mini i-home"></i></a></li>
+</ul>
+      </div>
+      <h1 class="pageTitle"><span id="dnn_dnnCustomPageTitle_lblCustomPageTitle">Secure Login</span></h1>
+    </div>
+    <div class="grid-20">
+      <div id="dnn_AdTilePane" class="adTilePane pane DNNEmptyPane"></div>
+    </div>
+  </div>
+</div>
+<div class="grid-container">
+  <div class="grid-100" id="SubMenu">
+<!-- DDRmenu v02.00.01 - Simple template -->
+  </div>
+</div>
+<div id="dnn_PreContentPane" class="pane fullWidth DNNEmptyPane"></div>
+<div id="Content" class="grid-container">
+  <div id="dnn_ContentPane" class="grid-75 contentPane pane"><div class="DnnModule DnnModule-DNN_HTML DnnModule-2695"><a name="2695"></a>
+<div class="DNNContainer noTitle">
+	<div id="dnn_ctr2695_ContentPane" class="Normal"><!-- Start_Module_2695 --><div id="dnn_ctr2695_ModuleContent" class="DNNModuleContent ModDNNHTMLC">
+	
+<div id="dnn_ctr2695_HtmlModule_lblContent" class="Normal">
+	<div style="margin: 50px 0px 0px;">
+<h1><span style="color: #333333;">Sign in to access community and customer sections</span>.</h1>
+<h4 style="text-transform: none;">Login to your account below.</h4>
+</div>
+</div>
+
+</div><!-- End_Module_2695 --></div>
+</div>
+</div></div>
+  <div id="dnn_SidebarPane" class="grid-25 sidebarPane pane DNNEmptyPane"></div>
+  <div id="dnn_TwoColOnePane" class="grid-50 pane"><div class="DnnModule DnnModule-Authentication DnnModule-619"><a name="619"></a><div id="dnn_ctr619_ContentPane"><!-- Start_Module_619 --><div class="callout rounded outerShadow" style="background-color: #f4f4f4; margin-bottom: 50px;">
+<h3>Standard Secure Login</h3>
+<div id="dnn_ctr619_ModuleContent" class="DNNModuleContent ModAuthenticationC">
+	<div id="dnn_ctr619_Login_Prog" class="RadAjax RadAjax_Default" style="display:none;">
+		<div class="raDiv">
+
+		</div><div class="raColor raTransp">
+
+		</div>
+	</div><div class="RadAjaxPanel" id="dnn_ctr619_dnn_ctr619_Login_UPPanel">
+		<div id="dnn_ctr619_Login_UP">
+			<!-- 2013.1.403.40 -->
+<div class="dnnForm dnnLogin dnnClear">
+    <div id="dnn_ctr619_Login_pnlLogin">
+				
+        <div class="loginContent">
+            
+            <div id="dnn_ctr619_Login_pnlLoginContainer" class="LoginPanel">
+					<div id="dnn_ctr619_Login_DNN" onkeydown="return __dnn_KeyDown(&#39;13&#39;, &#39;javascript:__doPostBack(%27dnn$ctr619$Login$Login_DNN$cmdLogin%27,%27%27)&#39;, event);">
+<div class="dnnForm dnnLoginService dnnClear">
+    <div class="dnnFormItem">
+        <label for="dnn_ctr619_Login_Login_DNN_txtUsername" id="dnn_ctr619_Login_Login_DNN_plUsername" class="dnnFormLabel">Username:</label>
+        <input name="dnn$ctr619$Login$Login_DNN$txtUsername" type="text" id="dnn_ctr619_Login_Login_DNN_txtUsername" AUTOCOMPLETE="off" />
+    </div>
+    <div class="dnnFormItem">
+        <label for="dnn_ctr619_Login_Login_DNN_txtPassword" id="dnn_ctr619_Login_Login_DNN_plPassword" class="dnnFormLabel">Password:</label>
+        <input name="dnn$ctr619$Login$Login_DNN$txtPassword" type="password" id="dnn_ctr619_Login_Login_DNN_txtPassword" AUTOCOMPLETE="off" />
+    </div>
+    
+    
+    <div class="dnnFormItem">
+        <label for="dnn_ctr619_Login_Login_DNN_cmdLogin" id="dnn_ctr619_Login_Login_DNN_lblLogin" class="dnnFormLabel"></label>
+        <a id="dnn_ctr619_Login_Login_DNN_cmdLogin" title="Login" class="dnnPrimaryAction" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;dnn$ctr619$Login$Login_DNN$cmdLogin&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, true))">Login</a>
+        <span class="dnnLoginRememberMe"><input id="dnn_ctr619_Login_Login_DNN_chkCookie" type="checkbox" name="dnn$ctr619$Login$Login_DNN$chkCookie" /><label for="dnn_ctr619_Login_Login_DNN_chkCookie">Remember Login</label></span>
+    </div>
+    <div class="dnnFormItem">
+        <label class="dnnFormLabel">&nbsp;</label>
+        <div class="dnnLoginActions">
+            <ul class="dnnActions dnnClear">
+                <li id="dnn_ctr619_Login_Login_DNN_liRegister"><a id="dnn_ctr619_Login_Login_DNN_registerLink" class="dnnSecondaryAction" href="https://www.dnnsoftware.com/Register?returnurl=%2f">Register</a></li>                
+                <li id="dnn_ctr619_Login_Login_DNN_liPassword"><a id="dnn_ctr619_Login_Login_DNN_passwordLink" class="dnnSecondaryAction" onclick="return dnnModal.show(&#39;https://www.dnnsoftware.com/login/ctl/SendPassword?returnurl=%252f&amp;popUp=true&#39;,/*showReturn*/true,300,650,true,&#39;&#39;)" href="https://www.dnnsoftware.com/login/ctl/SendPassword?returnurl=%2f">Retrieve Password</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</div>
+				</div>
+            <div class="dnnSocialRegistration">
+                <div id="socialControls">
+                    <ul class="buttonList">
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+			</div>
+    
+    
+    
+    
+</div>
+		</div>
+	</div>
+</div></div>
+<!-- End_Module_619 --></div>
+</div></div>
+  <div id="dnn_TwoColTwoPane" class="grid-50 pane"><div class="DnnModule DnnModule-DNN_HTML DnnModule-2697"><a name="2697"></a>
+<div class="DNNContainer noTitle">
+	<div id="dnn_ctr2697_ContentPane" class="Normal"><!-- Start_Module_2697 --><div id="dnn_ctr2697_ModuleContent" class="DNNModuleContent ModDNNHTMLC">
+	
+<div id="dnn_ctr2697_HtmlModule_lblContent" class="Normal">
+	<div style="margin: -50px 0px 50px -50px;">
+<img alt="secure login" src="/portals/0/Images/DNN/login.png" style="width: 40%; height: auto;" />
+</div>
+</div>
+
+</div><!-- End_Module_2697 --></div>
+</div>
+</div></div>
+  <div id="dnn_ThreeColOnePane" class="grid-30 pane DNNEmptyPane"></div>
+  <div id="dnn_ThreeColTwoPane" class="grid-30 push-5 pane DNNEmptyPane"></div>
+  <div id="dnn_ThreeColThreePane" class="grid-30 push-10 pane DNNEmptyPane"></div>
+</div>
+<div id="dnn_PostContentPane" class="pane fullWidth DNNEmptyPane"></div>
+<div id="FooterWrapper" class="brownGrad">
+  <div id="FooterBorder">
+    <div class="grid-50"></div>
+  </div>
+  <div id="Footer" class="grid-container"><div class="grid-30">
+  <h3>ABOUT DNN</h3>
+  <p>DNN (formerly DotNetNuke) provides a suite of solutions for creating rich, rewarding online experiences for customers, partners and employees.  DNN technology is the foundation for 800,000+ websites worldwide and our customers include True Value Hardware, Cornell University, Glacier Water, Dannon, Delphi, USAA, NASCAR, Northern Health and the City of Denver. In addition to our commercial solutions, DNN is the steward of the DotNetNuke Open Source Project.</p>
+</div>
+<div id="FooterLinks" class="grid-65"> 
+<nav>
+  <ul id="Sitemap" class="grid-container plain">
+    <li class="grid-20"><a galabel="Footer | Evoq" href="/Solutions"><strong>EVOQ</strong></a>
+      <ul class="plain">
+        <li><a galabel="Footer | Services" href="/Solutions/Services">Services</a> </li>
+        <li><a galabel="Footer | Use Cases" href="/Solutions/Use-Cases">Use Cases</a> </li>
+        <li><a galabel="Footer | Start Trial" href="/Solutions/Try-DNN">Start Trial</a></li>
+        <li><a galabel="Footer | Customers" href="/About/Customers">Customers</a></li>
+      </ul>
+    </li>
+    <li class="grid-20"><a galabel="Footer | Platform" href="/Platform"><strong>DNN PLATFORM</strong></a>
+      <ul class="plain">
+        <li><a galabel="Footer | Architecture" href="/Platform/Start/Architecture">DNN Architecture</a> </li>
+        <li><a galabel="Footer | Community" href="/Community">DNN Community</a> </li>
+        <li><a galabel="Footer | Download" href="/Community/Download">Download DNN</a></li>
+        <li><a galabel="Footer | Community Blog" href="/Community-Blog">Community Blog</a></li>
+      </ul>
+    </li>
+    <li class="grid-20"><a galabel="Footer | News" href="/About/News/Articles"><strong>DNN NEWS</strong></a>
+      <ul class="plain">
+        <li><a galabel="Footer | Blog" href="/blog">Corp Blog</a> </li>
+        <li><a galabel="Footer | Releases" href="/About/News/Press-Releases">Press Releases</a> </li>
+        <li><a galabel="Footer | Articles" href="/About/News/Articles">Articles</a></li>
+      </ul>
+    </li>
+    <li class="grid-20"><a galabel="Footer | Resources" href="/About/Resources"><strong>RESOURCES</strong></a>
+      <ul class="plain">
+        <li><a galabel="Footer | Webinars" href="/About/Resources/Webinars">Webinars</a> </li>
+        <li><a galabel="Footer | Manuals" href="/Community/Download/Manuals">DNN Manuals</a> </li>
+        <li><a galabel="Footer | Whitepapers" href="/About/Resources/Whitepapers">DNN Whitepapers</a></li>
+        <li><a galabel="Footer | Videos" href="/Videos">DNN Tutorials</a></li>
+      </ul>
+    </li>
+    <li class="grid-20"><a galabel="Footer | Contact" href="/About/Contact"><strong>CONTACT</strong></a>
+      <ul class="plain">
+        <li><a galabel="Footer | Partner with Us" href="/Partners/Become-A-Partner">Partner with DNN</a> </li>
+        <li><a galabel="Footer | Work at DNN" href="/About/Careers">Work at DNN</a> </li>
+        <li><a galabel="Footer | Subscribe" href="/Register">Subscribe</a></li>
+      </ul>
+    </li>
+  </ul>
+  <ul class="grid-parent grid-50 contactList plain">
+    <li class="grid-50"><span class="icon mini i-mail"></span> <a href="mailto:sales@dnnsoftware.com" galabel="Footer | Email">sales@dnnsoftware.com</a></li>
+    <li class="grid-50 clickToCall"><span class="icon mini i-phone"></span> (650) 288.3150</li>
+  </ul>
+  <ul class="grid-parent grid-50 contactList plain">
+    <li class="grid-50"><span class="icon mini i-fax"></span> &nbsp;(650) 288.3191</li>
+    <li class="grid-50">Follow DNN 
+	
+    <span style="white-space:nowrap" class="socialIcons">
+      <a galabel="Footer | Facebook" href="http://facebook.com/dotnetnuke" rel="nofollow" target="_blank"><i class="icon i-facebook"></i><span class="dnnIconContent rounded dropShadow">Facebook</span></a> 
+      <a galabel="Footer | Twitter | DnnCorp" href="http://twitter.com/dnncorp" rel="nofollow" target="_Blank"><i class="icon i-twitter"></i><span class="dnnIconContent rounded dropShadow">DNN Corp Twitter</span></a> 
+      <a galabel="Footer | LinkedIn" href="http://www.linkedin.com/company/207975" rel="nofollow" target="_blank"><i class="icon i-linkedin"></i><span class="dnnIconContent rounded dropShadow">Linked In</span></a>
+      <a galabel="Footer | Youtube | DNN" href="http://www.youtube.com/user/dotnetnuke" rel="nofollow" target="_blank"><i class="icon i-youtube"></i><span class="dnnIconContent rounded dropShadow">YouTube</span></a> 
+      <a galabel="Footer | Twitter | DNN" href="http://twitter.com/dnn" rel="nofollow" target="_Blank"><i class="icon i-twitter"></i><span class="dnnIconContent rounded dropShadow">DNN Community Twitter</span></a> 
+	  </span> </li>
+  </ul>
+  </nav>
+</div></div>
+
+  <div id="SubFooter" class="grid-container">
+    <hr />
+    <div class="grid-80">
+      <span id="dnn_dnnCopyright_lblCopyright" class="SkinObject">Copyright 2014 by DNN Corp</span>
+  |   <a href="/Terms">Terms of Use</a> |   <a href="/Privacy">Privacy</a> |  Design by <a href="http://parkermooredesign.com" target="_blank">Parker Moore Design</a>
+<!-- Google Code for Corporate Site Remarketing -->
+<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1068204400;
+var google_conversion_label = "Ji8WCKC72wEQ8IKu_QM";
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1068204400/?value=0&amp;label=Ji8WCKC72wEQ8IKu_QM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+    </div>
+    <div class="grid-20 language">
+      <div class="language-object" >
+
+
+</div>
+    </div>
+  </div>
+</div>
+<div id="adTilesStorage" class="DNNEmptyPane">
+  <div data-submenu-id="SubMenuID91" class="adTile rounded "><a galabel="Header | Solutions > Button 1 - Webinars - Signup" href="/About/Resources/Webinars"><i class="icon lg i-learn"></i>Signup<span class="adTitle">Join FREE Webinars Today</span></a></div>
+  <div data-submenu-id="SubMenuID91" class="adTile rounded "><a galabel="Header | Solutions > Button 2 - Get Started - Free Trial" href="/Solutions/Try-DNN"><i class="icon lg i-cloud"></i>Get Started<span class="adTitle">Start a <br/>FREE Trial</span></a></div>
+  <div data-submenu-id="SubMenuID94" class="adTile rounded "><a galabel="Header | Platform > Button 1 - Get Started - Download" href="/Community/Download"><i class="icon lg i-download"></i>Get Started<span class="adTitle">Download <br/>DNN Platform</span></a></div>
+  <div data-submenu-id="SubMenuID92" class="adTile rounded "><a galabel="Header | Partners > Button 1 - New Project - Find a Partner" href="/Partners/Find-A-Partner"><i class="icon lg i-search"></i>Need Help?<span class="adTitle">Find a <br/>Certified Partner</span></a></div>
+  <div data-submenu-id="SubMenuID93" class="adTile rounded "><a galabel="Header | Community > Button 1 - Answers - Ask Community" href="/Community/Participate/Community-Exchange"><i class="icon lg i-learn"></i>Answers<span class="adTitle">Ask Our Community</span></a></div>
+  <div data-submenu-id="SubMenuID93" class="adTile rounded "><a galabel="Header | Community > Button 2 - In Touch - Read Blogs" href="/community-blog"><i class="icon lg i-notice"></i>In Touch<span class="adTitle">Read <br />Community Blogs</span></a></div>
+  <div data-submenu-id="SubMenuID95" class="adTile rounded "><a galabel="Header | Support > Button 1 - Customers - Success Network" href="/Support/Success-Network"><i class="icon lg i-click"></i>Existing Customer?<span class="adTitle">Enter the<br />Success Network</span></a></div>
+  <div data-submenu-id="SubMenuID60" class="adTile rounded "><a galabel="Header | About > Button 1 - Free White Paper - Click Here" href="/About/Resources/Whitepapers"><i class="icon lg i-learn"></i>click here<span class="adTitle">FREE Whitepaper</span></a></div>
+  <div data-submenu-id="SubMenuID60" class="adTile rounded "><a galabel="Header | About > Button 2 - Interested - Read Company Blog" href="/About/In-The-News/Blog"><i class="icon lg i-notebook"></i>Interested?<span class="adTitle">Read our<br />Company Blog</span></a></div>
+</div>
+        <input name="ScrollTop" type="hidden" id="ScrollTop" />
+        <input name="__dnnVariable" type="hidden" id="__dnnVariable" autocomplete="off" value="`{`__scdoff`:`1`,`__dnn_pageload`:`__dnn_SetInitialFocus(\u0027dnn_ctr619_Login_Login_DNN_txtUsername\u0027);`}" />
+        <script src="/Portals/_default/Skins/DNN/js/skin.js?cdv=85" type="text/javascript"></script>
+    
+<script type="text/javascript" src="/Resources/Shared/scripts/initWidgets.js" ></script>
+<script type="text/javascript">
+//<![CDATA[
+;(function() {
+                        function loadHandler() {
+                            var hf = $get('StylesheetManager_TSSM');
+                            if (!hf._RSSM_init) { hf._RSSM_init = true; hf.value = ''; }
+                            hf.value += ';Telerik.Web.UI, Version=2013.1.403.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4:en-US:fdaa59bf-a0b7-4c68-afd9-0200924282da:45085116:27c5704c';
+                            Sys.Application.remove_load(loadHandler);
+                        };
+                        Sys.Application.add_load(loadHandler);
+                    })();Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxLoadingPanel, {"initialDelayTime":0,"isSticky":false,"minDisplayTime":0,"skin":"Default","uniqueID":"dnn$ctr619$Login_Prog","zIndex":90000}, null, null, $get("dnn_ctr619_Login_Prog"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxPanel, {"clientEvents":{OnRequestStart:"",OnResponseEnd:""},"enableAJAX":true,"enableHistory":false,"links":[],"loadingPanelID":"dnn_ctr619_Login_Prog","styles":[],"uniqueID":"dnn$ctr619$Login_UP"}, null, null, $get("dnn_ctr619_Login_UP"));
+});
+//]]>
+</script>
+<script type='text/javascript' src='/DesktopModules/DNNCorp/Analytics/ClientScripts/dnn.analytics.Injected.js'></script>
+<script type='text/javascript'>
+//<![CDATA[
+var analytics_page_startTime = new Date().getTime();
+
+jQuery(function() {
+  var analyticsSettings = {
+    handlerUrl: '/DesktopModules/DNNCorp/Analytics/Handler.ashx/PostInteraction',
+    pageStart: analytics_page_startTime,
+    portalId: 0,
+    tabId: 197
+  };
+
+  window.onbeforeunload = function (e) {
+    dnn.analytics.clientUnloading(e, analyticsSettings);
+  };
+});
+//]]>
+</script>
+</form>
+    
+    
+<script type="text/javascript"> if (!NREUMQ.f) {NREUMQ.f=function() {NREUMQ.push(["load",new Date().getTime()]);var e=document.createElement("script"); e.type="text/javascript"; e.src=(("http:"===document.location.protocol)?"http:":"https:") + "//" + "js-agent.newrelic.com/nr-100.js"; document.body.appendChild(e);if(NREUMQ.a)NREUMQ.a();};NREUMQ.a=window.onload;window.onload=NREUMQ.f;};NREUMQ.push(["nrfj","beacon-2.newrelic.com","bee3b50f06","2742516","ZwNWYUFYWRdUBhZcDF5JYUdaFlsLUgwM",15,156,new Date().getTime(),"81423592F5AEF86A","","","",""]);</script></body>
+</html>
