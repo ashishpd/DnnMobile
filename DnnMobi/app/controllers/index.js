@@ -1,14 +1,14 @@
 $.winLogin.open();
-//$.txtSiteName.value="http://ashprasad.com";
-//$.txtUserName.value="user1";
-//$.txtPassword.value="1234567";
+$.txtSiteName.value="http://ashprasad.com";
+$.txtUserName.value="user1";
+$.txtPassword.value="1234567";
 
-$.txtSiteName.value="http://www.dnnsoftware.com";
+//$.txtSiteName.value="http://www.dnnsoftware.com";
 //$.txtSiteName.value="http://catalyst.dnnsoftware.com";
 //$.txtSiteName.value="http://store.dnnsoftware.com";
 
-$.txtUserName.value="ashishpd";
-$.txtPassword.value="dotdot1";
+//$.txtUserName.value="ashishpd";
+//$.txtPassword.value="dotdot1";
 
 if (Titanium.Platform.name == 'iPhone OS') {
     //doLogin();
@@ -22,23 +22,20 @@ function doLogin(e){
 	Titanium.API.info("Called Login");
 	
 	var i = 1;                     //  set your counter to 1
+	var maxCheck = 20;             //  max time to wait 
 	function myLoop () {           //  create a loop function
-   		setTimeout(function () {    //  call a 3s setTimeout when the loop is called
-      		
-      		
-      	Alloy.createController("messages").getView().open();
-		//sTitanium.API.info("opened messages window");
-     //		 i++;                     //  increment the counter
-	 //     if (i < 10) {            //  if the counter < 10, call the loop function
-	 //        myLoop();             //  ..  again which will trigger another 
-	 //     }                        //  ..  setTimeout()
-   		}, 10000);
-}
-
-myLoop();                      //  start the loop	
-		
-	
-
+		Titanium.API.info("starting loop");
+   		setTimeout(function () {    //  call a 3s setTimeout when the loop is called  
+   		if(WebApiHelper.isLoggedIn() == true) {    		      		
+      		Alloy.createController("messages").getView().open();
+	      	} else if (WebApiHelper.isError() == true) {
+	      		$.txtError.text="Error - " + WebApiHelper.error();
+	   		} else if (i < maxCheck) {
+	      		myLoop();
+	    	}
+	   	}, 1000);
+	}
+	myLoop();                      //  start the loop	
 };
 
 function closeWindow() {

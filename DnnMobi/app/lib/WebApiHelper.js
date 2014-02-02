@@ -1,4 +1,6 @@
 var _isLoggedIn = false;
+var _isError = false;
+var _error;
 var _site;
 var _user;
 var _password;
@@ -8,6 +10,14 @@ var _responseText;
 
 exports.isLoggedIn = function(){
 	return _isLoggedIn;
+};
+
+exports.isError = function(){
+	return _isError;
+};
+
+exports.error = function(){
+	return _error;
 };
 
 exports.status = function(){
@@ -44,7 +54,7 @@ var xhrPost = Ti.Network.createHTTPClient({
 });    
     
 
-exports.xhrGet = function(query, tabid, moduleid) {
+exports.Get = function(query, tabid, moduleid) {
 	Ti.API.info('xhrGet called');
 	if(!_isLoggedIn) {
 		Ti.API.error('not logged-in');
@@ -124,8 +134,11 @@ var xhrLogin = Ti.Network.createHTTPClient({
 				
     },
     onerror: function(e) {
-		Ti.API.info('error, HTTP status = '+this.status);
-		alert(e.error + this.status + this.getAllResponseHeaders());
+		Ti.API.info('error, HTTP status = '+this.status + ' error ' + e.error );
+		_isError = true;
+		_error = e.error;
+		_status = this.status;
+		_responseText = this.responseText;
     },
     timeout:30000  /* in milliseconds */
 });
