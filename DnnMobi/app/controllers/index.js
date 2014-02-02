@@ -10,6 +10,7 @@ $.txtPassword.value="1234567";
 //$.txtUserName.value="ashishpd";
 //$.txtPassword.value="dotdot1";
 
+
 if (Titanium.Platform.name == 'iPhone OS') {
     //doLogin();
 }
@@ -24,8 +25,7 @@ function doLogin(e){
 	var i = 1;                     //  set your counter to 1
 	var maxCheck = 20;             //  max time to wait 
 	function myLoop () {           //  create a loop function
-		Titanium.API.info("starting loop");
-   		setTimeout(function () {    //  call a 3s setTimeout when the loop is called  
+   		setTimeout(function () {    //  call a xs setTimeout when the loop is called  
    		if(WebApiHelper.isLoggedIn() == true) {    		      		
       		Alloy.createController("messages").getView().open();
 	      	} else if (WebApiHelper.isError() == true) {
