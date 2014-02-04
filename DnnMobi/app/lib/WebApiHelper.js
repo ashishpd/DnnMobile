@@ -32,6 +32,35 @@ exports.jsonData = function(){
 	return JSON.parse(_responseText);
 };
 
+var httpWrapper = function(){
+	function send(parm, successCallback, failureCallback) {
+		
+	};
+	
+	var xhrCaller = Ti.Network.createHTTPClient({
+    onload: function(e) {
+   		//Ti.API.info('xhrPost called');
+		// function called in readyState DONE (4)
+		//_cookies = this.getResponseHeader("Set-Cookie");
+		//Ti.API.info(this.status + this.responseText);
+		//Ti.API.info(_cookies);
+		//if(this.status === 301) {
+		//	Ti.API.info(this.getResponseHeader("location"));
+		//}
+		Ti.API.info(this.status);
+		_isLoggedIn = true;
+		_status = this.status;
+		_responseText = this.responseText;
+    },
+    onerror: function(e) {
+		Ti.API.error('xhrPost Error, HTTP status = '+this.status);
+		Ti.API.error(e.error + this.responseText);
+    },
+    timeout:30000,  /* in milliseconds */
+    autoRedirect:"true"
+	}); 	
+};
+
 var xhrPost = Ti.Network.createHTTPClient({
     onload: function(e) {
    		Ti.API.info('xhrPost called');
@@ -91,7 +120,7 @@ exports.login = function(site, user, password) {
     _password = password;
  
 
-var xhrLogin = Ti.Network.createHTTPClient({
+	var xhrLogin = Ti.Network.createHTTPClient({
     onload: function(e) {
 		// function called in readyState DONE (4)
 		Ti.API.info('onload for xhrLogin called, HTTP status = '+this.status);
