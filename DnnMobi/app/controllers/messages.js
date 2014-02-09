@@ -55,7 +55,7 @@ var args = arguments[0] || {};
 			        pic : { image: 'http://ashprasad.com/profilepic.ashx?userId=1&amp;h=64&amp;w=64' },
 			        // Sets the regular list data properties
 			        properties : {
-			            itemId: response.Conversations[i].MessageID,
+			            itemId: response.Conversations[i].ConversationId,
 			            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE
 			        }
 			    });
@@ -66,6 +66,28 @@ var args = arguments[0] || {};
 			
 			listView.setSections(sections);
 			
+			listView.addEventListener('itemclick', function(e){
+				Ti.API.info(e.bindId);
+				var item = e.section.getItemAt(e.itemIndex);
+				//Ti.API.info(item);
+				var arg = {
+			        conversationId: item.properties.itemId
+   				};
+				Alloy.createController('message', arg).getView().open();
+				/*
+			    // Only respond to clicks on the label (rowtitle) or image (pic)
+			    if (e.bindId == 'rowtitle' || e.bindId == 'pic') {
+			        var item = e.section.getItemAt(e.itemIndex);
+			        if (item.properties.accessoryType == Ti.UI.LIST_ACCESSORY_TYPE_NONE) {
+			            item.properties.accessoryType = Ti.UI.LIST_ACCESSORY_TYPE_CHECKMARK;
+			        }
+			        else {
+			            item.properties.accessoryType = Ti.UI.LIST_ACCESSORY_TYPE_NONE;
+			        }
+			        e.section.updateItemAt(e.itemIndex, item);
+			    } */     
+			});			
+			
 			$.winMessages.add(listView);
     };
 
@@ -73,8 +95,6 @@ var args = arguments[0] || {};
 		Titanium.API.info("failure called after login");
     	
     };
-	
-	
 	
 	//laptop
 	//WebApiHelper.xhrGet("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "67", "446");

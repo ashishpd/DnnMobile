@@ -1,4 +1,5 @@
 <Alloy>
-	<View class="container">
-	</View>
+	<Window class="container" id="winMessage">
+		<Label>Site</Label>>
+	</Window>
 </Alloy>

@@ -1,6 +1,6 @@
 ".container": {
         backgroundColor:"white",
-        top: '30%',
+        top: '10%',
         layout: 'vertical'
 },
 "Label": {

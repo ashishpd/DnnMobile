@@ -87,6 +87,7 @@ exports.Get = function(query, tabid, moduleid, success, failure) {
 	http.xhrCaller.setRequestHeader('TabID',tabid);
 	http.xhrCaller.setRequestHeader('ModuleID',moduleid);
 	
+	/*
 	var i;
 	var cookies = _cookies.split(";");
 	for (i = 0; i < cookies.length; i++) {
@@ -99,6 +100,7 @@ exports.Get = function(query, tabid, moduleid, success, failure) {
 			//xhrPost.setRequestHeader('Cookie',cookie);	
 		}
 	}
+	*/
 	
 	http.failureCallback(failure); 
 	http.successCallback(success); 
@@ -125,7 +127,7 @@ exports.login = function(site, user, password, success, failure) {
 		
 		Ti.API.info('cookies: ' + _cookies);
 		//if(this.status === 301) {
-			Ti.API.info('location: ' + e.getResponseHeader("location"));
+		//	Ti.API.info('location: ' + e.getResponseHeader("location"));
 		//}
 		if (e.responseText.indexOf('pageTitle') > 0) {
 			_isError = true;
