@@ -33,28 +33,36 @@ exports.jsonData = function(){
 };
 
 var httpWrapper = function(){
-	function send(parm, successCallback, failureCallback) {
-		
+	
+	Ti.API.info('httpWrapper initiating');
+	var success;
+	var failure;
+
+
+	this.successCallback = function(callback) {
+		success = callback;
+	};
+
+	this.failureCallback = function(callback) {
+		failure = callback;
 	};
 	
-	var xhrCaller = Ti.Network.createHTTPClient({
+
+	this.xhrCaller = Ti.Network.createHTTPClient({
     onload: function(e) {
-   		//Ti.API.info('xhrPost called');
-		// function called in readyState DONE (4)
-		//_cookies = this.getResponseHeader("Set-Cookie");
-		//Ti.API.info(this.status + this.responseText);
-		//Ti.API.info(_cookies);
-		//if(this.status === 301) {
-		//	Ti.API.info(this.getResponseHeader("location"));
-		//}
 		Ti.API.info(this.status);
 		_isLoggedIn = true;
 		_status = this.status;
 		_responseText = this.responseText;
+		Ti.API.info('success ' + success);
+		if (typeof success !== 'undefined')
+			success(this);		
     },
     onerror: function(e) {
 		Ti.API.error('xhrPost Error, HTTP status = '+this.status);
 		Ti.API.error(e.error + this.responseText);
+		if (typeof failure !== 'undefined')
+			failure(this);		
     },
     timeout:30000,  /* in milliseconds */
     autoRedirect:"true"
@@ -83,7 +91,7 @@ var xhrPost = Ti.Network.createHTTPClient({
 });    
     
 
-exports.Get = function(query, tabid, moduleid) {
+exports.Get = function(query, tabid, moduleid, success, failure) {
 	Ti.API.info('xhrGet called');
 	if(!_isLoggedIn) {
 		Ti.API.error('not logged-in');
@@ -91,9 +99,9 @@ exports.Get = function(query, tabid, moduleid) {
 	}
 	var url = _site+query;
 	Ti.API.info('xhrGet url ' + url);
-    xhrPost.open("GET", url);
-	xhrPost.setRequestHeader('TabID',tabid);
-	xhrPost.setRequestHeader('ModuleID',moduleid);
+    http.xhrCaller.open("GET", url);
+	http.xhrCaller.setRequestHeader('TabID',tabid);
+	http.xhrCaller.setRequestHeader('ModuleID',moduleid);
 	
 	var i;
 	var cookies = _cookies.split(";");
@@ -108,44 +116,61 @@ exports.Get = function(query, tabid, moduleid) {
 		}
 	}
 	
+	http.failureCallback(failure); 
+	http.successCallback(success); 
+
+	
 	//Ti.API.info(xhrPost.getResponseHeader("Set-Cookie"));
-	xhrPost.autoRedirect = true;
-	xhrPost.send();
+	//xhrPost.autoRedirect = true;
+	http.xhrCaller.send();
 };
 
-exports.login = function(site, user, password) {
+exports.login = function(site, user, password, success, failure) {
     Ti.API.info('login being called for site '+ site);
     _site = site;
     _user = user;
     _password = password;
- 
 
-	var xhrLogin = Ti.Network.createHTTPClient({
-    onload: function(e) {
-		// function called in readyState DONE (4)
-		Ti.API.info('onload for xhrLogin called, HTTP status = '+this.status);
+	var loginUserPasswordPosted = function(e) {
+		_cookies = e.getResponseHeader("Set-Cookie");
+		Ti.API.info(e.status + e.responseText);
+		Ti.API.info(_cookies);
+		//if(this.status === 301) {
+			Ti.API.info(e.getResponseHeader("location"));
+		//}
+		_isLoggedIn = true;
+		_status = e.status;
+		_responseText = e.responseText;		
+		if (typeof success !== 'undefined')
+			success(e);				
+	};
+	
+	var loginControlLoaded = function(e) {
+		Ti.API.info('onload for xhrLogin called, HTTP status = '+e.status);
 		//Ti.API.info(this.responseText);
 		var search = 'id=\"__VIEWSTATE" value=\"';
-  		var pos1 = this.responseText.indexOf(search);
-  		var pos2 = this.responseText.indexOf('"', pos1 + search.length);
-  		var viewstate = this.responseText.substr(pos1 + search.length, pos2 - pos1 - search.length);
+  		var pos1 = e.responseText.indexOf(search);
+  		var pos2 = e.responseText.indexOf('"', pos1 + search.length);
+  		var viewstate = e.responseText.substr(pos1 + search.length, pos2 - pos1 - search.length);
   		
 		search = "id=\"__EVENTVALIDATION\" value=\"";
-  		pos1 = this.responseText.indexOf(search);
-  		pos2 = this.responseText.indexOf('"', pos1 + search.length);
-  		var eventValidation = this.responseText.substr(pos1 + search.length, pos2 - pos1 - search.length);
+  		pos1 = e.responseText.indexOf(search);
+  		pos2 = e.responseText.indexOf('"', pos1 + search.length);
+  		var eventValidation = e.responseText.substr(pos1 + search.length, pos2 - pos1 - search.length);
 
-  		var usernameField = this.responseText.match("name=\"(.+?\\$txtUsername)\"")[1];
-  		var passwordField = this.responseText.match("name=\"(.+?\\$txtPassword)\"")[1];
-  		var webFormField  = this.responseText.match("WebForm_PostBackOptions\\(&quot;(.+?\\$cmdLogin)&quot;")[1];
+  		var usernameField = e.responseText.match("name=\"(.+?\\$txtUsername)\"")[1];
+  		var passwordField = e.responseText.match("name=\"(.+?\\$txtPassword)\"")[1];
+  		var webFormField  = e.responseText.match("WebForm_PostBackOptions\\(&quot;(.+?\\$cmdLogin)&quot;")[1];
 		
 		//viewState = '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';
 		
 		//xhrPost.open("POST", 'http://www.ashprasad.com/?ctl=login');
 		//xhrPost.open("POST", _site + '?ctl=login');
-		xhrPost.open("POST", _site + '/login');
+
+		http.successCallback(loginUserPasswordPosted);
+		http.xhrCaller.open("POST", _site + '/login');
 		
-		xhrPost.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+		http.xhrCaller.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 		//var parm = "ScriptManager=%7Cdnn%24ctr%24Login%24Login_DNN%24cmdLogin&__EVENTTARGET=dnn%24ctr%24Login%24Login_DNN%24cmdLogin&__EVENTARGUMENT=&__VIEWSTATE=dZrQGQwsjZLaB6gmGqEAMtP%2bZB%2b3h4gXSD9oIM0xk5tuU9JOcUvCm45yiDkWNXIDGPbSLrBX2egZc66nJK4p8b2aqfU0ZAzljPY2MtmSMEvxDiXgLFaWeCijkbaScdiGQ4eAsuaQDSzFQ%2fAIVTZQ9S5QWk1qopL9E3FEGFSlGftmqK1Jq6ad9uZ22a9W88Pi3rvgtqvhJ1Gp%2fdmAoJzuxtKMNCEGxFOxGBBaU%2bEnU7HA0lmk2yG3GgkwtW5UKfZUZOZYHsFjHgqJOWutCRKbKVK3O0P0N179Hnz1OvxTaTmPrQQKx%2bojh9yivL65T0TYPo%2fZL3JEyaABMaAqh07leL8Z4dvsinlUKbTZtFdkk7m%2b2SZramAv4p3aHlZDrgT7Ka2YVEQvKQ2yLpETl7sw%2flUv95nB1dB79yVxCEFisQ7Ve2YRS%2bTQ8v16V1Qr%2bs03I%2bQgTmn0%2bvV7M7qbiSxDz1O2qBvItIKmXemNJInq8IMH1UgElWu9eAQsMKTgSckLVBnN77sjRQmTFWJY0qpNl1%2bCnExgm2Pt7oaY69Neg%2f32nqgvM54DVNS%2b4Je5QHAllZy27G7MT8LuUUCxWIGPvhJ%2fqKE5iwjUW9aicm5abg5u3IU5nMwAHAL6KbZZfjQC24mWhuf2ib0pcrWfb%2f7pqrp2G4CttOj5XVRzysjURgiOBkv%2fZSxCNtUdxSzRbq3C8BXbIHFbJIC55Es7e5%2f6SDcmdDIxM5%2fmmp3QjLOF70TX8jCOF2%2bR4HkBWS8wFLHrOTtw2vebXvoK%2fiTTmgtaelLDKyWNmMIcHaaotDiPh4yL6ZE2drrgGtaKTa09Jel7r45AQv9Qj8rXFfMX8MCenqSoXLmFFVY8ELLxg3YDp1t7ruGhFK5hVHcby54BjrikBGzrPJWaR9H5O4orhM%2bSXlqOEapTV2d6jw6jKsXCQhsj8dVuoP8B%2f9j71DS6Xf0cVfbRQTbjn23XnBZ2%2f4lWOvCmY8l2TVZ85HjNUyAGdyHDXQPY9%2b%2fIrrjf0%2fIwmrTjzrY9HKtBJZLeOt69hZDWbpgeRtVRJ%2bJdgCMoU5Ss5zyZGejK8Na9GOpe2O5aAIPq5CLFnQJQZRExfhnIJqBj%2b21VKcTiyJTkOaFSuPtvI9fhqtySz1MwnZ31Mlgd7faBjPIYzvGTJQObIeZ32Y0pa9dhFmT8nyjk10%2bFdFM66gQf4h0%2f6iOmZy1VBbahY3uiSxpFyGPjmS6oBmNVgFJ%2bTKYGeXyELsHob7Dmd0B92UMC%2fFTQdwQ02mqK8mbX3QPrPTC42CIvGhq%2fNuwPEai7w8Oo2JtwQavMSCpWaSgXr%2b9B%2bV2T0xzfavEbaNMh9o39xYLVy8U2M4W2tGXruhtOxl0eG0jhRXvmJpzq7rpAq0Rwnwp%2fLLWUajGUbEd0VaetRg5vvUsqU1XWTPw6%2fb%2fSyoRQ8V2p1EC1PhzJ8P9i8vkGxjV%2b49vRc9h3kxmve9LbbaKSt6dqKafdAidd5EsWKFHCOdBdPnv582nbc4rb%2bb8of25jevz3%2bAzbjno6RIlkYjyy0CV8amTVmCJUluQSVGLkrA8wSGlquJ3UU9P1kFo4ky8HfK3l%2foYjq85JUhjZFpLl1c6IQZKH4wbPUHeZ2J4r%2f%2bxdCfmkaNbPy2DACV%2bmVKv7o0E5sYruJ9Q0pK71OBkfexkUKTCSVr5Tas51bUK0eQJ45Qhp5l%2f1vMJDfS%2f41BwZm%2fOr%2bapY3T%2f3YvlnL%2fA3qRVhWPHyGKhEB0ljeLMkjJKsg91JTkfCVnPQIGgibz13%2bvqjvOizisaboX088zXQB89VHIR0uJpJLdrYEYfqMmlV5iifsnxQG9xlwUm5OwBS%2bRJWvNE8YvtChyLJJBVVvtyEXFmuj6J28%2fKt9vDJHOopgmh5bX17CzEv%2f2XU9oLFmzmb4jS9wUnUrSThWKbABrvDywQ3%2foIEc%2f5hSih8p6qqhEihASFZal4NEpxEy5d1zKjwZFoGqnJTzM%2bnWK6K9ZrWKBtGDgfsSoi0CIJXxhOd%2boxdME9U6SU4B7NlIucjwSsn27k9qoZUf9mb6F0lUQEWouBw37dptNvnXKbrDUgyynfz%2bX%2ftpf5kZKNpzy1RaJQ8JuIDm%2fygxJJ8sIdgWILkMYnEOF84Jey7HszRTzWiJyJMCRg5t756xqtnJxKCp015sjMEmiRnHvq6UGpkFZ64Iui7GWn4xYe3dNcVFRMJpmOCgrSQHvmavIc0gH%2fkydKAcdNi9Ey9P9TbjvJ7rNp%2f3c7yNAA1d4oMPtFDfvWjI8httpQY0ZUC8tHEhQV24cpGbGoOZh0aTvJWwUsfjjY%2bIuEzJBhK4Fz1K8x%2bpWu3hT1tkonHVhypXy7yHTXMv1wPN2QGOOQp5CPo3LVNZkXpJwiznN5esMkO8fIhZSfvIAeEj6KKA%2fzwkVoPHdOyo1URWO7k%2fg6WZXgUcmW53Q4tpQnC7G6eR%2bWl%2bmGENyM4okTWGfXTSRozn3e%2bNoB9Ult%2fEFBpj%2fbiCinvAZVaGgvZAToc1J73bBJ0FrAcOq3uLexwkDhjA80EUH5kCd0KorhcBx1NCYd0d4V%2f4z%2bYyFnyrWWd7t5T3vUMm63ZkyHs%2b8h6xfbXFenQzRJqpBqFHNOQUkYNnGmjQFloGQfPznNHXH3sZENA6QZQNiWqQvF%2bSdKi%2bf2AFqdtMh%2b5JXGJi2OVPKWJAh9BYgj3Em0VwVx9ospZUM%2f4RkkSqXPPikiysellgo9g83fqe6SV3RGS%2b0LDt2GH5bfj34VWRSqfOTe754tYUNc3qS8D1UGLEwFJIqInMeszrjCDqC4nl7X6qqSgpsmV9n0AcdeBWoIz77sQMoR14t2dzrXehmkqu50%2fIw5mAZYbLvw%2btvc7y4ZsOhEIytWMP%2fKpVRaNEfRNFuCaK9rdWulkgSdIKagTRNPxLndq5fFVwGseIrpflr1WNHgyVnu2MD%2fg%2fNVzMwm6Kt40lWiXhILsF6Rs12dysFIj%2fpn1MEs7%2fvs6l5C4mFeZJFkjXkuDaIyzpF2uusVw8dTseSyf%2fqfPV60aWJFgoH2Dv15WglEiCJ8gNgzDDnS2I%2fiZvNFCt%2fhwX5quMnT4bg7x%2fFUNKbacfLOzLysZjnklfxzUD%2fxa0A%3d%3d&__VIEWSTATEENCRYPTED=&__EVENTVALIDATION=lWHqZVwYBfTXE3I1WaHq%2fs2Sjnq1CvW8JGAGikbOfEuARTjj%2fNCoPHGfrxUHISdoqEnsE2HYDgMZy5yZ0uc6G2DE9ciIdXvsclcMaGFQVKnntxUhhl5ot4IGkI3ely0P2HPWQinZWiDa4ep4BCA3SOd8SVC7MkYcMDaYWqNuxFGohBzSaUHhtei4%2bz6vYUtat83QLO9HNLz3so12um0j7XZE6AYupZ14MPtjiHWu5ux2bY9VhaRwMCSXMISH9w6DQOiGt6namLS8%2bM6D&dnn%24ctr%24Login%24Login_DNN%24txtUsername=ash.prasad&dnn%24ctr%24Login%24Login_DNN%24txtPassword=Mypassword3&__ASYNCPOST=true&RadAJAXControlID=";
 		//xhrPost.setRequestHeader('Content-Length','3917');
 		//var parm = "ScriptManager=%7Cdnn%24ctr%24Login%24Login_DNN%24cmdLogin&__EVENTTARGET=dnn%24ctr%24Login%24Login_DNN%24cmdLogin&__EVENTARGUMENT=&__VIEWSTATE=dZrQGQwsjZLaB6gmGqEAMtP%2bZB%2b3h4gXSD9oIM0xk5tuU9JOcUvCm45yiDkWNXIDGPbSLrBX2egZc66nJK4p8b2aqfU0ZAzljPY2MtmSMEvxDiXgLFaWeCijkbaScdiGQ4eAsuaQDSzFQ%2fAIVTZQ9S5QWk1qopL9E3FEGFSlGftmqK1Jq6ad9uZ22a9W88Pi3rvgtqvhJ1Gp%2fdmAoJzuxtKMNCEGxFOxGBBaU%2bEnU7HA0lmk2yG3GgkwtW5UKfZUZOZYHsFjHgqJOWutCRKbKVK3O0P0N179Hnz1OvxTaTmPrQQKx%2bojh9yivL65T0TYPo%2fZL3JEyaABMaAqh07leL8Z4dvsinlUKbTZtFdkk7m%2b2SZramAv4p3aHlZDrgT7Ka2YVEQvKQ2yLpETl7sw%2flUv95nB1dB79yVxCEFisQ7Ve2YRS%2bTQ8v16V1Qr%2bs03I%2bQgTmn0%2bvV7M7qbiSxDz1O2qBvItIKmXemNJInq8IMH1UgElWu9eAQsMKTgSckLVBnN77sjRQmTFWJY0qpNl1%2bCnExgm2Pt7oaY69Neg%2f32nqgvM54DVNS%2b4Je5QHAllZy27G7MT8LuUUCxWIGPvhJ%2fqKE5iwjUW9aicm5abg5u3IU5nMwAHAL6KbZZfjQC24mWhuf2ib0pcrWfb%2f7pqrp2G4CttOj5XVRzysjURgiOBkv%2fZSxCNtUdxSzRbq3C8BXbIHFbJIC55Es7e5%2f6SDcmdDIxM5%2fmmp3QjLOF70TX8jCOF2%2bR4HkBWS8wFLHrOTtw2vebXvoK%2fiTTmgtaelLDKyWNmMIcHaaotDiPh4yL6ZE2drrgGtaKTa09Jel7r45AQv9Qj8rXFfMX8MCenqSoXLmFFVY8ELLxg3YDp1t7ruGhFK5hVHcby54BjrikBGzrPJWaR9H5O4orhM%2bSXlqOEapTV2d6jw6jKsXCQhsj8dVuoP8B%2f9j71DS6Xf0cVfbRQTbjn23XnBZ2%2f4lWOvCmY8l2TVZ85HjNUyAGdyHDXQPY9%2b%2fIrrjf0%2fIwmrTjzrY9HKtBJZLeOt69hZDWbpgeRtVRJ%2bJdgCMoU5Ss5zyZGejK8Na9GOpe2O5aAIPq5CLFnQJQZRExfhnIJqBj%2b21VKcTiyJTkOaFSuPtvI9fhqtySz1MwnZ31Mlgd7faBjPIYzvGTJQObIeZ32Y0pa9dhFmT8nyjk10%2bFdFM66gQf4h0%2f6iOmZy1VBbahY3uiSxpFyGPjmS6oBmNVgFJ%2bTKYGeXyELsHob7Dmd0B92UMC%2fFTQdwQ02mqK8mbX3QPrPTC42CIvGhq%2fNuwPEai7w8Oo2JtwQavMSCpWaSgXr%2b9B%2bV2T0xzfavEbaNMh9o39xYLVy8U2M4W2tGXruhtOxl0eG0jhRXvmJpzq7rpAq0Rwnwp%2fLLWUajGUbEd0VaetRg5vvUsqU1XWTPw6%2fb%2fSyoRQ8V2p1EC1PhzJ8P9i8vkGxjV%2b49vRc9h3kxmve9LbbaKSt6dqKafdAidd5EsWKFHCOdBdPnv582nbc4rb%2bb8of25jevz3%2bAzbjno6RIlkYjyy0CV8amTVmCJUluQSVGLkrA8wSGlquJ3UU9P1kFo4ky8HfK3l%2foYjq85JUhjZFpLl1c6IQZKH4wbPUHeZ2J4r%2f%2bxdCfmkaNbPy2DACV%2bmVKv7o0E5sYruJ9Q0pK71OBkfexkUKTCSVr5Tas51bUK0eQJ45Qhp5l%2f1vMJDfS%2f41BwZm%2fOr%2bapY3T%2f3YvlnL%2fA3qRVhWPHyGKhEB0ljeLMkjJKsg91JTkfCVnPQIGgibz13%2bvqjvOizisaboX088zXQB89VHIR0uJpJLdrYEYfqMmlV5iifsnxQG9xlwUm5OwBS%2bRJWvNE8YvtChyLJJBVVvtyEXFmuj6J28%2fKt9vDJHOopgmh5bX17CzEv%2f2XU9oLFmzmb4jS9wUnUrSThWKbABrvDywQ3%2foIEc%2f5hSih8p6qqhEihASFZal4NEpxEy5d1zKjwZFoGqnJTzM%2bnWK6K9ZrWKBtGDgfsSoi0CIJXxhOd%2boxdME9U6SU4B7NlIucjwSsn27k9qoZUf9mb6F0lUQEWouBw37dptNvnXKbrDUgyynfz%2bX%2ftpf5kZKNpzy1RaJQ8JuIDm%2fygxJJ8sIdgWILkMYnEOF84Jey7HszRTzWiJyJMCRg5t756xqtnJxKCp015sjMEmiRnHvq6UGpkFZ64Iui7GWn4xYe3dNcVFRMJpmOCgrSQHvmavIc0gH%2fkydKAcdNi9Ey9P9TbjvJ7rNp%2f3c7yNAA1d4oMPtFDfvWjI8httpQY0ZUC8tHEhQV24cpGbGoOZh0aTvJWwUsfjjY%2bIuEzJBhK4Fz1K8x%2bpWu3hT1tkonHVhypXy7yHTXMv1wPN2QGOOQp5CPo3LVNZkXpJwiznN5esMkO8fIhZSfvIAeEj6KKA%2fzwkVoPHdOyo1URWO7k%2fg6WZXgUcmW53Q4tpQnC7G6eR%2bWl%2bmGENyM4okTWGfXTSRozn3e%2bNoB9Ult%2fEFBpj%2fbiCinvAZVaGgvZAToc1J73bBJ0FrAcOq3uLexwkDhjA80EUH5kCd0KorhcBx1NCYd0d4V%2f4z%2bYyFnyrWWd7t5T3vUMm63ZkyHs%2b8h6xfbXFenQzRJqpBqFHNOQUkYNnGmjQFloGQfPznNHXH3sZENA6QZQNiWqQvF%2bSdKi%2bf2AFqdtMh%2b5JXGJi2OVPKWJAh9BYgj3Em0VwVx9ospZUM%2f4RkkSqXPPikiysellgo9g83fqe6SV3RGS%2b0LDt2GH5bfj34VWRSqfOTe754tYUNc3qS8D1UGLEwFJIqInMeszrjCDqC4nl7X6qqSgpsmV9n0AcdeBWoIz77sQMoR14t2dzrXehmkqu50%2fIw5mAZYbLvw%2btvc7y4ZsOhEIytWMP%2fKpVRaNEfRNFuCaK9rdWulkgSdIKagTRNPxLndq5fFVwGseIrpflr1WNHgyVnu2MD%2fg%2fNVzMwm6Kt40lWiXhILsF6Rs12dysFIj%2fpn1MEs7%2fvs6l5C4mFeZJFkjXkuDaIyzpF2uusVw8dTseSyf%2fqfPV60aWJFgoH2Dv15WglEiCJ8gNgzDDnS2I%2fiZvNFCt%2fhwX5quMnT4bg7x%2fFUNKbacfLOzLysZjnklfxzUD%2fxa0A%3d%3d&__VIEWSTATEENCRYPTED=&__EVENTVALIDATION=lWHqZVwYBfTXE3I1WaHq%2fs2Sjnq1CvW8JGAGikbOfEuARTjj%2fNCoPHGfrxUHISdoqEnsE2HYDgMZy5yZ0uc6G2DE9ciIdXvsclcMaGFQVKnntxUhhl5ot4IGkI3ely0P2HPWQinZWiDa4ep4BCA3SOd8SVC7MkYcMDaYWqNuxFGohBzSaUHhtei4%2bz6vYUtat83QLO9HNLz3so12um0j7XZE6AYupZ14MPtjiHWu5ux2bY9VhaRwMCSXMISH9w6DQOiGt6namLS8%2bM6D&dnn%24ctr%24Login%24Login_DNN%24txtUsername=ash.prasad&dnn%24ctr%24Login%24Login_DNN%24txtPassword=Mypassword3&__ASYNCPOST=true&RadAJAXControlID=";
@@ -159,24 +184,44 @@ exports.login = function(site, user, password) {
 		
 		Ti.API.info(parm);
 		
-		xhrPost.send(parm);
+		http.xhrCaller.send(parm);
 				
-    },
-    onerror: function(e) {
+   };
+   
+   failure = function(e) {
 		Ti.API.info('error, HTTP status = '+this.status + ' error ' + e.error );
 		_isError = true;
 		_error = e.error;
-		_status = this.status;
-		_responseText = this.responseText;
-    },
-    timeout:30000  /* in milliseconds */
-});
+		_status = e.status;
+		_responseText = e.responseText;
+		if (typeof failure !== 'undefined')
+			failure(e);						
+   };
+
+//	var xhrLogin = Ti.Network.createHTTPClient({
+//    onload: function(e) {
+//    	success(this);
+//    	    },
+//    onerror: function(e) {
+//		failure(this);
+//    },
+//    timeout:30000  /* in milliseconds */
+//});
 
 
 //xhrLogin.open("GET", 'http://www.ashprasad.com/?ctl=login');
-xhrLogin.open("GET", site + '?ctl=login');
-xhrLogin.autoRedirect="true";
-xhrLogin.send();  // request is actually sent with this statement
+//xhrLogin.open("GET", site + '?ctl=login');
+//xhrLogin.autoRedirect="true";
+//xhrLogin.send();  // request is actually sent with this statement
+
+http.successCallback(loginControlLoaded);
+http.failureCallback(failure); 
+http.xhrCaller.open("GET", site + '?ctl=login');
+http.xhrCaller.send();  // request is actually sent with this statement
+ 
     
     
 };
+
+
+var http = new httpWrapper();

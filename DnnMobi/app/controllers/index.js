@@ -18,8 +18,21 @@ if (Titanium.Platform.name == 'iPhone OS') {
 
 function doLogin(e){
     var WebApiHelper = require('WebApiHelper');
+    
+    var success = function(e) {
+		if(WebApiHelper.isLoggedIn() == true) {    		      		
+      		Alloy.createController("messages").getView().open();
+		}
+    };
+
+    var failure = function(e) {
+		Titanium.API.info("failure called after login");
+    	
+    };
+
+    
 	Titanium.API.info("Calling Login");
-	WebApiHelper.login($.txtSiteName.value, $.txtUserName.value, $.txtPassword.value);
+	WebApiHelper.login($.txtSiteName.value, $.txtUserName.value, $.txtPassword.value, success, failure);
 	Titanium.API.info("Called Login");
 	
 	var i = 1;                     //  set your counter to 1
@@ -35,7 +48,7 @@ function doLogin(e){
 	    	}
 	   	}, 1000);
 	}
-	myLoop();                      //  start the loop	
+	//myLoop();                      //  start the loop	
 };
 
 function closeWindow() {
