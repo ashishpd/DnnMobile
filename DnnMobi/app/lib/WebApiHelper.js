@@ -50,46 +50,30 @@ var httpWrapper = function(){
 
 	this.xhrCaller = Ti.Network.createHTTPClient({
     onload: function(e) {
-		Ti.API.info(this.status);
+		Ti.API.info('http response code: ' + this.status + ' length: ' + this.responseText.length);
+		//Ti.API.info('response: ' + this.responseText);
 		_isLoggedIn = true;
 		_status = this.status;
 		_responseText = this.responseText;
-		Ti.API.info('success ' + success);
+		//Ti.API.info('success ' + success);
 		if (typeof success !== 'undefined')
 			success(this);		
     },
     onerror: function(e) {
 		Ti.API.error('xhrPost Error, HTTP status = '+this.status);
 		Ti.API.error(e.error + this.responseText);
+		Ti.API.info('failure ' + failure);
+		_isError = true;
+		_error = e.error;
+		_status = e.status;
+		_responseText = e.responseText;		
 		if (typeof failure !== 'undefined')
 			failure(this);		
     },
     timeout:30000,  /* in milliseconds */
     autoRedirect:"true"
 	}); 	
-};
-
-var xhrPost = Ti.Network.createHTTPClient({
-    onload: function(e) {
-   		Ti.API.info('xhrPost called');
-		// function called in readyState DONE (4)
-		_cookies = this.getResponseHeader("Set-Cookie");
-		Ti.API.info(this.status + this.responseText);
-		Ti.API.info(_cookies);
-		//if(this.status === 301) {
-			Ti.API.info(this.getResponseHeader("location"));
-		//}
-		_isLoggedIn = true;
-		_status = this.status;
-		_responseText = this.responseText;
-    },
-    onerror: function(e) {
-		Ti.API.error('xhrPost Error, HTTP status = '+this.status);
-		Ti.API.error(e.error + this.responseText);
-    },
-    timeout:30000  /* in milliseconds */
-});    
-    
+};    
 
 exports.Get = function(query, tabid, moduleid, success, failure) {
 	Ti.API.info('xhrGet called');
@@ -132,21 +116,31 @@ exports.login = function(site, user, password, success, failure) {
     _password = password;
 
 	var loginUserPasswordPosted = function(e) {
-		_cookies = e.getResponseHeader("Set-Cookie");
-		Ti.API.info(e.status + e.responseText);
-		Ti.API.info(_cookies);
-		//if(this.status === 301) {
-			Ti.API.info(e.getResponseHeader("location"));
-		//}
-		_isLoggedIn = true;
+		Ti.API.info('loginUserPasswordPosted, HTTP status = '+e.status);
+		Ti.API.info('response: ' + e.responseText);
 		_status = e.status;
 		_responseText = e.responseText;		
-		if (typeof success !== 'undefined')
-			success(e);				
+		
+		_cookies = e.getResponseHeader("Set-Cookie");
+		
+		Ti.API.info('cookies: ' + _cookies);
+		//if(this.status === 301) {
+			Ti.API.info('location: ' + e.getResponseHeader("location"));
+		//}
+		if (e.responseText.indexOf('pageTitle') > 0) {
+			_isError = true;
+			_error = 'login failed';
+			if (typeof failure !== 'undefined')
+				failure(this);		
+		} else {
+			_isLoggedIn = true;
+			if (typeof success !== 'undefined')
+				success(e);		
+		}		
 	};
 	
 	var loginControlLoaded = function(e) {
-		Ti.API.info('onload for xhrLogin called, HTTP status = '+e.status);
+		Ti.API.info('loginControlLoaded, HTTP status = '+e.status);
 		//Ti.API.info(this.responseText);
 		var search = 'id=\"__VIEWSTATE" value=\"';
   		var pos1 = e.responseText.indexOf(search);
@@ -182,18 +176,14 @@ exports.login = function(site, user, password, success, failure) {
 		//xhrPost.setRequestHeader('Content-Type','multipart/form-data; boundary=----WebKitFormBoundaryPeF4unBPb6C21kWe');
 		//var parm = '------WebKitFormBoundaryPeF4unBPb6C21kWe\r\nContent-Disposition: form-data; name="__EVENTTARGET"\r\n\r\ndnn$ctr$Login$Login_DNN$cmdLogin\r\n------WebKitFormBoundaryPeF4unBPb6C21kWe\r\nContent-Disposition: form-data; name="__VIEWSTATE"\r\n\r\n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\r\n------WebKitFormBoundaryPeF4unBPb6C21kWe\r\nContent-Disposition: form-data; name="__VIEWSTATEENCRYPTED"\r\n\r\n\r\n------WebKitFormBoundaryPeF4unBPb6C21kWe\r\nContent-Disposition: form-data; name="__EVENTVALIDATION"\r\n\r\nT3umqoE/27d71PHz8GTwkdDZ5Br0QDULAdse4/DjwQXgqzR8KijbiT2I4a4b/zVGJpFB/u/sHmuRnE2qwm30f+KpCPU3VnASUKe4hpCAHj8DF7WJrbXkK/ebdUIDuic9tQpuaWoS1Zf7Z5vyuIujTJqlbm7w2AtblRHCyED2ocGlJmQSNKwOkliFbDC0INbFWU8fa6uxZ/CUxCP2Kel7Qu1uPgviPn5QqHVzdVwW5IP2SEy1I4eIgLEIydAHFnajsSlVC9ps3OSLaZxE\r\n------WebKitFormBoundaryPeF4unBPb6C21kWe\r\nContent-Disposition: form-data; name="dnn$ctr$Login$Login_DNN$txtUsername"\r\n\r\nash.prasad\r\n------WebKitFormBoundaryPeF4unBPb6C21kWe\r\nContent-Disposition: form-data; name="dnn$ctr$Login$Login_DNN$txtPassword"\r\n\r\nMypassword3\r\n------WebKitFormBoundaryPeF4unBPb6C21kWe--\r\n';
 		
-		Ti.API.info(parm);
+		Ti.API.info('sending parm for login: ' + parm);
 		
-		http.xhrCaller.send(parm);
-				
+		http.xhrCaller.send(parm);			
    };
    
-   failure = function(e) {
-		Ti.API.info('error, HTTP status = '+this.status + ' error ' + e.error );
-		_isError = true;
-		_error = e.error;
-		_status = e.status;
-		_responseText = e.responseText;
+   failureLogin = function(e) {
+		Ti.API.info('error, HTTP status = '+e.status + ' error ' + e.error );
+
 		if (typeof failure !== 'undefined')
 			failure(e);						
    };
@@ -215,12 +205,9 @@ exports.login = function(site, user, password, success, failure) {
 //xhrLogin.send();  // request is actually sent with this statement
 
 http.successCallback(loginControlLoaded);
-http.failureCallback(failure); 
+http.failureCallback(failureLogin); 
 http.xhrCaller.open("GET", site + '?ctl=login');
-http.xhrCaller.send();  // request is actually sent with this statement
- 
-    
-    
+http.xhrCaller.send();  // request is actually sent with this statement    
 };
 
 
