@@ -32,6 +32,10 @@ exports.jsonData = function(){
 	return JSON.parse(_responseText);
 };
 
+exports.profilePic = function(userId){
+	return _site + '/profilepic.ashx?userId=' + userId + '1&amp;h=64&amp;w=64';
+};
+
 var httpWrapper = function(){
 	
 	Ti.API.info('httpWrapper initiating');

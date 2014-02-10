@@ -3,15 +3,16 @@ var args = arguments[0] || {};
 	var WebApiHelper = require('WebApiHelper');
 	
     var success = function(e) {				
+			Ti.API.info(e.responseText);
 			var data = [];
-			var response = WebApiHelper.jsonData();
+			var response = JSON.parse(e.responseText); 
 			for (var i = 0; i < response.Conversations.length; i++) {
 			    data.push({
 			        // Maps to the rowtitle component in the template
 			        // Sets the text property of the Label component
 			        title : { text: response.Conversations[i].From },
 			        subtitle : { text: response.Conversations[i].Subject + ' - ' + response.Conversations[i].Body },
-			        pic : { image: 'http://ashprasad.com/profilepic.ashx?userId=1&amp;h=64&amp;w=64' },
+			        pic : { image: WebApiHelper.profilePic(response.Conversations[i].SenderUserID) },
 			        // Sets the regular list data properties
 			        properties : {
 			            itemId: response.Conversations[i].ConversationId,
