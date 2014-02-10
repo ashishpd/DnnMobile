@@ -10,10 +10,10 @@
                      Require tag to include a view that only contains an ItemTemplate -->
 
                 <ItemTemplate name="template">
-                    <ImageView bindId="pic" id="icon" width="50dp" height="50dp" left="0" />
-                    <Label bindId="from" id="from" color="black" font="fontFamily:'Arial', fontSize: '20dp', fontWeight:'bold'" left="60dp" top="0" />
-                    <Label bindId="when" id="when" color="gray" font="fontFamily:'Arial', fontSize: '14dp'" right="100dp" top="0" />
-                    <Label bindId="message" id="message" color="gray" font="fontFamily:'Arial', fontSize: '14dp'" left="60dp" top="25dp" />
+                    <ImageView bindId="profilePic" id="profilePic" />
+                    <Label bindId="from" id="from" />
+                    <Label bindId="when" id="when" />
+                    <Label bindId="message" id="message" />
                 </ItemTemplate>
 
             </Templates>

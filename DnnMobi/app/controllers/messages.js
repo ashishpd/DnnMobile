@@ -13,7 +13,7 @@ var args = arguments[0] || {};
 			        from : { text: response.Conversations[i].From },
 			        when : { text: response.Conversations[i].DisplayDate },
 			        message : { text: response.Conversations[i].Subject + ' - ' + response.Conversations[i].Body },
-			        pic : { image: WebApiHelper.profilePic(response.Conversations[i].SenderUserID) },
+			        profilePic : { image: WebApiHelper.profilePic(response.Conversations[i].SenderUserID) },
 			        // Sets the regular list data properties
 			        properties : {
 			            itemId: response.Conversations[i].ConversationId,

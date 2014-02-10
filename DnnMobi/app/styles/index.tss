@@ -4,19 +4,22 @@
         layout: 'vertical'
 },
 "Label": {
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        left: 20,
+        font: {fontFamily:'Arial', fontSize: '14dp', fontWeight:'bold'},
+        left: '20dp',
         color: "#000",
         top: '2%'
 },
 "TextField": {
         width: '90%',
         top: '2%',
-        color: '#888',
-        font: {fontSize:20, fontWeight:'bold'},
+        left: '20dp',
+        color: 'gray',
+        font: {fontFamily:'Arial', fontSize: '14dp'},
         textAlign: 'left',
         borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        //backgroundColor: 'gray', 
+        //borderWidth: '2',
+        //borderColor: 'black',
         returnKeyType: Ti.UI.RETURNKEY_DONE	
 },
 "#btnLogin":{
