@@ -61,6 +61,8 @@ var args = arguments[0] || {};
 			    });
 			}		
 			
+			$.listView1.sections[0].setItems(data);
+			
 			fruitSection.setItems(data);
 			sections.push(fruitSection);
 			
@@ -88,7 +90,7 @@ var args = arguments[0] || {};
 			    } */     
 			});			
 			
-			$.winMessages.add(listView);
+			//$.winMessages.add(listView);
     };
 
     var failure = function(e) {
