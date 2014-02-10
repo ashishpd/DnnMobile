@@ -15,10 +15,31 @@ if (Titanium.Platform.name == 'iPhone OS') {
     //doLogin();
 }
 
+var WebApiHelper = require('WebApiHelper');
 
 function doLogin(e){
-    var WebApiHelper = require('WebApiHelper');
     
+    var success = function(e) {
+		login();
+    };
+
+    var failure = function(e) {
+		Titanium.API.info("failure called after logoff");
+    	$.txtError.text="Error - " + WebApiHelper.error();
+    };
+
+	Titanium.API.info("isLoggedIn " + WebApiHelper.isLoggedIn());
+	if(WebApiHelper.isLoggedIn()) {
+		Titanium.API.info("Calling Logoff");
+		WebApiHelper.logoff(success, failure);
+		Titanium.API.info("Called Logoff");
+	}
+	else {
+		login();
+	}
+};
+
+function login(){
     var success = function(e) {
 		if(WebApiHelper.isLoggedIn() == true) {    		      		
       		Alloy.createController("messages").getView().open();
@@ -31,7 +52,6 @@ function doLogin(e){
 		Titanium.API.info("failure called after login");
     	$.txtError.text="Error - " + WebApiHelper.error();
     };
-
     
 	Titanium.API.info("Calling Login");
 	WebApiHelper.login($.txtSiteName.value, $.txtUserName.value, $.txtPassword.value, success, failure);
@@ -42,3 +62,10 @@ function doLogin(e){
 function closeWindow() {
     $.winLogin.close();
 };
+
+/* cannot use any api except close as all objects are already unloaded
+$.winLogin.addEventListener('android:back', function (e) {
+	Titanium.API.info("Pressing Back Will Not Close The Activity/Window");
+	$.winLogin.close();  
+});
+*/

@@ -115,6 +115,14 @@ exports.Get = function(query, tabid, moduleid, success, failure) {
 	http.xhrCaller.send();
 };
 
+exports.logoff = function(success, failure)
+{
+	http.successCallback(success);
+	http.failureCallback(failure); 
+	http.xhrCaller.open("GET", site + '?ctl=logoff');
+	http.xhrCaller.send(); 
+};
+
 exports.login = function(site, user, password, success, failure) {
     Ti.API.info('login being called for site '+ site);
     _site = site;
@@ -147,7 +155,7 @@ exports.login = function(site, user, password, success, failure) {
 	
 	var loginControlLoaded = function(e) {
 		Ti.API.info('loginControlLoaded, HTTP status = '+e.status);
-		//Ti.API.info(this.responseText);
+		//Ti.API.info(e.responseText);
 		var search = 'id=\"__VIEWSTATE" value=\"';
   		var pos1 = e.responseText.indexOf(search);
   		var pos2 = e.responseText.indexOf('"', pos1 + search.length);
@@ -155,6 +163,7 @@ exports.login = function(site, user, password, success, failure) {
   		
 		search = "id=\"__EVENTVALIDATION\" value=\"";
   		pos1 = e.responseText.indexOf(search);
+  		if(pos1 <= 0) return; //TODO more error handling in parsing and calling failed method
   		pos2 = e.responseText.indexOf('"', pos1 + search.length);
   		var eventValidation = e.responseText.substr(pos1 + search.length, pos2 - pos1 - search.length);
 
@@ -210,10 +219,10 @@ exports.login = function(site, user, password, success, failure) {
 //xhrLogin.autoRedirect="true";
 //xhrLogin.send();  // request is actually sent with this statement
 
-http.successCallback(loginControlLoaded);
-http.failureCallback(failureLogin); 
-http.xhrCaller.open("GET", site + '?ctl=login');
-http.xhrCaller.send();  // request is actually sent with this statement    
+	http.successCallback(loginControlLoaded);
+	http.failureCallback(failureLogin); 
+	http.xhrCaller.open("GET", site + '?ctl=login');
+	http.xhrCaller.send();  // request is actually sent with this statement    
 };
 
 

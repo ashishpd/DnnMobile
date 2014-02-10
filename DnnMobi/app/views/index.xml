@@ -1,5 +1,5 @@
 <Alloy>
-	<Window id="winLogin" class="container">
+	<Window id="winLogin" class="container" exitOnClose="true">
 		<Label>Site</Label>>
 		<TextField id="txtSiteName">www.ashprasad.com</TextField>
 		<Label>User</Label>>

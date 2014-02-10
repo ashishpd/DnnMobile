@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="container" id="winMessages">
+	<Window class="container" id="winMessages" >
 		<ListView id="listView" defaultItemTemplate="template">
 
             <!-- The Templates tag sets the ListView's templates property -->
