@@ -10,8 +10,9 @@ var args = arguments[0] || {};
 			    data.push({
 			        // Maps to the rowtitle component in the template
 			        // Sets the text property of the Label component
-			        title : { text: response.Conversations[i].From },
-			        subtitle : { text: response.Conversations[i].Subject + ' - ' + response.Conversations[i].Body },
+			        from : { text: response.Conversations[i].From },
+			        when : { text: response.Conversations[i].DisplayDate },
+			        message : { text: response.Conversations[i].Subject + ' - ' + response.Conversations[i].Body },
 			        pic : { image: WebApiHelper.profilePic(response.Conversations[i].SenderUserID) },
 			        // Sets the regular list data properties
 			        properties : {
