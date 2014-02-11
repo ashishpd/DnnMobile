@@ -28,11 +28,10 @@ function doLogin(e){
     	$.txtError.text="Error - " + WebApiHelper.error();
     };
 
-	Titanium.API.info("isLoggedIn " + WebApiHelper.isLoggedIn());
+	Titanium.API.info("isLoggedIn" + WebApiHelper.isLoggedIn());
 	if(WebApiHelper.isLoggedIn()) {
 		Titanium.API.info("Calling Logoff");
 		WebApiHelper.logoff(success, failure);
-		Titanium.API.info("Called Logoff");
 	}
 	else {
 		login();

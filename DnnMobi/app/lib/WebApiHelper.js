@@ -7,6 +7,7 @@ var _password;
 var _cookies;
 var _status;
 var _responseText;
+var _autoLogoffDone = false;
 
 exports.isLoggedIn = function(){
 	return _isLoggedIn;
@@ -36,12 +37,24 @@ exports.profilePic = function(userId){
 	return _site + '/profilepic.ashx?userId=' + userId + '1&amp;h=64&amp;w=64';
 };
 
-var httpWrapper = function(){
+var authCookiePresent = function(){
+	var i;
+	//Ti.API.info(_cookies);
+	var cookies = _cookies.split(";");
+	for (i = 0; i < cookies.length; i++) {
+		var cookie = cookies[i];	
+		//Ti.API.info(cookie);
+		if(cookie.indexOf(".DOTNETNUKE") > 0) return true;
+		if(cookie.indexOf("authentication=DNN") > 0) return true;
+	}	
 	
+	return false;
+};
+
+var httpWrapper = function(){
 	Ti.API.info('httpWrapper initiating');
 	var success;
 	var failure;
-
 
 	this.successCallback = function(callback) {
 		success = callback;
@@ -51,7 +64,8 @@ var httpWrapper = function(){
 		failure = callback;
 	};
 	
-
+	this.xhrCaller = null;
+	
 	this.xhrCaller = Ti.Network.createHTTPClient({
     onload: function(e) {
 		Ti.API.info('http response code: ' + this.status + ' length: ' + this.responseText.length);
@@ -59,6 +73,7 @@ var httpWrapper = function(){
 		_isLoggedIn = true;
 		_status = this.status;
 		_responseText = this.responseText;
+		_cookies = this.getResponseHeader("Set-Cookie");
 		//Ti.API.info('success ' + success);
 		if (typeof success !== 'undefined')
 			success(this);		
@@ -119,7 +134,7 @@ exports.logoff = function(success, failure)
 {
 	http.successCallback(success);
 	http.failureCallback(failure); 
-	http.xhrCaller.open("GET", site + '?ctl=logoff');
+	http.xhrCaller.open("GET", _site + '?ctl=logoff');
 	http.xhrCaller.send(); 
 };
 
@@ -133,9 +148,7 @@ exports.login = function(site, user, password, success, failure) {
 		Ti.API.info('loginUserPasswordPosted, HTTP status = '+e.status);
 		Ti.API.info('response: ' + e.responseText);
 		_status = e.status;
-		_responseText = e.responseText;		
-		
-		_cookies = e.getResponseHeader("Set-Cookie");
+		_responseText = e.responseText;
 		
 		Ti.API.info('cookies: ' + _cookies);
 		//if(this.status === 301) {
@@ -155,6 +168,15 @@ exports.login = function(site, user, password, success, failure) {
 	
 	var loginControlLoaded = function(e) {
 		Ti.API.info('loginControlLoaded, HTTP status = '+e.status);
+		
+		if(authCookiePresent()){
+			Ti.API.info('auth cookie present');
+			if(!_autoLogoffDone){
+				_autoLogoffDone = true;
+				logoff(null,null);
+			}
+		}
+		
 		//Ti.API.info(e.responseText);
 		var search = 'id=\"__VIEWSTATE" value=\"';
   		var pos1 = e.responseText.indexOf(search);
