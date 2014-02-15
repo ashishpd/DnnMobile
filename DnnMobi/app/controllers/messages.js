@@ -7,12 +7,24 @@ var args = arguments[0] || {};
 			var data = [];
 			var response = JSON.parse(e.responseText); 
 			for (var i = 0; i < response.Conversations.length; i++) {
+				var conversation = response.Conversations[i];
+				var message = conversation.Subject;
+				if(message.length > 0){
+					message +=' - ';
+				}
+				message += conversation.Body;
+								
+				var fromFont = {fontFamily:'Arial', fontSize: '20dp' };
+				if(conversation.NewThreadCount > 0){
+					fromFont = {fontFamily:'Arial', fontSize: '20dp', fontWeight: 'bold'};
+				};			
+				
 			    data.push({
 			        // Maps to the rowtitle component in the template
 			        // Sets the text property of the Label component
-			        from : { text: response.Conversations[i].From },
-			        when : { text: response.Conversations[i].DisplayDate },
-			        message : { text: response.Conversations[i].Subject + ' - ' + response.Conversations[i].Body },
+			        from : { text: conversation.From, font: fromFont },
+			        when : { text: conversation.DisplayDate },
+			        message : { text: message },
 			        profilePic : { image: WebApiHelper.profilePic(response.Conversations[i].SenderUserID) },
 			        // Sets the regular list data properties
 			        properties : {

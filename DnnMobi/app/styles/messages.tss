@@ -11,8 +11,8 @@
 }
 
 "#from":{
-		color: 'black',
-		font: {fontFamily:'Arial', fontSize: '20dp', fontWeight:'bold'},
+		color: 'gray',
+		font: {fontFamily:'Arial', fontSize: '20dp'},
         top: '0',
         left: '60dp'
 }
