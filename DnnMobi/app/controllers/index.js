@@ -1,3 +1,9 @@
+//var library = Alloy.Collections.book;
+//library.fetch();
+
+var site = Alloy.Collections.site;
+site.fetch();
+
 $.winLogin.open();
 $.txtSiteName.value="http://ashprasad.com";
 $.txtUserName.value="user1";
@@ -52,11 +58,33 @@ function login(){
     	$.txtError.text="Error - " + WebApiHelper.error();
     };
     
+	var sitetModel = Alloy.createModel("site", {
+		url: $.txtSiteName.value,	
+		user: $.txtUserName.value
+    });
+	//sitetModel.save();
+       
 	Titanium.API.info("Calling Login");
 	WebApiHelper.login($.txtSiteName.value, $.txtUserName.value, $.txtPassword.value, success, failure);
 	Titanium.API.info("Called Login");
 	
 };
+
+// Encase the title attribute in square brackets
+function transformFunction(model) {
+	Titanium.API.info("model: " + model);
+    // Need to convert the model to a JSON object
+    var transform = model.toJSON();
+    Titanium.API.info("transform url: " + transform.url);
+    Titanium.API.info("transform getclass: " + model.getclass());
+    
+    transform.title = '[' + transform.title + ']';
+    // Example of creating a custom attribute, reference in the view using {custom}
+    //transform.customproperty = transform.url + " by " + transform.user;
+    transform.customproperty = model.getclass();
+    return transform;
+}
+
 
 function closeWindow() {
     $.winLogin.close();

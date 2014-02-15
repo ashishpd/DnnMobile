@@ -1,8 +1,3 @@
-".container": {
-        backgroundColor:"white",
-        top: '10%',
-        layout: 'vertical'
-},
 "Label": {
         font: {fontFamily:'Arial', fontSize: '14dp', fontWeight:'bold'},
         left: '20dp',
@@ -27,3 +22,6 @@
         barColor: '#a00'
 }
 
+".myclass": {
+	font: {fontFamily:'Arial', fontSize: '18dp', fontWeight:'bold'},
+}

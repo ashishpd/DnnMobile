@@ -1,5 +1,8 @@
 <Alloy>
+	<Collection src="site">
 	<Window id="winLogin" class="container" exitOnClose="true">
+
+		
 		<Label>Site</Label>>
 		<TextField id="txtSiteName">www.ashprasad.com</TextField>
 		<Label>User</Label>>
@@ -8,5 +11,18 @@
 		<TextField id="txtPassword" hintText="password" passwordMask="true"></TextField>
 		<Button id="btnLogin" onClick="doLogin" title="Login" />
 		<Label id="txtError"></Label>
+		
+		
+		
+		<RightNavButton platform="ios">
+			<Button>Add</Button>
+		</RightNavButton>
+
+		<Label>Previously Visited</Label>>
+		<TableView dataCollection="site" dataTransform="transformFunction">
+			<TableViewRow title="{customproperty}" class="{customproperty}"/>
+		</TableView>	
+
+		
 	</Window>
 </Alloy>

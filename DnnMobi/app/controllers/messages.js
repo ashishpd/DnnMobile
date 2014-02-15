@@ -10,7 +10,7 @@ var args = arguments[0] || {};
 			    data.push({
 			        // Maps to the rowtitle component in the template
 			        // Sets the text property of the Label component
-			        from : { text: response.Conversations[i].From },
+			        from : { text: response.Conversations[i].From, color: 'blue' },
 			        when : { text: response.Conversations[i].DisplayDate },
 			        message : { text: response.Conversations[i].Subject + ' - ' + response.Conversations[i].Body },
 			        profilePic : { image: WebApiHelper.profilePic(response.Conversations[i].SenderUserID) },
