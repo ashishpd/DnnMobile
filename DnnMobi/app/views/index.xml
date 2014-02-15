@@ -20,7 +20,7 @@
 
 		<Label>Previously Visited</Label>>
 		<TableView dataCollection="site" dataTransform="transformFunction">
-			<TableViewRow title="{customproperty}" class="{customproperty}"/>
+			<TableViewRow title="{customproperty}" backgroundColor="{prop2}"/>
 		</TableView>	
 
 		

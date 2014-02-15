@@ -82,6 +82,7 @@ function transformFunction(model) {
     // Example of creating a custom attribute, reference in the view using {custom}
     //transform.customproperty = transform.url + " by " + transform.user;
     transform.customproperty = model.getclass();
+    transform.prop2 = 'red';
     return transform;
 }
 

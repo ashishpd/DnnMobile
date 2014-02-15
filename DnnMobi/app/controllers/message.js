@@ -2,6 +2,35 @@ var args = arguments[0] || {};
 
 Ti.API.info(args.conversationId);
 
-$.winMessage.open();
+var WebApiHelper = require('WebApiHelper');
+	
+    var success = function(e) {				
+			Ti.API.info(e.responseText);
+			var data = [];
+			var response = JSON.parse(e.responseText); 
+			for (var i = 0; i < response.Conversations.length; i++) {
+			    data.push({
+			        from : { text: response.Conversations[i].From, color: 'blue' },
+			        when : { text: response.Conversations[i].DisplayDate },
+			        message : { text: response.Conversations[i].Subject + ' - ' + response.Conversations[i].Body },
+			        profilePic : { image: WebApiHelper.profilePic(response.Conversations[i].SenderUserID) },
+			        // Sets the regular list data properties
+			        properties : {
+			            itemId: response.Conversations[i].MessageID,
+			            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE
+			        }
+			    });
+			}		
+			
+			$.listView.sections[0].setItems(data);
+			
+    };
 
-//http://ashprasad.com/DesktopModules/CoreMessaging/API/MessagingService/Thread?conversationId=2&afterMessageId=-1&numberOfRecords=2&_=1391973749883
+    var failure = function(e) {
+		Titanium.API.info("failure called after login");
+    	
+    };
+	
+	var url = "/DesktopModules/CoreMessaging/API/MessagingService/Thread?conversationId="+args.conversationId+"&numberOfRecords=2";
+	WebApiHelper.Get(url, "65", "437", success, failure);
+	
