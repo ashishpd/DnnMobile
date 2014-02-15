@@ -34,7 +34,7 @@ exports.jsonData = function(){
 };
 
 exports.profilePic = function(userId){
-	return _site + '/profilepic.ashx?userId=' + userId + '1&amp;h=64&amp;w=64';
+	return _site + '/profilepic.ashx?userId=' + userId + '&amp;h=64&amp;w=64';
 };
 
 var authCookiePresent = function(){
