@@ -1,6 +1,12 @@
 <Alloy>
 	<Window class="container" id="winMessage">
 		<ListView id="listView" defaultItemTemplate="template">
+           	<HeaderView>
+                <View backgroundColor="#DDD" height="Ti.UI.SIZE">
+                    <Label>Header View</Label>
+                </View>>
+            </HeaderView>
+            
             <Templates>
                 <ItemTemplate name="template">
                     <ImageView bindId="profilePic" id="profilePic" />
@@ -9,9 +15,16 @@
                     <Label bindId="message" id="message" />
                 </ItemTemplate>
             </Templates>
-
-            <ListSection headerTitle="Message">
-            </ListSection>
-        </ListView>
+        
+            <FooterView>
+                <View backgroundColor="#DDD" height="Ti.UI.SIZE">
+                    <TextArea id="textReply"
+		            borderWidth="2" borderColor="#bbb" borderRadius="5"
+		            color="#888" textAlign="left" hintText="Write a message"
+		            top="60" height="70" />
+		            <Button id="btnReply" onClick="doReply" title="Reply" />
+                </View>
+            </FooterView>
+		</ListView>
 	</Window>
 </Alloy>

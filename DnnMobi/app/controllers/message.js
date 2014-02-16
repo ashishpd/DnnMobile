@@ -27,8 +27,16 @@
 			    });
 			}		
 			
-			$.listView.sections[0].setItems(data);
-			$.listView.sections[0].setHeaderTitle(header);
+			var section = Titanium.UI.createListSection({
+			    // properties
+			    items: data,
+			    //headerTitle: header
+			});
+			
+			$.listView.sections = [section];
+						
+			//$.listView.sections[0].setItems(data);
+			//$.listView.sections[0].setHeaderTitle(header);
 			Titanium.API.info("header " + header + $.listView.sections[0].headerTitle);
 	};
 
@@ -36,6 +44,23 @@
 		Titanium.API.info("failure called after login");
     	
     };
+    
+	function doReply(e){
+	    
+	    var success = function(e) {
+			//login();
+	    };
+	
+	    var failure = function(e) {
+			Titanium.API.info("failure called after logoff");
+	    	$.txtError.text="Error - " + WebApiHelper.error();
+	    };
+	
+		var data = {conversationId: args.conversationId, body: $.textReply.value};
+		
+		var url = "/DesktopModules/CoreMessaging/API/MessagingService/Reply";
+		WebApiHelper.Post(url, data, "65", "437", success, failure);
+	};
 	
 	var url = "/DesktopModules/CoreMessaging/API/MessagingService/Thread?conversationId="+args.conversationId+"&afterMessageId=-1&numberOfRecords=2";
 	WebApiHelper.Get(url, "65", "437", success, failure);

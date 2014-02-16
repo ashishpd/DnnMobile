@@ -8,6 +8,7 @@ var _cookies;
 var _status;
 var _responseText;
 var _autoLogoffDone = false;
+var _requestVerificationToken;
 
 exports.isLoggedIn = function(){
 	return _isLoggedIn;
@@ -64,13 +65,10 @@ var httpWrapper = function(){
 		failure = callback;
 	};
 	
-	this.xhrCaller = null;
-	
 	this.xhrCaller = Ti.Network.createHTTPClient({
     onload: function(e) {
 		Ti.API.info('http response code: ' + this.status + ' length: ' + this.responseText.length);
 		//Ti.API.info('response: ' + this.responseText);
-		_isLoggedIn = true;
 		_status = this.status;
 		_responseText = this.responseText;
 		_cookies = this.getResponseHeader("Set-Cookie");
@@ -79,9 +77,8 @@ var httpWrapper = function(){
 			success(this);		
     },
     onerror: function(e) {
-		Ti.API.error('xhrPost Error, HTTP status = '+this.status);
-		Ti.API.error(e.error + this.responseText);
-		Ti.API.info('failure ' + failure);
+		Ti.API.error('xhrCaller Error: ' + e.error + ' , HTTP status = ' + this.status);
+		Ti.API.error(this.responseText);
 		_isError = true;
 		_error = e.error;
 		_status = e.status;
@@ -105,6 +102,7 @@ exports.Get = function(query, tabid, moduleid, success, failure) {
     http.xhrCaller.open("GET", url);
 	http.xhrCaller.setRequestHeader('TabID',tabid);
 	http.xhrCaller.setRequestHeader('ModuleID',moduleid);
+	http.xhrCaller.setRequestHeader('RequestVerificationToken',_requestVerificationToken);
 	
 	/*
 	var i;
@@ -130,6 +128,30 @@ exports.Get = function(query, tabid, moduleid, success, failure) {
 	http.xhrCaller.send();
 };
 
+exports.Post = function(query, data, tabid, moduleid, success, failure) {
+	Ti.API.info('xhrGet called');
+	if(!_isLoggedIn) {
+		Ti.API.error('not logged-in');
+		return;
+	}
+	var url = _site+query;
+	Ti.API.info('xhrPost url ' + url);
+    http.xhrCaller.open("GET", url);
+	http.xhrCaller.setRequestHeader('TabID',tabid);
+	http.xhrCaller.setRequestHeader('ModuleID',moduleid);
+	http.xhrCaller.setRequestHeader('RequestVerificationToken',_requestVerificationToken);
+	
+	
+	http.failureCallback(failure); 
+	http.successCallback(success); 
+
+	
+	//Ti.API.info(xhrPost.getResponseHeader("Set-Cookie"));
+	//xhrPost.autoRedirect = true;
+	http.xhrCaller.send(data);
+};
+
+
 exports.logoff = function(success, failure)
 {
 	http.successCallback(success);
@@ -143,6 +165,28 @@ exports.login = function(site, user, password, success, failure) {
     _site = site;
     _user = user;
     _password = password;
+    
+    var homePageLoaded = function(e){
+		Ti.API.info('homePageLoaded: ' + e.responseText.length);
+		var search = "name=\"__RequestVerificationToken\" type=\"hidden\" value=\"";
+  		var pos1 = e.responseText.indexOf(search);
+  		if(pos1 > 0){
+	  		var pos2 = e.responseText.indexOf('"', pos1 + search.length);
+	  		_requestVerificationToken = e.responseText.substr(pos1 + search.length, pos2 - pos1 - search.length); 
+	  		Ti.API.info('_requestVerificationToken: ' + _requestVerificationToken); 			
+  		}			
+			
+		if (typeof success !== 'undefined')
+			success(e);		    	
+    };
+
+var failureHomePage = function(e) {
+		Ti.API.info('failureHomePage, HTTP status = '+e.status);
+		http.successCallback(homePageLoaded);
+		http.failureCallback(failureLogin); 
+		http.xhrCaller.open("GET", _site + '?ctl=terms');
+		http.xhrCaller.send();   	
+	};
 
 	var loginUserPasswordPosted = function(e) {
 		Ti.API.info('loginUserPasswordPosted, HTTP status = '+e.status);
@@ -161,8 +205,10 @@ exports.login = function(site, user, password, success, failure) {
 				failure(this);		
 		} else {
 			_isLoggedIn = true;
-			if (typeof success !== 'undefined')
-				success(e);		
+			http.successCallback(homePageLoaded);
+			http.failureCallback(failureHomePage); 
+			http.xhrCaller.open("GET", _site);
+			http.xhrCaller.send();   
 		}		
 	};
 	
@@ -188,6 +234,14 @@ exports.login = function(site, user, password, success, failure) {
   		if(pos1 <= 0) return; //TODO more error handling in parsing and calling failed method
   		pos2 = e.responseText.indexOf('"', pos1 + search.length);
   		var eventValidation = e.responseText.substr(pos1 + search.length, pos2 - pos1 - search.length);
+
+		search = "name=\"__RequestVerificationToken\" type=\"hidden\" value=\"";
+  		pos1 = e.responseText.indexOf(search);
+  		if(pos1 > 0){
+	  		pos2 = e.responseText.indexOf('"', pos1 + search.length);
+	  		_requestVerificationToken = e.responseText.substr(pos1 + search.length, pos2 - pos1 - search.length); 
+	  		Ti.API.info('_requestVerificationToken: ' + _requestVerificationToken); 			
+  		}
 
   		var usernameField = e.responseText.match("name=\"(.+?\\$txtUsername)\"")[1];
   		var passwordField = e.responseText.match("name=\"(.+?\\$txtPassword)\"")[1];
