@@ -23,6 +23,7 @@
 		            color="#888" textAlign="left" hintText="Write a message"
 		            top="60" height="70" />
 		            <Button id="btnReply" onClick="doReply" title="Reply" />
+		            <Label id="txtError"></Label>
                 </View>
             </FooterView>
 		</ListView>

@@ -56,7 +56,8 @@
 	    	$.txtError.text="Error - " + WebApiHelper.error();
 	    };
 	
-		var data = {conversationId: args.conversationId, body: $.textReply.value};
+		//var data = {conversationId: args.conversationId, body: $.textReply.value};
+		var data = "conversationId=" + args.conversationId + "&body=hello" + $.textReply.value;
 		
 		var url = "/DesktopModules/CoreMessaging/API/MessagingService/Reply";
 		WebApiHelper.Post(url, data, "65", "437", success, failure);

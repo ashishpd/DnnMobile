@@ -8,6 +8,7 @@
 		<TextField id="txtPassword" hintText="password" passwordMask="true"></TextField>
 		<Button id="btnLogin" onClick="doLogin" title="Login" />
 		<Label id="txtError"></Label>
+		<ActivityIndicator id="activityIndicator" message="Logging In..." style=Ti.UI.iPhone.ActivityIndicatorStyle.DARK />
 		
         <Toolbar platform="ios" bottom="0" borderTop="true" borderBottom="false">
 

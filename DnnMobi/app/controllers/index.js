@@ -26,9 +26,11 @@ function doLogin(e){
     var failure = function(e) {
 		Titanium.API.info("failure called after logoff");
     	$.txtError.text="Error - " + WebApiHelper.error();
+    	$.activityIndicator.hide();
     };
 
 	Titanium.API.info("isLoggedIn" + WebApiHelper.isLoggedIn());
+	$.activityIndicator.show();
 	if(WebApiHelper.isLoggedIn()) {
 		Titanium.API.info("Calling Logoff");
 		WebApiHelper.logoff(success, failure);
@@ -40,7 +42,8 @@ function doLogin(e){
 
 function login(){
     var success = function(e) {
-		if(WebApiHelper.isLoggedIn() == true) {    		      		
+    	$.activityIndicator.hide();
+		if(WebApiHelper.isLoggedIn() == true) {   			 		      		
       		Alloy.createController("messages").getView().open();
 		} else if (WebApiHelper.isError() == true) {
 	      		$.txtError.text="Error - " + WebApiHelper.error();
@@ -48,6 +51,7 @@ function login(){
     };
 
     var failure = function(e) {
+    	$.activityIndicator.hide();
 		Titanium.API.info("failure called after login");
     	$.txtError.text="Error - " + WebApiHelper.error();
     };

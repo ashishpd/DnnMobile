@@ -86,6 +86,9 @@ var httpWrapper = function(){
 		if (typeof failure !== 'undefined')
 			failure(this);		
     },
+    onsendstream: function(e) {
+    	Ti.API.info('ONSENDSTREAM - PROGRESS: ' + e.progress);
+    },
     timeout:30000,  /* in milliseconds */
     autoRedirect:"true"
 	}); 	
@@ -128,27 +131,29 @@ exports.Get = function(query, tabid, moduleid, success, failure) {
 	http.xhrCaller.send();
 };
 
-exports.Post = function(query, data, tabid, moduleid, success, failure) {
-	Ti.API.info('xhrGet called');
+exports.Post = function(query, postdata, tabid, moduleid, success, failure) {
+	Ti.API.info('Post called with data: ', JSON.stringify(postdata));
 	if(!_isLoggedIn) {
 		Ti.API.error('not logged-in');
 		return;
 	}
 	var url = _site+query;
 	Ti.API.info('xhrPost url ' + url);
-    http.xhrCaller.open("GET", url);
+    http.xhrCaller.open("POST", url);
 	http.xhrCaller.setRequestHeader('TabID',tabid);
 	http.xhrCaller.setRequestHeader('ModuleID',moduleid);
 	http.xhrCaller.setRequestHeader('RequestVerificationToken',_requestVerificationToken);
-	
-	
+	http.xhrCaller.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 	http.failureCallback(failure); 
 	http.successCallback(success); 
-
+	//if (Titanium.Platform.name == 'iPhone OS') {
+		http.xhrCaller.send(postdata);
+	//} else {
+		//http.xhrCaller.send(JSON.stringify(postdata));
+		//http.xhrCaller.send('{conversationId=15&body=gg}');
+	//}
 	
-	//Ti.API.info(xhrPost.getResponseHeader("Set-Cookie"));
-	//xhrPost.autoRedirect = true;
-	http.xhrCaller.send(data);
+	
 };
 
 
@@ -180,7 +185,7 @@ exports.login = function(site, user, password, success, failure) {
 			success(e);		    	
     };
 
-var failureHomePage = function(e) {
+	var failureHomePage = function(e) {
 		Ti.API.info('failureHomePage, HTTP status = '+e.status);
 		http.successCallback(homePageLoaded);
 		http.failureCallback(failureLogin); 
