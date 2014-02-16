@@ -26,6 +26,5 @@
                      defined as <bindId>:<Ti.UI.Component.property> -->
             </ListSection>
         </ListView>
-		
 	</Window>
 </Alloy>

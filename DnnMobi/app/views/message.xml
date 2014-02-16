@@ -1,5 +1,17 @@
 <Alloy>
 	<Window class="container" id="winMessage">
-		<Label>Site</Label>>
+		<ListView id="listView" defaultItemTemplate="template">
+            <Templates>
+                <ItemTemplate name="template">
+                    <ImageView bindId="profilePic" id="profilePic" />
+                    <Label bindId="from" id="from" />
+                    <Label bindId="when" id="when" />
+                    <Label bindId="message" id="message" />
+                </ItemTemplate>
+            </Templates>
+
+            <ListSection headerTitle="Message">
+            </ListSection>
+        </ListView>
 	</Window>
 </Alloy>
