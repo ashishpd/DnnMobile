@@ -1,9 +1,10 @@
 <Alloy>
 	<Window class="container" id="winMessage">
+		<ActivityIndicator id="activityIndicator" style=Ti.UI.iPhone.ActivityIndicatorStyle.DARK />
 		<ListView id="listView" defaultItemTemplate="template">
            	<HeaderView>
                 <View backgroundColor="#DDD" height="Ti.UI.SIZE">
-                    <Label>Header View</Label>
+                    <Label id="lblHeader">Message</Label>
                 </View>>
             </HeaderView>
             
@@ -17,12 +18,9 @@
             </Templates>
         
             <FooterView>
-                <View backgroundColor="#DDD" height="Ti.UI.SIZE">
-                    <TextArea id="textReply"
-		            borderWidth="2" borderColor="#bbb" borderRadius="5"
-		            color="#888" textAlign="left" hintText="Write a message"
-		            top="60" height="70" />
-		            <Button id="btnReply" onClick="doReply" title="Reply" />
+                <View height="Ti.UI.SIZE">
+                	<TextField id="txtReply" hintText="Write a message" onChange="txtReplyChanged"></TextField>
+		            <Button id="btnReply" onClick="doReply" title="Reply" enabled="false" />
 		            <Label id="txtError"></Label>
                 </View>
             </FooterView>

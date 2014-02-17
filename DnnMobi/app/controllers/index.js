@@ -18,7 +18,6 @@ if (Titanium.Platform.name == 'iPhone OS') {
 var WebApiHelper = require('WebApiHelper');
 
 function doLogin(e){
-    
     var success = function(e) {
 		login();
     };

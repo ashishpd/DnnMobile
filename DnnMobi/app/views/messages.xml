@@ -1,5 +1,6 @@
 <Alloy>
 	<Window class="container" id="winMessages" >
+		<ActivityIndicator id="activityIndicator" style=Ti.UI.iPhone.ActivityIndicatorStyle.DARK />
 		<ListView id="listView" defaultItemTemplate="template">
 
             <!-- The Templates tag sets the ListView's templates property -->
@@ -26,5 +27,6 @@
                      defined as <bindId>:<Ti.UI.Component.property> -->
             </ListSection>
         </ListView>
+        
 	</Window>
 </Alloy>

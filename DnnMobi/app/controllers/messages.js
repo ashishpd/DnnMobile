@@ -2,7 +2,8 @@ var args = arguments[0] || {};
 
 	var WebApiHelper = require('WebApiHelper');
 	
-    var success = function(e) {				
+    var success = function(e) {		
+    		$.activityIndicator.hide();	
 			Ti.API.info(e.responseText);
 			var data = [];
 			var response = JSON.parse(e.responseText); 
@@ -62,13 +63,14 @@ var args = arguments[0] || {};
 
     var failure = function(e) {
 		Titanium.API.info("failure called after login");
-    	
+		$.activityIndicator.hide();
     };
 	
 	//laptop
 	//WebApiHelper.xhrGet("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "67", "446");
 	
 	//ashprasad.com
+	$.activityIndicator.show();
 	WebApiHelper.Get("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "65", "437", success, failure);
 	
 	//www.dnnsoftware.com
