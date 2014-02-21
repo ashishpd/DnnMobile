@@ -3,6 +3,11 @@
 	var currentPageSize = 2;
 	var WebApiHelper = require('WebApiHelper');
 	
+	function doBack(e) {
+    	$.winMessage.close();
+	};
+	
+	
 	var txtReplyChanged = function(e) {
 		//Ti.API.info($.txtReply.value);
 		$.btnReply.enabled = ($.txtReply.value != '');
@@ -77,6 +82,7 @@
 	function reload() {
 		$.activityIndicator.show();
 		$.txtReply.value = '';
+		$.btnReply.enabled = false;
 		var url = "/DesktopModules/CoreMessaging/API/MessagingService/Thread?conversationId="+args.conversationId+"&afterMessageId=-1&numberOfRecords="+currentPageSize;
 		WebApiHelper.Get(url, "65", "437", success, failure);
 	}

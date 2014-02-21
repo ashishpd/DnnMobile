@@ -43,7 +43,7 @@ function login(){
     var success = function(e) {
     	$.activityIndicator.hide();
 		if(WebApiHelper.isLoggedIn() == true) {   			 		      		
-      		Alloy.createController("messages").getView().open();
+      		Alloy.createController("main").getView().open();
 		} else if (WebApiHelper.isError() == true) {
 	      		$.txtError.text="Error - " + WebApiHelper.error();
 	   	}

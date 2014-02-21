@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="container" id="winMessages" >
+	<Window class="mainTab" id="winMessages" title="Messages" >
 		<ActivityIndicator id="activityIndicator" style=Ti.UI.iPhone.ActivityIndicatorStyle.DARK />
 		<ListView id="listView" defaultItemTemplate="template">
 
@@ -19,7 +19,7 @@
 
             </Templates>
 
-            <ListSection headerTitle="Messages">
+            <ListSection>
 
                 <!-- You can specify any ListItem or ListDataItem properties in ListItem -->
 
@@ -27,6 +27,5 @@
                      defined as <bindId>:<Ti.UI.Component.property> -->
             </ListSection>
         </ListView>
-        
 	</Window>
 </Alloy>

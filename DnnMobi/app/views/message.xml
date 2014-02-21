@@ -1,6 +1,14 @@
 <Alloy>
-	<Window class="container" id="winMessage">
+	<Window class="mainTab" id="winMessage" backButtonTitle="back" title="xxx">
 		<ActivityIndicator id="activityIndicator" style=Ti.UI.iPhone.ActivityIndicatorStyle.DARK />
+		<Toolbar platform="ios" bottom="0" borderTop="true" borderBottom="false">
+            <!-- The Items tag sets the Toolbar.items property. -->
+            <Items>
+                <Button id="back" onClick="doBack" title="Back" />
+            </Items>
+            <!-- Place additional views for the Toolbar here. -->
+        </Toolbar>				
+		
 		<ListView id="listView" defaultItemTemplate="template">
            	<HeaderView>
                 <View backgroundColor="#DDD" height="Ti.UI.SIZE">
@@ -18,7 +26,7 @@
             </Templates>
         
             <FooterView>
-                <View height="Ti.UI.SIZE">
+                <View>
                 	<TextField id="txtReply" hintText="Write a message" onChange="txtReplyChanged"></TextField>
 		            <Button id="btnReply" onClick="doReply" title="Reply" enabled="false" />
 		            <Label id="txtError"></Label>

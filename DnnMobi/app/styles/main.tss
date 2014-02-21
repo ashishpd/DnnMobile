@@ -1,0 +1,5 @@
+"#tabGroup": {
+        backgroundColor:"white",
+        layout: 'vertical',
+        top: '0dp'
+}
