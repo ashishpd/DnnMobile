@@ -167,7 +167,13 @@ exports.logoff = function(success, failure)
 
 exports.login = function(site, user, password, success, failure) {
     Ti.API.info('login being called for site '+ site);
-    _site = site;
+    _site = site.trim();
+	if(_site.toLowerCase().indexOf("http") != 0) {
+		_site = "http://" + _site;
+	}    
+    
+    Ti.API.info('site '+ _site);
+    
     _user = user;
     _password = password;
     
@@ -302,7 +308,7 @@ exports.login = function(site, user, password, success, failure) {
 
 	http.successCallback(loginControlLoaded);
 	http.failureCallback(failureLogin); 
-	http.xhrCaller.open("GET", site + '?ctl=login');
+	http.xhrCaller.open("GET", _site + '?ctl=login');
 	http.xhrCaller.send();  // request is actually sent with this statement    
 };
 
