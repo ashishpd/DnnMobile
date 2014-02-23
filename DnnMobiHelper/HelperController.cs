@@ -61,7 +61,7 @@ namespace DnnMobiHelper
             return sites;
         }
 
-
+        /*
         [AllowAnonymous]
         [HttpGet]
         public HttpResponseMessage ExternalSiteDetails(string siteName)
@@ -75,7 +75,7 @@ namespace DnnMobiHelper
 
             return Request.CreateResponse(HttpStatusCode.OK, siteDetails);    
         }
-
+        */
         [AllowAnonymous]
         [HttpGet]
         public HttpResponseMessage ModuleDetails(string moduleList)
