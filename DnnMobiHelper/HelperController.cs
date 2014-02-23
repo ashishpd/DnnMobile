@@ -89,13 +89,14 @@ namespace DnnMobiHelper
                 };
             foreach (var moduleName in moduleList.Split(','))
             {
-                var moduleDetail = new ModuleDetail {ModuleName = moduleName};
+                
                 foreach (
                     var tabmodule in
                         GetTabModules(moduleName)
                             .Where(tabmodule => TabPermissionController.CanViewPage(tabmodule.TabInfo) &&
                                                 ModulePermissionController.CanViewModule(tabmodule.ModuleInfo)))
                 {
+                    var moduleDetail = new ModuleDetail { ModuleName = moduleName };
                     moduleDetail.ModuleVersion = tabmodule.ModuleVersion;
                     moduleDetail.ModuleInstances.Add(new ModuleInstance
                                                          {
@@ -104,8 +105,8 @@ namespace DnnMobiHelper
                                                              PageName = tabmodule.TabInfo.TabName,
                                                              PagePath = tabmodule.TabInfo.TabPath
                                                          });
+                    siteDetails.Modules.Add(moduleDetail);
                 }
-                siteDetails.Modules.Add(moduleDetail);
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, siteDetails);
