@@ -3,6 +3,11 @@
 	var currentPageSize = 2;
 	var WebApiHelper = require('WebApiHelper');
 	
+	if (Titanium.Platform.name == 'android') {
+    	$.winMessage.windowSoftInputMode = Ti.UI.Android.SOFT_INPUT_ADJUST_PAN;
+	}
+	
+	
 	function doBack(e) {
     	$.winMessage.close();
 	};
