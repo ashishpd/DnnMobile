@@ -77,12 +77,36 @@ var authCookiePresent = function(){
 
 var getIds = function (moduleName) {
 	
-	for (var i = 0; i < _siteDetail.Modules.length; i++) {
-		var moduleDetail = _siteDetail.Modules[i];
-		if(moduleDetail.ModuleName == moduleName) {
-			//Ti.API.info('moduleDetail' +  moduleDetail.ModuleName);	
-			var moduleInstance = moduleDetail.ModuleInstances[0];
-			return {tabid: moduleInstance.TabId, moduleid: moduleInstance.ModuleId};		
+	if(_site.toLowerCase().indexOf('catalyst.dnnsoftware.com') > 0) {
+		switch (moduleName) {
+		    case "DotNetNuke.Modules.CoreMessaging":
+		        return {tabid: 124, moduleid: 514};
+		        break;
+		    case "xxx.dev.yyy.com":
+		        // Blah
+		        break;
+		}	
+	}
+
+	if(_site.toLowerCase().indexOf('www.dnnsoftware.com') > 0) {
+		switch (moduleName) {
+		    case "DotNetNuke.Modules.CoreMessaging":
+		        return {tabid: 67, moduleid: 446};
+		        break;
+		    case "xxx.dev.yyy.com":
+		        // Blah
+		        break;
+		}	
+	}
+	
+	if(_siteDetail != undefined) {
+		for (var i = 0; i < _siteDetail.Modules.length; i++) {
+			var moduleDetail = _siteDetail.Modules[i];
+			if(moduleDetail.ModuleName == moduleName) {
+				//Ti.API.info('moduleDetail' +  moduleDetail.ModuleName);	
+				var moduleInstance = moduleDetail.ModuleInstances[0];
+				return {tabid: moduleInstance.TabId, moduleid: moduleInstance.ModuleId};		
+			}
 		}
 	}
 };
@@ -231,6 +255,12 @@ exports.login = function(site, user, password, success, failure) {
 		if (typeof success !== 'undefined')
 			success(e);		    	
     };
+    
+    var failureSiteInfo = function(e){
+		Ti.API.info('failureSiteInfo: ' + e.responseText);				
+		if (typeof success !== 'undefined')
+			success(e);		    	
+    };    
 
     var homePageLoaded = function(e){
 		Ti.API.info('homePageLoaded: ' + e.responseText.length);
@@ -243,7 +273,7 @@ exports.login = function(site, user, password, success, failure) {
   		}			
 			
 		http.successCallback(siteInfoLoaded);
-		http.failureCallback(failureHomePage); 
+		http.failureCallback(failureSiteInfo); 
 		http.xhrCaller.open("GET", _site + '/DesktopModules/DnnMobiHelper/API/Helper/ModuleDetails?moduleList=' + _knownModuleList.join());
 		http.xhrCaller.send();  	    	
     };    
