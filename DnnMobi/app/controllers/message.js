@@ -76,7 +76,7 @@
 		
 		var url = "/DesktopModules/CoreMessaging/API/MessagingService/Reply";
 		$.activityIndicator.show();
-		WebApiHelper.Post(url, data, "65", "437", success, failure);
+		WebApiHelper.Post('DotNetNuke.Modules.CoreMessaging', url, data, success, failure);
 	};
 	
 	function reload() {
@@ -84,7 +84,7 @@
 		$.txtReply.value = '';
 		$.btnReply.enabled = false;
 		var url = "/DesktopModules/CoreMessaging/API/MessagingService/Thread?conversationId="+args.conversationId+"&afterMessageId=-1&numberOfRecords="+currentPageSize;
-		WebApiHelper.Get(url, "65", "437", success, failure);
+		WebApiHelper.Get('DotNetNuke.Modules.CoreMessaging', url, success, failure);
 	}
 	
 	reload();

@@ -71,7 +71,8 @@ var args = arguments[0] || {};
 	
 	//ashprasad.com
 	$.activityIndicator.show();
-	WebApiHelper.Get("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "65", "437", success, failure);
+	//WebApiHelper.Get("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "65", "437", success, failure);
+	WebApiHelper.Get('DotNetNuke.Modules.CoreMessaging',"/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", success, failure);
 	
 	//www.dnnsoftware.com
 	//WebApiHelper.xhrGet("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "67", "446");

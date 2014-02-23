@@ -9,6 +9,29 @@ var _status;
 var _responseText;
 var _autoLogoffDone = false;
 var _requestVerificationToken;
+var _siteDetail;
+var _knownModuleList = [
+	'DotNetNuke.Modules.CoreMessaging',
+	'DotNetNuke.Modules.DigitalAssets',
+	'DotNetNuke.Modules.MemberDirectory',
+	'Activities',
+	'User Badges',
+	'Activity Stream',
+	'Answers',
+	'Blogs',
+	'CommunityDashboard',
+	'ProfileDashboard',
+	'Discussions',
+	'GroupDirectory',
+	'Group Spaces',
+	'Ideas',
+	'Leaderboard',
+	'Mechanics Admin',
+	'MyStatus',
+	'RelatedContent',
+	'Social Events',
+	'SocialSharing',
+	'Wiki'];
 
 exports.isLoggedIn = function(){
 	return _isLoggedIn;
@@ -50,6 +73,18 @@ var authCookiePresent = function(){
 	}	
 	
 	return false;
+};
+
+var getIds = function (moduleName) {
+	
+	for (var i = 0; i < _siteDetail.Modules.length; i++) {
+		var moduleDetail = _siteDetail.Modules[i];
+		if(moduleDetail.ModuleName == moduleName) {
+			//Ti.API.info('moduleDetail' +  moduleDetail.ModuleName);	
+			var moduleInstance = moduleDetail.ModuleInstances[0];
+			return {tabid: moduleInstance.TabId, moduleid: moduleInstance.ModuleId};		
+		}
+	}
 };
 
 var httpWrapper = function(){
@@ -94,17 +129,25 @@ var httpWrapper = function(){
 	}); 	
 };    
 
-exports.Get = function(query, tabid, moduleid, success, failure) {
+exports.Get = function(module, query, success, failure) {
 	Ti.API.info('xhrGet called');
 	if(!_isLoggedIn) {
 		Ti.API.error('not logged-in');
 		return;
 	}
+	
 	var url = _site+query;
 	Ti.API.info('xhrGet url ' + url);
     http.xhrCaller.open("GET", url);
-	http.xhrCaller.setRequestHeader('TabID',tabid);
-	http.xhrCaller.setRequestHeader('ModuleID',moduleid);
+   
+	if(module.length > 0) {
+		var ids = getIds(module);
+		if (ids != undefined) {
+			http.xhrCaller.setRequestHeader('TabID',ids.tabid);
+			http.xhrCaller.setRequestHeader('ModuleID',ids.moduleid);			
+		}	
+	}    
+    
 	http.xhrCaller.setRequestHeader('RequestVerificationToken',_requestVerificationToken);
 	
 	/*
@@ -131,7 +174,7 @@ exports.Get = function(query, tabid, moduleid, success, failure) {
 	http.xhrCaller.send();
 };
 
-exports.Post = function(query, postdata, tabid, moduleid, success, failure) {
+exports.Post = function(module, query, postdata, success, failure) {
 	Ti.API.info('Post called with data: ', JSON.stringify(postdata));
 	if(!_isLoggedIn) {
 		Ti.API.error('not logged-in');
@@ -140,8 +183,13 @@ exports.Post = function(query, postdata, tabid, moduleid, success, failure) {
 	var url = _site+query;
 	Ti.API.info('xhrPost url ' + url);
     http.xhrCaller.open("POST", url);
-	http.xhrCaller.setRequestHeader('TabID',tabid);
-	http.xhrCaller.setRequestHeader('ModuleID',moduleid);
+	if(module.length > 0) {
+		var ids = getIds(module);
+		if (ids != undefined) {
+			http.xhrCaller.setRequestHeader('TabID',ids.tabid);
+			http.xhrCaller.setRequestHeader('ModuleID',ids.moduleid);			
+		}	
+	}     
 	http.xhrCaller.setRequestHeader('RequestVerificationToken',_requestVerificationToken);
 	http.xhrCaller.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 	http.failureCallback(failure); 
@@ -172,11 +220,18 @@ exports.login = function(site, user, password, success, failure) {
 		_site = "http://" + _site;
 	}    
     
-    Ti.API.info('site '+ _site);
-    
     _user = user;
     _password = password;
     
+    var siteInfoLoaded = function(e){
+		Ti.API.info('siteInfoLoaded: ' + e.responseText.length);
+		//Ti.API.info('siteInfoLoaded: ' + e.responseText);
+		_siteDetail = JSON.parse(e.responseText);
+					
+		if (typeof success !== 'undefined')
+			success(e);		    	
+    };
+
     var homePageLoaded = function(e){
 		Ti.API.info('homePageLoaded: ' + e.responseText.length);
 		var search = "name=\"__RequestVerificationToken\" type=\"hidden\" value=\"";
@@ -187,10 +242,12 @@ exports.login = function(site, user, password, success, failure) {
 	  		Ti.API.info('_requestVerificationToken: ' + _requestVerificationToken); 			
   		}			
 			
-		if (typeof success !== 'undefined')
-			success(e);		    	
-    };
-
+		http.successCallback(siteInfoLoaded);
+		http.failureCallback(failureHomePage); 
+		http.xhrCaller.open("GET", _site + '/DesktopModules/DnnMobiHelper/API/Helper/ModuleDetails?moduleList=' + _knownModuleList.join());
+		http.xhrCaller.send();  	    	
+    };    
+     
 	var failureHomePage = function(e) {
 		Ti.API.info('failureHomePage, HTTP status = '+e.status);
 		http.successCallback(homePageLoaded);
