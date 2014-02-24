@@ -7,11 +7,9 @@
     	$.winMessage.windowSoftInputMode = Ti.UI.Android.SOFT_INPUT_ADJUST_PAN;
 	}
 	
-	
 	function doBack(e) {
     	$.winMessage.close();
 	};
-	
 	
 	var txtReplyChanged = function(e) {
 		//Ti.API.info($.txtReply.value);
@@ -59,7 +57,7 @@
 	};
 
     var failure = function(e) {
-		Titanium.API.info("failure called after login");
+		$.txtError.text="Error - " + WebApiHelper.error();
     	$.activityIndicator.hide();
     };
     
@@ -71,12 +69,10 @@
 	    };
 	
 	    var failure = function(e) {
-			Titanium.API.info("failure called after logoff");
 			$.activityIndicator.hide();
 	    	$.txtError.text="Error - " + WebApiHelper.error();
 	    };
 	
-		//var data = {conversationId: args.conversationId, body: $.textReply.value};
 		var data = "conversationId=" + args.conversationId + "&body=" + $.txtReply.value;
 		
 		var url = "/DesktopModules/CoreMessaging/API/MessagingService/Reply";

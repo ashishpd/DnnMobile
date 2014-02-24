@@ -1,7 +1,27 @@
 var args = arguments[0] || {};
 
 	var WebApiHelper = require('WebApiHelper');
+	var recordsLoaded = 0;
+	var earliestMessageId = -1;
 	
+	function doLoadMore(e){
+	    reload();
+	};
+	
+	function doRefresh(e){	
+	    refresh();
+	};
+		
+	$.listView.addEventListener('itemclick', function(e){
+		Ti.API.info(e.bindId);
+		var item = e.section.getItemAt(e.itemIndex);
+		//Ti.API.info(item);
+		var arg = {
+	        conversationId: item.properties.itemId
+		};
+		Alloy.createController('message', arg).getView().open();    
+	});	
+		
     var success = function(e) {		
     		$.activityIndicator.hide();	
 			Ti.API.info(e.responseText);
@@ -33,50 +53,38 @@ var args = arguments[0] || {};
 			            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE
 			        }
 			    });
+			    recordsLoaded++;
+			    earliestMessageId = conversation.MessageID;
 			}		
 			
-			$.listView.sections[0].setItems(data);
-			$.listView.addEventListener('itemclick', function(e){
-				Ti.API.info(e.bindId);
-				var item = e.section.getItemAt(e.itemIndex);
-				//Ti.API.info(item);
-				var arg = {
-			        conversationId: item.properties.itemId
-   				};
-				Alloy.createController('message', arg).getView().open();
-				/*
-			    // Only respond to clicks on the label (rowtitle) or image (pic)
-			    if (e.bindId == 'rowtitle' || e.bindId == 'pic') {
-			        var item = e.section.getItemAt(e.itemIndex);
-			        if (item.properties.accessoryType == Ti.UI.LIST_ACCESSORY_TYPE_NONE) {
-			            item.properties.accessoryType = Ti.UI.LIST_ACCESSORY_TYPE_CHECKMARK;
-			        }
-			        else {
-			            item.properties.accessoryType = Ti.UI.LIST_ACCESSORY_TYPE_NONE;
-			        }
-			        e.section.updateItemAt(e.itemIndex, item);
-			    } */     
-			});			
-			
-			//$.winMessages.add(listView);
+			$.listView.sections[0].appendItems(data);
+			$.btnLoadMore.visible = (response.TotalConversations > recordsLoaded);
     };
 
     var failure = function(e) {
-		Titanium.API.info("failure called after login");
+		$.txtError.text="Error - " + WebApiHelper.error();
 		$.activityIndicator.hide();
     };
 	
-	//laptop
-	//WebApiHelper.xhrGet("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "67", "446");
+	function reload() {
+		$.activityIndicator.show();
+		var url = '/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=' + earliestMessageId + '&numberOfRecords=10';
+		WebApiHelper.Get('DotNetNuke.Modules.CoreMessaging',url, success, failure);
 	
-	//ashprasad.com
-	$.activityIndicator.show();
-	//WebApiHelper.Get("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "65", "437", success, failure);
-	WebApiHelper.Get('DotNetNuke.Modules.CoreMessaging',"/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", success, failure);
+	}
 	
-	//www.dnnsoftware.com
-	//WebApiHelper.xhrGet("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "67", "446");
+	function refresh() {
+		recordsLoaded = 0;
+		earliestMessageId = -1;	
+		 
+		var section = $.listView.sections[0];	
+		if(section.items.length > 0) {
+			section.deleteItemsAt(0,section.items.length);
+		}
+		
+	    reload();
+	}	
 	
-	//catalyst
-	//WebApiHelper.xhrGet("/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=-1&numberOfRecords=10", "124", "514");
+	refresh();
+	
 	

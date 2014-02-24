@@ -24,3 +24,13 @@
         top: '25dp',
         left: '60dp'
 }
+
+"#btnLoadMore":{
+        top: '20dp',
+        barColor: '#a00'
+}
+
+"#btnRefresh":{
+        top: '10dp',
+        barColor: '#a00'
+}

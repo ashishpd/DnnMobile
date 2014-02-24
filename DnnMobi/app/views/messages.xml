@@ -2,30 +2,27 @@
 	<Window class="mainTab" id="winMessages" title="Messages" >
 		<ActivityIndicator id="activityIndicator" style=Ti.UI.iPhone.ActivityIndicatorStyle.DARK />
 		<ListView id="listView" defaultItemTemplate="template">
-
-            <!-- The Templates tag sets the ListView's templates property -->
-
+			<HeaderView>
+                <View height="Ti.UI.SIZE">
+                    <Button id="btnRefresh" onClick="doRefresh" title="Refresh" />
+                </View>>
+            </HeaderView>
             <Templates>
-
-                <!-- Define your item templates within the Templates tags or use the
-                     Require tag to include a view that only contains an ItemTemplate -->
-
                 <ItemTemplate name="template">
                     <ImageView bindId="profilePic" id="profilePic" />
                     <Label bindId="from" id="from" />
                     <Label bindId="when" id="when" />
                     <Label bindId="message" id="message" />
                 </ItemTemplate>
-
             </Templates>
-
             <ListSection>
-
-                <!-- You can specify any ListItem or ListDataItem properties in ListItem -->
-
-                <!-- Specify data to bind to the item template with inline attributes
-                     defined as <bindId>:<Ti.UI.Component.property> -->
             </ListSection>
+            <FooterView>
+                <View>
+		            <Button id="btnLoadMore" onClick="doLoadMore" title="Load More" visible="false" />
+		            <Label id="txtError"></Label>
+                </View>
+            </FooterView>
         </ListView>
 	</Window>
 </Alloy>
