@@ -1,5 +1,15 @@
 $.tabGroup.open();
 
+
+var answersWin = Alloy.createController('answers').getView();
+var answersTab = Titanium.UI.createTab({
+    window:answersWin,
+    title:'Answers',
+    icon:'messaging_32x32.png'
+});
+$.tabGroup.addTab(answersTab);
+
+/*
 var messagesWin = Alloy.createController('messages').getView();
 var messagesTab = Titanium.UI.createTab({
     window:messagesWin,
@@ -7,6 +17,7 @@ var messagesTab = Titanium.UI.createTab({
     icon:'messaging_32x32.png'
 });
 $.tabGroup.addTab(messagesTab);
+*/
 
 var membersWin = Titanium.UI.createWindow({title: "Members"});
 var membersTab = Titanium.UI.createTab({

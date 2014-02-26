@@ -72,7 +72,7 @@ xhr.setRequestHeader("Content-Type","application/json; charset=UTF-8");
 xhr.setRequestHeader("Cache-Control","no-cache");
 var parms = {"category":"answered","pageIndex":0,"pageSize":25,"sortColumn":"lastactive","sortAscending":false,"tags":[],"sequence":2};
 label1.text = 'Params'+JSON.stringify(parms);
-//xhr.send(JSON.stringify(parms));  // request is actually sent with this statement
+xhr.send(JSON.stringify(parms));  // request is actually sent with this statement
 
 
 //

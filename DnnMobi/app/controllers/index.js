@@ -3,9 +3,17 @@ $.txtSiteName.value="ashprasad.com";
 $.txtUserName.value="user1";
 $.txtPassword.value="1234567";
 
-//$.txtSiteName.value="http://www.dnnsoftware.com";
-//$.txtSiteName.value="http://catalyst.dnnsoftware.com";
-//$.txtSiteName.value="http://store.dnnsoftware.com";
+$.txtSiteName.value="dnnq8v9be.cloudapp.net";
+$.txtUserName.value="ash.prasad";
+$.txtPassword.value="Mypassword1";
+
+/*
+$.txtSiteName.value="store.dnnsoftware.com";
+$.txtSiteName.value="www.dnnsoftware.com";
+$.txtSiteName.value="catalyst.dnnsoftware.com";
+$.txtUserName.value="ashishpd";
+$.txtPassword.value="dotdot1";
+*/
 
 if (Titanium.Platform.name == 'iPhone OS') {
     //doLogin();

@@ -82,9 +82,8 @@ var getIds = function (moduleName) {
 		    case "DotNetNuke.Modules.CoreMessaging":
 		        return {tabid: 124, moduleid: 514};
 		        break;
-		    case "xxx.dev.yyy.com":
-		        // Blah
-		        break;
+		    case "Answers":
+		        return {tabid: 106, moduleid: 473};
 		}	
 	}
 
@@ -93,11 +92,25 @@ var getIds = function (moduleName) {
 		    case "DotNetNuke.Modules.CoreMessaging":
 		        return {tabid: 67, moduleid: 446};
 		        break;
-		    case "xxx.dev.yyy.com":
-		        // Blah
+		    case "Answers":
+		        return {tabid: 145, moduleid: 601};
 		        break;
 		}	
 	}
+	
+	if(_site.toLowerCase().indexOf('dnnq8v9be.cloudapp.net') > 0) {
+		switch (moduleName) {
+		    case "DotNetNuke.Modules.CoreMessaging":
+		        return {tabid: 74, moduleid: 428};
+		        break;
+		    case "Answers":
+		        return {tabid: 56, moduleid: 375};
+		        break;
+		    case "Discussions":
+		        return {tabid: 57, moduleid: 378};
+		        break;		        
+		}	
+	}	
 	
 	if(_siteDetail != undefined) {
 		for (var i = 0; i < _siteDetail.Modules.length; i++) {
@@ -216,6 +229,8 @@ exports.Post = function(module, query, postdata, success, failure) {
 	}     
 	http.xhrCaller.setRequestHeader('RequestVerificationToken',_requestVerificationToken);
 	http.xhrCaller.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+	http.xhrCaller.setRequestHeader("Content-Type","application/json; charset=UTF-8");
+	http.xhrCaller.setRequestHeader("Cache-Control","no-cache");	
 	http.failureCallback(failure); 
 	http.successCallback(success); 
 	//if (Titanium.Platform.name == 'iPhone OS') {
