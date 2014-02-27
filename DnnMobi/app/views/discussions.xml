@@ -1,0 +1,28 @@
+<Alloy>
+	<Window class="mainTab" id="winDiscussions" title="Discussions" >
+		<ActivityIndicator id="activityIndicator" style=Ti.UI.iPhone.ActivityIndicatorStyle.DARK />
+		<ListView id="listView" defaultItemTemplate="template">
+			<HeaderView>
+                <View height="Ti.UI.SIZE">
+                    <Button id="btnRefresh" onClick="doRefresh" title="Refresh" />
+                </View>>
+            </HeaderView>
+            <Templates>
+                <ItemTemplate name="template">
+                    <ImageView bindId="profilePic" id="profilePic" />
+                    <Label bindId="title" id="title" />
+                    <Label bindId="when" id="when" />
+                    <Label bindId="message" id="message" />
+                </ItemTemplate>
+            </Templates>
+            <ListSection>
+            </ListSection>
+            <FooterView>
+                <View>
+		            <Button id="btnLoadMore" onClick="doLoadMore" title="Load More" visible="false" />
+		            <Label id="txtError"></Label>
+                </View>
+            </FooterView>
+        </ListView>
+	</Window>
+</Alloy>
