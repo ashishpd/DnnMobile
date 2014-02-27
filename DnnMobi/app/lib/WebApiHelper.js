@@ -211,8 +211,9 @@ exports.Get = function(module, query, success, failure) {
 	http.xhrCaller.send();
 };
 
-exports.Post = function(module, query, postdata, success, failure) {
-	Ti.API.info('Post called with data: ', JSON.stringify(postdata));
+exports.PostAsJson = function(module, query, postdata, success, failure) {
+	var json = JSON.stringify(postdata);
+	Ti.API.info('PostAsJson called with data: ', json);
 	if(!_isLoggedIn) {
 		Ti.API.error('not logged-in');
 		return;
@@ -233,6 +234,30 @@ exports.Post = function(module, query, postdata, success, failure) {
 	http.xhrCaller.setRequestHeader("Cache-Control","no-cache");	
 	http.failureCallback(failure); 
 	http.successCallback(success); 
+	http.xhrCaller.send(json);
+};
+
+exports.Post = function(module, query, postdata, success, failure) {
+	Ti.API.info('Post called with data: ', postdata);
+	if(!_isLoggedIn) {
+		Ti.API.error('not logged-in');
+		return;
+	}
+	var url = _site+query;
+	Ti.API.info('xhrPost url ' + url);
+    http.xhrCaller.open("POST", url);
+	if(module.length > 0) {
+		var ids = getIds(module);
+		if (ids != undefined) {
+			http.xhrCaller.setRequestHeader('TabID',ids.tabid);
+			http.xhrCaller.setRequestHeader('ModuleID',ids.moduleid);			
+		}	
+	}     
+	http.xhrCaller.setRequestHeader('RequestVerificationToken',_requestVerificationToken);
+	http.xhrCaller.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+	http.xhrCaller.setRequestHeader("Cache-Control","no-cache");	
+	http.failureCallback(failure); 
+	http.successCallback(success); 
 	//if (Titanium.Platform.name == 'iPhone OS') {
 		http.xhrCaller.send(postdata);
 	//} else {
@@ -242,6 +267,7 @@ exports.Post = function(module, query, postdata, success, failure) {
 	
 	
 };
+
 
 
 exports.logoff = function(success, failure)

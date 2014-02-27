@@ -56,26 +56,21 @@ var args = arguments[0] || {};
 	function reload() {
 		$.activityIndicator.show();
 		var url = '/DesktopModules/DNNCorp/Answers/API/List/Query';
-		var data = {category: 'answered', 
+		var data = {category: null, 
 					pageIndex: currentPage,
-					pageSize: 5,
+					pageSize: 10,
 					sortColumn: 'lastactive',
 					sortAscending: false,
 					tags: [],
 					groupId: -1,
 					sequence: 6};
 		
+		//{"category":null,"pageIndex":1,"pageSize":25,"sortColumn":"lastactive","sortAscending":false,"tags":[],"groupId":-1,"sequence":0}
 		
-		//{}"category=null" + "&pageIndex=" + currentPage + "&sortColumn=lastactive&sortAscending=false&tags" ;
-		
-		
-//{"category":null,"pageIndex":1,"pageSize":25,"sortColumn":"lastactive","sortAscending":false,"tags":[],"groupId":-1,"sequence":0}
-		
-		var parms = {"category":"answered","pageIndex":0,"pageSize":25,"sortColumn":"lastactive","sortAscending":false,"tags":[],"sequence":2};
-
+		//var parms = {"category":"answered","pageIndex":0,"pageSize":25,"sortColumn":"lastactive","sortAscending":false,"tags":[],"sequence":2};
 		
 		$.activityIndicator.show();
-		WebApiHelper.Post('Answers', url, JSON.stringify(parms), success, failure);
+		WebApiHelper.PostAsJson('Answers', url, data, success, failure);
 	
 	
 	}

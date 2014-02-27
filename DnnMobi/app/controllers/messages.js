@@ -85,6 +85,6 @@ var args = arguments[0] || {};
 	    reload();
 	}	
 	
-	refresh();
+	//refresh();
 	
 	
