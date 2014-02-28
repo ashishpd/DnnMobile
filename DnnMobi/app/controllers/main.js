@@ -10,6 +10,14 @@ var answersTab = Titanium.UI.createTab({
 $.tabGroup.addTab(answersTab);
 
 
+var ideasWin = Alloy.createController('ideas').getView();
+var ideasTab = Titanium.UI.createTab({
+    window:ideasWin,
+    title:'Ideas',
+    icon:'messaging_32x32.png'
+});
+$.tabGroup.addTab(ideasTab);
+
 var discussionsWin = Alloy.createController('discussions').getView();
 var discussionsTab = Titanium.UI.createTab({
     window:discussionsWin,

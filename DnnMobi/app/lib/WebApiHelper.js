@@ -84,6 +84,9 @@ var getIds = function (moduleName) {
 		        break;
 		    case "Answers":
 		        return {tabid: 106, moduleid: 473};
+		    case "Ideas":
+		        return {tabid: 110, moduleid: 483};
+		        break;				        
 		}	
 	}
 
@@ -95,6 +98,9 @@ var getIds = function (moduleName) {
 		    case "Answers":
 		        return {tabid: 145, moduleid: 601};
 		        break;
+		    case "Ideas":
+		        return {tabid: 153, moduleid: 602};
+		        break;		        
 		}	
 	}
 	
@@ -108,7 +114,10 @@ var getIds = function (moduleName) {
 		        break;
 		    case "Discussions":
 		        return {tabid: 57, moduleid: 378};
-		        break;		        
+		        break;	
+		    case "Ideas":
+		        return {tabid: 60, moduleid: 388};
+		        break;			        	        
 		}	
 	}	
 	

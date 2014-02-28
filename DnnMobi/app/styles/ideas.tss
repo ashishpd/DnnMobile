@@ -1,0 +1,36 @@
+"#profilePic":{
+        width: '50dp',
+        height: '50dp',
+        left: '0'
+}
+
+"#title":{
+		color: 'gray',
+		font: {fontFamily:'Arial', fontSize: '20dp', fontWeight: 'bold'},
+        top: '0',
+        left: '60dp'
+}
+
+"#when":{
+		color: 'gray',
+		font: {fontFamily:'Arial', fontSize: '14dp'},
+        top: '0',
+        right: '80dp'
+}
+
+"#message":{
+		color: 'gray',
+		font: {fontFamily:'Arial', fontSize: '14dp'},
+        top: '25dp',
+        left: '60dp'
+}
+
+"#btnLoadMore":{
+        top: '20dp',
+        barColor: '#a00'
+}
+
+"#btnRefresh":{
+        top: '10dp',
+        barColor: '#a00'
+}
