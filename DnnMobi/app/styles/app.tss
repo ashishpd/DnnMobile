@@ -1,9 +1,3 @@
-".container": {
-        backgroundColor:"white",
-        top: '10%',
-        layout: 'vertical'
-}
-
 ".mainTab": {
         backgroundColor:"white",
         layout: 'vertical'

@@ -1,3 +1,9 @@
+".container": {
+        backgroundColor:"white",
+        top: '2%',
+        layout: 'vertical'
+}
+
 "Label": {
         font: {fontFamily:'Arial', fontSize: '14dp', fontWeight:'bold'},
         left: '20dp',
