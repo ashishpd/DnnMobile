@@ -18,6 +18,16 @@ var ideasTab = Titanium.UI.createTab({
 });
 $.tabGroup.addTab(ideasTab);
 
+/*
+var activitystreamWin = Alloy.createController('activitystream').getView();
+var activitystreamTab = Titanium.UI.createTab({
+    window:activitystreamWin,
+    title:'Activity Stream',
+    icon:'messaging_32x32.png'
+});
+$.tabGroup.addTab(activitystreamTab);
+*/
+
 var discussionsWin = Alloy.createController('discussions').getView();
 var discussionsTab = Titanium.UI.createTab({
     window:discussionsWin,

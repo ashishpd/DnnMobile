@@ -86,7 +86,10 @@ var getIds = function (moduleName) {
 		        return {tabid: 106, moduleid: 473};
 		    case "Ideas":
 		        return {tabid: 110, moduleid: 483};
-		        break;				        
+		        break;		
+		    case "Activity Stream":
+		        return {tabid: 105, moduleid: 466};
+		        break;			        		        
 		}	
 	}
 
@@ -100,7 +103,10 @@ var getIds = function (moduleName) {
 		        break;
 		    case "Ideas":
 		        return {tabid: 153, moduleid: 602};
-		        break;		        
+		        break;		   
+		    case "Activity Stream":
+		        return {tabid: 64, moduleid: 582};
+		        break;			             
 		}	
 	}
 	
@@ -117,7 +123,10 @@ var getIds = function (moduleName) {
 		        break;	
 		    case "Ideas":
 		        return {tabid: 60, moduleid: 388};
-		        break;			        	        
+		        break;	
+		    case "Activity Stream":
+		        return {tabid: 55, moduleid: 367};
+		        break;			        		        	        
 		}	
 	}	
 	
