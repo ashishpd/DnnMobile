@@ -11,6 +11,10 @@ var args = arguments[0] || {};
 	function doRefresh(e){	
 	    refresh();
 	};
+	
+	function doNew(e){	
+	    Alloy.createController('newquestion').getView().open(); 
+	};	
 		
 	$.listView.addEventListener('itemclick', function(e){
 		Ti.API.info(e.bindId);
@@ -54,6 +58,7 @@ var args = arguments[0] || {};
     };
 	
 	function reload() {
+		$.btnLoadMore.visible = false;
 		$.activityIndicator.show();
 		var url = '/DesktopModules/DNNCorp/Answers/API/List/Query';
 		var data = {category: null, 

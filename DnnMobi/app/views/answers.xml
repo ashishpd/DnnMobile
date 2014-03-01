@@ -5,6 +5,7 @@
 			<HeaderView>
                 <View height="Ti.UI.SIZE">
                     <Button id="btnRefresh" onClick="doRefresh" title="Refresh" />
+                    <Button id="btnNew" onClick="doNew" title="Ask a Question" />
                 </View>>
             </HeaderView>
             <Templates>

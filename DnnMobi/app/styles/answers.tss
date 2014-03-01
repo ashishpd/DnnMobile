@@ -34,3 +34,9 @@
         top: '10dp',
         barColor: '#a00'
 }
+
+"#btnNew":{
+        top: '10dp',
+        left: '60dp',
+        barColor: '#a00'
+}

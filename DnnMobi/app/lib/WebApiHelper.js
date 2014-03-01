@@ -110,7 +110,8 @@ var getIds = function (moduleName) {
 		}	
 	}
 	
-	if(_site.toLowerCase().indexOf('dnnq8v9be.cloudapp.net') > 0) {
+	if((_site.toLowerCase().indexOf('dnnq8v9be.cloudapp.net') > 0) || 
+		(_site.toLowerCase().indexOf('.evoqtrial.com') > 0)) {
 		switch (moduleName) {
 		    case "DotNetNuke.Modules.CoreMessaging":
 		        return {tabid: 74, moduleid: 428};

@@ -1,0 +1,43 @@
+".container": {
+        backgroundColor:"white",
+        top: '2%',
+        layout: 'vertical'
+}
+
+"Label": {
+        font: {fontFamily:'Arial', fontSize: '14dp', fontWeight:'bold'},
+        left: '20dp',
+        color: "#000",
+        top: '2%'
+},
+"TextField": {
+        width: '90%',
+        top: '2%',
+        left: '20dp',
+        color: 'gray',
+        font: {fontFamily:'Arial', fontSize: '14dp'},
+        textAlign: 'left',
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        //backgroundColor: 'gray', 
+        //borderWidth: '2',a
+        //borderColor: 'black',
+        returnKeyType: Ti.UI.RETURNKEY_DONE	
+},
+"Switch": {
+        font: {fontFamily:'Arial', fontSize: '14dp', fontWeight:'bold'},
+        left: '20dp',
+        color: "#000",
+        top: '2%'
+},
+
+"#btnAsk":{
+		left: '20dp',
+        top: '3%',
+        barColor: '#a00'
+}
+
+"#btnCancel":{
+        top: '3%',
+        barColor: '#a00'
+}
+

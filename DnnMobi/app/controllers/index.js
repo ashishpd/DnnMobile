@@ -7,6 +7,9 @@ $.txtSiteName.value="dnnq8v9be.cloudapp.net";
 $.txtUserName.value="ash.prasad";
 $.txtPassword.value="Mypassword1";
 
+$.txtSiteName.value="http://mobile-wizards.evoqtrial.com/";
+$.txtUserName.value="99J1P7_manager";
+$.txtPassword.value="aJ2s3lM7hA52";
 
 //$.txtSiteName.value="store.dnnsoftware.com";
 //$.txtSiteName.value="www.dnnsoftware.com";

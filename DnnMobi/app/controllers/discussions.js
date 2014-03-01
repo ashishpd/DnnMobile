@@ -54,6 +54,7 @@ var args = arguments[0] || {};
     };
 	
 	function reload() {
+		$.btnLoadMore.visible = false;
 		$.activityIndicator.show();
 		var url = '/DesktopModules/DNNCorp/Discussions/API/List/Query';
 		var data = {category: null, 

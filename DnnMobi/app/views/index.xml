@@ -1,10 +1,10 @@
 <Alloy>
 	<Window id="winLogin" class="container" exitOnClose="true">
-		<Label>Site</Label>>
+		<Label>Site</Label>
 		<TextField id="txtSiteName">www.ashprasad.com</TextField>
-		<Label>User</Label>>
+		<Label>User</Label>
 		<TextField id="txtUserName" hintText="username"></TextField>
-		<Label>Password</Label>>
+		<Label>Password</Label>
 		<TextField id="txtPassword" hintText="password" passwordMask="true"></TextField>
 		<Button id="btnLogin" onClick="doLogin" title="Login" />
 		<Label id="txtError"></Label>
