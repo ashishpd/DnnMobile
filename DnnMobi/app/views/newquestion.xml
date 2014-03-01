@@ -10,13 +10,12 @@
 		<Label>Title</Label>
 		<TextField id="txtTitle" onChange="onContentChanged"></TextField>
 		<Label>Question</Label>
-		<TextField id="txtQuestion" onChange="onContentChanged"></TextField>
+		<TextArea id="txtQuestion" onChange="onContentChanged"></TextArea>
 		<Label>Tags</Label>
 		<TextField id="txtTags" hintText="Enter tags separated by a comma" onChange="onContentChanged"></TextField>
 		<Label>Subscribe</Label>
 		<Switch id="switchSubscribe" value="true"/>
-		<Button id="btnAsk" onClick="doAsk" title="Ask" />
-		<Button id="btnCancel" onClick="doBack" title="Cancel" />
+		<Button id="btnAsk" onClick="doAsk" title="Ask" enabled="false"/>
 		<Label id="txtError"></Label>
 		<ActivityIndicator id="activityIndicator" message="Posting..." style=Ti.UI.iPhone.ActivityIndicatorStyle.DARK />
 	</Window>

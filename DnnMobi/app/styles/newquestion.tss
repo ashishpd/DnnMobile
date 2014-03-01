@@ -23,6 +23,19 @@
         //borderColor: 'black',
         returnKeyType: Ti.UI.RETURNKEY_DONE	
 },
+"TextArea": {
+        width: '90%',
+        top: '2%',
+        left: '20dp',
+        height: '60dp',
+        color: 'gray',
+        font: {fontFamily:'Arial', fontSize: '14dp'},
+        textAlign: 'left',
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+		borderColor: '#bbb',
+		borderRadius: 5,
+        returnKeyType: Ti.UI.RETURNKEY_DONE	
+},
 "Switch": {
         font: {fontFamily:'Arial', fontSize: '14dp', fontWeight:'bold'},
         left: '20dp',
@@ -36,8 +49,4 @@
         barColor: '#a00'
 }
 
-"#btnCancel":{
-        top: '3%',
-        barColor: '#a00'
-}
 
