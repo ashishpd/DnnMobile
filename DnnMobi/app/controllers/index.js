@@ -1,4 +1,5 @@
 $.winLogin.open();
+/*
 $.txtSiteName.value="ashprasad.com";
 $.txtUserName.value="user1";
 $.txtPassword.value="1234567";
@@ -6,8 +7,8 @@ $.txtPassword.value="1234567";
 $.txtSiteName.value="dnnq8v9be.cloudapp.net";
 $.txtUserName.value="ash.prasad";
 $.txtPassword.value="Mypassword1";
-/*
-$.txtSiteName.value="http://mobile-wizards.evoqtrial.com/";
+
+$.txtSiteName.value="mobile-wizards.evoqtrial.com/";
 $.txtUserName.value="99J1P7_manager";
 $.txtPassword.value="aJ2s3lM7hA52";
 */
@@ -17,12 +18,43 @@ $.txtPassword.value="aJ2s3lM7hA52";
 //$.txtUserName.value="ashishpd";
 //$.txtPassword.value="dotdot1";
 
+var defaultSites = [
+	{site:'dnnq8v9be.cloudapp.net', user:'ash.prasad', pwd:'Mypassword1'},
+	{site:'mobile-wizards.evoqtrial.com', user:'99J1P7_manager', pwd:'aJ2s3lM7hA52'},
+	{site:'www.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'},
+	{site:'catalyst.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'},
+	{site:'ashprasad.com', user:'user1', pwd:'1234567'},
+];
+
+var knownSites = Ti.App.Properties.getList('knownsites', defaultSites);
+
+function loadKnownSites(){
+	var len = knownSites.length;
+	var data = [];
+	for (var i = 0; i < len; i++) {
+		var knownSite = knownSites[i];
+		data.push(Ti.UI.createPickerRow(
+			{title:knownSite.site, 
+			user:knownSite.user,
+			pwd:knownSite.pwd}));
+	}	
+	$.pickerSites.add(data);
+	$.pickerSites.selectionIndicator = true;	
+};
 
 if (Titanium.Platform.name == 'iPhone OS') {
     //doLogin();
 }
 
 var WebApiHelper = require('WebApiHelper');
+
+function doSelectSite(e){
+	var row = $.pickerSites.getSelectedRow(0);
+	Ti.API.info("User selected date: " + row.title + row.user);
+	$.txtSiteName.value=row.title;
+	$.txtUserName.value=row.user;
+	$.txtPassword.value=row.pwd;
+};
 
 function doSkip(e){
 	doLogin(e);
@@ -82,3 +114,5 @@ $.winLogin.addEventListener('android:back', function (e) {
 	$.winLogin.close();  
 });
 */
+
+loadKnownSites();

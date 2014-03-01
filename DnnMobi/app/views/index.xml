@@ -1,5 +1,10 @@
 <Alloy>
 	<Window id="winLogin" class="container" exitOnClose="true">
+		<Label>Your Sites</Label>
+		<Picker id="pickerSites" selectionIndicator="true" useSpinner="true" onChange="doSelectSite">
+            <PickerColumn id="columnSite">
+            </PickerColumn>
+        </Picker>		
 		<Label>Site</Label>
 		<TextField id="txtSiteName">www.ashprasad.com</TextField>
 		<Label>User</Label>

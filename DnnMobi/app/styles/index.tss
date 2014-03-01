@@ -4,6 +4,14 @@
         layout: 'vertical'
 }
 
+"Picker": {
+        font: {fontFamily:'Arial', fontSize: '14dp', fontWeight:'bold'},
+        left: '20dp',
+        color: "#000",
+        top: '2%'
+}
+
+
 "Label": {
         font: {fontFamily:'Arial', fontSize: '14dp', fontWeight:'bold'},
         left: '20dp',
