@@ -1,27 +1,24 @@
 ".container": {
         backgroundColor:"white",
-        top: '2%',
+        top: '1%',
         layout: 'vertical'
 }
-
-"Picker": {
-        font: {fontFamily:'Arial', fontSize: '14dp', fontWeight:'bold'},
-        left: '20dp',
-        color: "#000",
-        top: '2%'
-}
-
 
 "Label": {
         font: {fontFamily:'Arial', fontSize: '14dp', fontWeight:'bold'},
         left: '20dp',
-        color: "#000",
-        top: '2%'
+        color: "#000"
+}
+
+"Picker": {
+        font: {fontFamily:'Arial', fontSize: '10dp'},
+        left: '20dp',
+        color: "#000"
 }
 
 "TextField": {
         width: '90%',
-        top: '2%',
+        top: '1%',
         left: '20dp',
         color: 'gray',
         font: {fontFamily:'Arial', fontSize: '14dp'},
@@ -31,7 +28,7 @@
 }
 
 "#btnLogin":{
-        top: '3%',
+        top: '1%',
         barColor: '#a00'
 }
 

@@ -40,6 +40,8 @@ function loadKnownSites(){
 	}	
 	$.pickerSites.add(data);
 	$.pickerSites.selectionIndicator = true;	
+	$.pickerSites.setSelectedRow(0);
+	doSelectSite(null);
 };
 
 if (Titanium.Platform.name == 'iPhone OS') {

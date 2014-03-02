@@ -31,12 +31,13 @@
 }
 
 "#btnRefresh":{
-        top: '10dp',
-        barColor: '#a00'
+        top: '2dp',
+        barColor: '#a00',
+        left: '200dp'
 }
 
 "#btnNew":{
-        top: '10dp',
-        left: '60dp',
+        top: '2dp',
+        left: '2dp',
         barColor: '#a00'
 }

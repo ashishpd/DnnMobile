@@ -1,10 +1,11 @@
 <Alloy>
 	<Window id="winLogin" class="container" exitOnClose="true">
-		<Label>Your Sites</Label>
+		<Label visible="false">Your Sites</Label>
 		<Picker id="pickerSites" selectionIndicator="true" useSpinner="true" onChange="doSelectSite">
             <PickerColumn id="columnSite">
             </PickerColumn>
         </Picker>		
+		<ActivityIndicator id="activityIndicator" message="Logging In..." style=Ti.UI.iPhone.ActivityIndicatorStyle.DARK />        
 		<Label>Site</Label>
 		<TextField id="txtSiteName">www.ashprasad.com</TextField>
 		<Label>User</Label>
@@ -14,6 +15,5 @@
 		<Button id="btnLogin" onClick="doLogin" title="Login" />
 		<Button id="btnSkip" onClick="doSkip" title="Skip" visible="false" />
 		<Label id="txtError"></Label>
-		<ActivityIndicator id="activityIndicator" message="Logging In..." style=Ti.UI.iPhone.ActivityIndicatorStyle.DARK />
 	</Window>
 </Alloy>
