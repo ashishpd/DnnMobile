@@ -5,7 +5,7 @@ var answersWin = Alloy.createController('answers').getView();
 var answersTab = Titanium.UI.createTab({
     window:answersWin,
     title:'Answers',
-    icon:'messaging_32x32.png'
+    icon:'icon-answers-32px.png'
 });
 $.tabGroup.addTab(answersTab);
 
@@ -14,7 +14,7 @@ var ideasWin = Alloy.createController('ideas').getView();
 var ideasTab = Titanium.UI.createTab({
     window:ideasWin,
     title:'Ideas',
-    icon:'messaging_32x32.png'
+    icon:'icon-ideas-32px.png'
 });
 $.tabGroup.addTab(ideasTab);
 
@@ -32,7 +32,7 @@ var discussionsWin = Alloy.createController('discussions').getView();
 var discussionsTab = Titanium.UI.createTab({
     window:discussionsWin,
     title:'Discussions',
-    icon:'messaging_32x32.png'
+    icon:'icon-discussions-32px.png'
 });
 $.tabGroup.addTab(discussionsTab);
 

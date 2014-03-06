@@ -39,9 +39,12 @@ function loadKnownSites(){
 			pwd:knownSite.pwd}));
 	}	
 	$.pickerSites.add(data);
-	$.pickerSites.selectionIndicator = true;	
-	$.pickerSites.setSelectedRow(0);
-	doSelectSite(null);
+	$.pickerSites.selectionIndicator = true;
+	if (Titanium.Platform.name == 'iPhone OS') {
+	    $.pickerSites.setSelectedRow(0);
+		doSelectSite(null);	
+	}	
+	
 };
 
 if (Titanium.Platform.name == 'iPhone OS') {
@@ -52,10 +55,12 @@ var WebApiHelper = require('WebApiHelper');
 
 function doSelectSite(e){
 	var row = $.pickerSites.getSelectedRow(0);
-	Ti.API.info("User selected date: " + row.title + row.user);
-	$.txtSiteName.value=row.title;
-	$.txtUserName.value=row.user;
-	$.txtPassword.value=row.pwd;
+	if(row != undefined) {
+		Ti.API.info("User selected date: " + row.title + row.user);
+		$.txtSiteName.value=row.title;
+		$.txtUserName.value=row.user;
+		$.txtPassword.value=row.pwd;
+	}
 };
 
 function doSkip(e){

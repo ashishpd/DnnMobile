@@ -13,9 +13,7 @@
 
 "#when":{
 		color: 'gray',
-		font: {fontFamily:'Arial', fontSize: '14dp'},
-        top: '0',
-        right: '80dp'
+		font: {fontFamily:'Arial', fontSize: '14dp'}
 }
 
 "#message":{
