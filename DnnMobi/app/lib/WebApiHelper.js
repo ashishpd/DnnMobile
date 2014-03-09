@@ -14,6 +14,7 @@ var _knownModuleList = [
 	'DotNetNuke.Modules.CoreMessaging',
 	'DotNetNuke.Modules.DigitalAssets',
 	'DotNetNuke.Modules.MemberDirectory',
+	'Journal',
 	'Activities',
 	'User Badges',
 	'Activity Stream',
@@ -178,7 +179,7 @@ var httpWrapper = function(){
 			failure(this);		
     },
     onsendstream: function(e) {
-    	Ti.API.info('ONSENDSTREAM - PROGRESS: ' + e.progress);
+    	//Ti.API.info('ONSENDSTREAM - PROGRESS: ' + e.progress);
     },
     timeout:30000,  /* in milliseconds */
     autoRedirect:"true"
@@ -456,6 +457,7 @@ exports.login = function(site, user, password, success, failure) {
 	http.successCallback(loginControlLoaded);
 	http.failureCallback(failureLogin); 
 	http.xhrCaller.open("GET", _site + '?ctl=login');
+	http.xhrCaller.setRequestHeader("Set-Cookie","nothing");
 	http.xhrCaller.send();  // request is actually sent with this statement    
 };
 

@@ -1,6 +1,15 @@
 $.tabGroup.open();
 
 
+var activitystreamWin = Alloy.createController('activitystream').getView();
+var activitystreamTab = Titanium.UI.createTab({
+    window:activitystreamWin,
+    title:'Activity Stream',
+    icon:'messaging_32x32.png'
+});
+$.tabGroup.addTab(activitystreamTab);
+
+/*
 var answersWin = Alloy.createController('answers').getView();
 var answersTab = Titanium.UI.createTab({
     window:answersWin,
@@ -18,15 +27,7 @@ var ideasTab = Titanium.UI.createTab({
 });
 $.tabGroup.addTab(ideasTab);
 
-/*
-var activitystreamWin = Alloy.createController('activitystream').getView();
-var activitystreamTab = Titanium.UI.createTab({
-    window:activitystreamWin,
-    title:'Activity Stream',
-    icon:'messaging_32x32.png'
-});
-$.tabGroup.addTab(activitystreamTab);
-*/
+
 
 var discussionsWin = Alloy.createController('discussions').getView();
 var discussionsTab = Titanium.UI.createTab({
@@ -70,3 +71,4 @@ var searchTab = Titanium.UI.createTab({
 });
 $.tabGroup.addTab(searchTab);
 
+*/

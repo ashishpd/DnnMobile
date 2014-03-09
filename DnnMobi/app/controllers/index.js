@@ -19,11 +19,11 @@ $.txtPassword.value="aJ2s3lM7hA52";
 //$.txtPassword.value="dotdot1";
 
 var defaultSites = [
+	{site:'ashprasad.com', user:'user1', pwd:'1234567'},
 	{site:'dnnq8v9be.cloudapp.net', user:'ash.prasad', pwd:'Mypassword1'},
 	{site:'mobile-wizards.evoqtrial.com', user:'99J1P7_manager', pwd:'aJ2s3lM7hA52'},
 	{site:'www.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'},
-	{site:'catalyst.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'},
-	{site:'ashprasad.com', user:'user1', pwd:'1234567'},
+	{site:'catalyst.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'}	
 ];
 
 var knownSites = Ti.App.Properties.getList('knownsites', defaultSites);
@@ -41,7 +41,7 @@ function loadKnownSites(){
 	$.pickerSites.add(data);
 	$.pickerSites.selectionIndicator = true;
 	if (Titanium.Platform.name == 'iPhone OS') {
-	    $.pickerSites.setSelectedRow(0);
+	    $.pickerSites.setSelectedRow(4);
 		doSelectSite(null);	
 	}	
 	
@@ -56,7 +56,7 @@ var WebApiHelper = require('WebApiHelper');
 function doSelectSite(e){
 	var row = $.pickerSites.getSelectedRow(0);
 	if(row != undefined) {
-		Ti.API.info("User selected date: " + row.title + row.user);
+		Ti.API.info("User selected site: " + row.title + " user: " + row.user);
 		$.txtSiteName.value=row.title;
 		$.txtUserName.value=row.user;
 		$.txtPassword.value=row.pwd;

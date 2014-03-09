@@ -3,6 +3,8 @@ var args = arguments[0] || {};
 	var WebApiHelper = require('WebApiHelper');
 	var recordsLoaded = 0;
 	var currentPage = 0;
+	var module = 'Activity Stream';
+	//var module = 'Journal';
 	
 	function doLoadMore(e){
 	    reload();
@@ -11,6 +13,48 @@ var args = arguments[0] || {};
 	function doRefresh(e){	
 	    refresh();
 	};
+
+	function parseJournalRow(html) {
+		html = html.replace("&w=","").replace("&h=","");					
+		//Ti.API.info('parseJournalRow ' + html);
+		
+		var xmlDomDoc = Ti.XML.parseString(html); 
+		
+			// Get all the item tags and their contents
+		var allItemTags = xmlDomDoc.getElementsByTagName('span'); 
+		// Loop over them and grab the text contents and print
+		for (var i=0; i < allItemTags.length; i++) {
+		  var textContent = allItemTags.item(i).textContent;
+		  var className = allItemTags.item(i).attributes.getNamedItem('class');
+		  Ti.API.info(className + ': ' + textContent);
+		};			
+	}	
+
+	function parseJournalList(html) {
+		var start = 0;
+		var locations = [];
+		var search = "<div class=\"journalrow\"";
+		while (true)
+		{
+		  pos = html.indexOf(search, start);
+		  //Ti.API.info(pos);
+		  locations.push(pos);
+		  if(pos < 0) break;
+		  start = pos + search.length;
+		}									
+		
+		var row;
+		for (var i = 0; i < locations.length; i++) {
+		  if(locations[i] == -1) { 
+		    break;
+		  } else if(locations[i + 1] == -1) {
+		    row = html.substr(locations[i]);
+		  } else {
+		    row = html.substr(locations[i], locations[i+1]);
+		  }
+		  var journal = parseJournalRow(row);
+		}		
+	}
 		
 	$.listView.addEventListener('itemclick', function(e){
 		Ti.API.info(e.bindId);
@@ -23,19 +67,8 @@ var args = arguments[0] || {};
 	});	
 		
     var success = function(e) {		
-    		$.activityIndicator.hide();	
-			Ti.API.info(e.responseText);
-			
-			/*
-			var xmlDomDoc = Ti.XML.parseString(e.responseText); 
-			// Get all the item tags and their contents
-			var allItemTags = xmlDomDoc.getElementsByTagName('div'); 
-			// Loop over them and grab the text contents and print
-			for (var i=0; i < allItemTags.length; i++) {
-			  var countryName = allItemTags.item(i).textContent;
-			  Ti.API.info(countryName);
-			};
-			*/
+		$.activityIndicator.hide();					
+		var feed = parseJournalList(e.responseText);
 			
 			/*
 			var data = [];
@@ -70,16 +103,17 @@ var args = arguments[0] || {};
 	function reload() {
 		$.activityIndicator.show();
 		var url = '/DesktopModules/DNNCorp/ActivityStream/API/ActivityStreamServices/GetListForProfile';
+		//var url = '/DesktopModules/Journal/API/Services/GetListForProfile';
 		var data = {ProfileId: -1, 
 					GroupId: -1,
 					RowIndex: 0,
-					MaxRows: 10,
+					MaxRows: 2,
 					FilterId: 0,
 					JournalTypeId: 0
 					};
 		
 		$.activityIndicator.show();
-		WebApiHelper.PostAsJson('Activity Stream', url, data, success, failure);
+		WebApiHelper.PostAsJson(module, url, data, success, failure);
 	}
 	
 	function refresh() {
