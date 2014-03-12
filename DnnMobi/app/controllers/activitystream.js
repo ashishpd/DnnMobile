@@ -68,7 +68,21 @@ var args = arguments[0] || {};
 		
     var success = function(e) {		
 		$.activityIndicator.hide();					
-		var feed = parseJournalList(e.responseText);
+		var html = e.responseText.replace(/&w=/g,'').replace(/&h=/,'').replace(/<\/a><\/em>/g,'</em></a>');
+		
+		var xmlDomDoc = Ti.XML.parseString(html); 
+		
+			// Get all the item tags and their contents
+		var allItemTags = xmlDomDoc.getElementsByTagName('span'); 
+		// Loop over them and grab the text contents and print
+		for (var i=0; i < allItemTags.length; i++) {
+		  var textContent = allItemTags.item(i).textContent;
+		  var className = allItemTags.item(i).attributes.getNamedItem('class');
+		  Ti.API.info(className + ': ' + textContent);
+		};					
+		
+		
+		//var feed = parseJournalList(e.responseText);
 			
 			/*
 			var data = [];

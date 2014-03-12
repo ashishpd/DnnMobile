@@ -1,13 +1,38 @@
 var fs = require('fs');
-var filename = 'journal_ashprasad.html';
+xml2js = require('xml2js');
+var parser = new xml2js.Parser();
+
+var filename = 'journal_catalyst2.html';
 fs.readFile(filename, 'utf8', function(err, data) {
 if (err) throw err;
 
-var parseString = require('xml2js').parseString;
+//var parseString = require('xml2js').parseString;
 //var xml = "<root>Hello xml2js!</root>"
 //parseString(xml, function (err, result) {
 //    console.dir(result);
 //});
+
+
+
+  var cleanedData = data.replace(/&w=/g,'').replace(/&h=/,'').replace(/<\/a><\/em>/g,'</em></a>');
+  //console.log(i + '  [[[[[[[[[[cleanedRow]]]]]]]]]]]]]]]');
+  //console.log(cleanedRow);
+  try {
+     parser.parseString(cleanedData, function (err, result) {
+        console.dir(result);
+     });   
+  }
+  catch(err)
+    {
+    console.log(err);
+    console.log(cleanedRow);
+    //break;
+    }
+
+
+
+
+
 
 var start = 0;
 var search = "<div class=\"journalrow\"";
@@ -23,8 +48,9 @@ while (true)
 }
 
 console.log('locations.length ' + locations.length);
-var row;
+
 for (var i = 0; i < locations.length; i++) {
+  var row;
   if(locations[i] == -1) { 
     break;
   } else if(locations[i + 1] == -1) {
@@ -32,10 +58,26 @@ for (var i = 0; i < locations.length; i++) {
   }  else {
     row = data.substr(locations[i], locations[i+1]);
   }
-  console.log('row ' + row);
-  parseString(row, function (err, result) {
+  var cleanedRow = row.replace(/&w=/g,'').replace(/&h=/,'').replace(/<\/a><\/em>/g,'</em></a>');
+  console.log(i + '  [[[[[[[[[[cleanedRow]]]]]]]]]]]]]]]');
+  //console.log(cleanedRow);
+  try {
+     parser.parseString(cleanedRow, function (err, result) {
+        console.dir(result);
+     });   
+  }
+  catch(err)
+    {
+    console.log(err);
+    //console.log(cleanedRow);
+    break;
+    }
+
+  /*
+  parser.parseString(cleanedRow, function (err, result) {
     console.dir(result);
   });
+*/
 }
 
   //console.log(data.length);

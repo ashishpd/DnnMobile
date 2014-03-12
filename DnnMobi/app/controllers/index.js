@@ -19,8 +19,8 @@ $.txtPassword.value="aJ2s3lM7hA52";
 //$.txtPassword.value="dotdot1";
 
 var defaultSites = [
-	{site:'ashprasad.com', user:'user1', pwd:'1234567'},
 	{site:'dnnq8v9be.cloudapp.net', user:'ash.prasad', pwd:'Mypassword1'},
+	{site:'ashprasad.com', user:'user1', pwd:'1234567'},
 	{site:'mobile-wizards.evoqtrial.com', user:'99J1P7_manager', pwd:'aJ2s3lM7hA52'},
 	{site:'www.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'},
 	{site:'catalyst.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'}	
