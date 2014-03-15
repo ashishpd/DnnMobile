@@ -10,10 +10,13 @@
             </HeaderView>
             <Templates>
                 <ItemTemplate name="template">
-                    <ImageView bindId="profilePic" id="profilePic" />
+                	<Label id="votesCaption">Votes</Label>                    
+                    <Label id="answersCaption">Answers</Label>
+                    <Label bindId="votes" id="votes" />               
+                    <Label bindId="answers" id="answers" />
                     <Label bindId="title" id="title" />
                     <Label bindId="when" id="when" />
-                    <Label bindId="message" id="message" />
+                    <Label bindId="message" id="message" />	                                       
                 </ItemTemplate>
             </Templates>
             <ListSection>

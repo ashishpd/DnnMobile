@@ -1,22 +1,5 @@
 $.winLogin.open();
-/*
-$.txtSiteName.value="ashprasad.com";
-$.txtUserName.value="user1";
-$.txtPassword.value="1234567";
 
-$.txtSiteName.value="dnnq8v9be.cloudapp.net";
-$.txtUserName.value="ash.prasad";
-$.txtPassword.value="Mypassword1";
-
-$.txtSiteName.value="mobile-wizards.evoqtrial.com/";
-$.txtUserName.value="99J1P7_manager";
-$.txtPassword.value="aJ2s3lM7hA52";
-*/
-//$.txtSiteName.value="store.dnnsoftware.com";
-//$.txtSiteName.value="www.dnnsoftware.com";
-//$.txtSiteName.value="catalyst.dnnsoftware.com";
-//$.txtUserName.value="ashishpd";
-//$.txtPassword.value="dotdot1";
 
 var defaultSites = [
 	{site:'dnnq8v9be.cloudapp.net', user:'ash.prasad', pwd:'Mypassword1'},
@@ -47,10 +30,6 @@ function loadKnownSites(){
 	
 };
 
-if (Titanium.Platform.name == 'iPhone OS') {
-    //doLogin();
-}
-
 var WebApiHelper = require('WebApiHelper');
 
 function doSelectSite(e){
@@ -64,7 +43,19 @@ function doSelectSite(e){
 };
 
 function doSkip(e){
-	doLogin(e);
+    var success = function(e) {
+    	$.activityIndicator.hide();
+      	Alloy.createController("main").getView().open();
+    };
+
+    var failure = function(e) {
+    	$.activityIndicator.hide();
+		Titanium.API.info("failure called after pingSite");
+    	$.txtError.text="Error - " + WebApiHelper.error();
+    };
+    
+    $.activityIndicator.show();
+	WebApiHelper.pingSite($.txtSiteName.value, success, failure);
 };
 
 function doLogin(e){
@@ -123,3 +114,7 @@ $.winLogin.addEventListener('android:back', function (e) {
 */
 
 loadKnownSites();
+
+if (Titanium.Platform.name == 'iPhone OS') {
+    doSkip(null);
+}

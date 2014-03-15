@@ -62,6 +62,18 @@ exports.profilePic = function(userId){
 	return _site + '/profilepic.ashx?userId=' + userId + '&amp;h=64&amp;w=64';
 };
 
+exports.setSite = function(site) {
+	localSetSite(site);
+};
+
+var localSetSite = function(site) {
+    Ti.API.info('setting site '+ site);
+    _site = site.trim();
+	if(_site.toLowerCase().indexOf("http") != 0) {
+		_site = "http://" + _site;
+	}    
+};
+
 var authCookiePresent = function(){
 	var i;
 	//Ti.API.info(_cookies);
@@ -288,8 +300,6 @@ exports.Post = function(module, query, postdata, success, failure) {
 	
 };
 
-
-
 exports.logoff = function(success, failure)
 {
 	http.successCallback(success);
@@ -298,12 +308,23 @@ exports.logoff = function(success, failure)
 	http.xhrCaller.send(); 
 };
 
+exports.pingSite = function(site, success, failure)
+{
+	localSetSite(site);
+	pingSiteLocal(success, failure); 	
+};
+
+var pingSiteLocal = function(success, failure)
+{
+	http.successCallback(success);
+	http.failureCallback(failure); 
+	http.xhrCaller.open("GET", _site + '/DesktopModules/DnnMobiHelper/API/Helper/ModuleDetails?moduleList=' + _knownModuleList.join());
+	http.xhrCaller.send();  	
+};
+
 exports.login = function(site, user, password, success, failure) {
     Ti.API.info('login being called for site '+ site);
-    _site = site.trim();
-	if(_site.toLowerCase().indexOf("http") != 0) {
-		_site = "http://" + _site;
-	}    
+	localSetSite(site);   
     
     _user = user;
     _password = password;
@@ -333,10 +354,7 @@ exports.login = function(site, user, password, success, failure) {
 	  		Ti.API.info('_requestVerificationToken: ' + _requestVerificationToken); 			
   		}			
 			
-		http.successCallback(siteInfoLoaded);
-		http.failureCallback(failureSiteInfo); 
-		http.xhrCaller.open("GET", _site + '/DesktopModules/DnnMobiHelper/API/Helper/ModuleDetails?moduleList=' + _knownModuleList.join());
-		http.xhrCaller.send();  	    	
+		pingSiteLocal(siteInfoLoaded, failureSiteInfo);
     };    
      
 	var failureHomePage = function(e) {

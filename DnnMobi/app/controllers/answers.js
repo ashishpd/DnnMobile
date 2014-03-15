@@ -38,7 +38,8 @@ var args = arguments[0] || {};
 			        title : { text: question.contentTitle },
 			        when : { text: question.lastActiveRelativeDate },
 			        message : { text: question.contentSummary },
-			        profilePic : { image: WebApiHelper.profilePic(question.createdUserId) },
+			        votes :  { text: question.questionVotes },
+			        answers :  { text: question.totalAnswers },
 			        properties : {
 			            itemId: question.postId,
 			            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE

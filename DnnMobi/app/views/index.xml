@@ -13,7 +13,7 @@
 		<Label>Password</Label>
 		<TextField id="txtPassword" hintText="password" passwordMask="true"></TextField>
 		<Button id="btnLogin" onClick="doLogin" title="Login" />
-		<Button id="btnSkip" onClick="doSkip" title="Skip" visible="false" />
+		<Button id="btnSkip" onClick="doSkip" title="Skip" />
 		<Label id="txtError"></Label>
 	</Window>
 </Alloy>

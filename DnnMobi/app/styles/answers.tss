@@ -1,7 +1,27 @@
+".itemRow": {
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        left: '0'
+}
+
+".firstColumn": {
+        width: '50dp',
+        height: Ti.UI.SIZE,
+        left: '0'
+}
+
+
+".firstColumn": {
+        width: Ti.UI.SIZE,
+        height: Ti.UI.SIZE,
+        left: '0'
+}
+
+
 "#profilePic":{
         width: '50dp',
         height: '50dp',
-        left: '0'
+        left: '50dp'
 }
 
 "#title":{
