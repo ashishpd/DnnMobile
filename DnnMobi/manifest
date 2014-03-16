@@ -1,9 +1,9 @@
-#appname: DnnMobi
-#appid: com.dnnmobi.dnnmobi
-#type: mobile
-#guid: 72e4dc4f-c862-452a-9e55-138e74c1484c
-#version: 1.0
-#publisher: not specified
-#url: not specified
-#image: appicon.png
-#desc: not specified
+#appname:DnnMobi
+#appid:com.dnnmobi.dnnmobi
+#type:ipad
+#guid:72e4dc4f-c862-452a-9e55-138e74c1484c
+#version:1.0
+#publisher:ashishprasad
+#url:http://www.dnnmobi.com
+#image:appicon.png
+#desc:not specified

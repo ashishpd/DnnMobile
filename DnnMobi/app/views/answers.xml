@@ -10,12 +10,12 @@
             </HeaderView>
             <Templates>
                 <ItemTemplate name="template">
-                	<Label bindId="votes" id="votesCount" />   
-                	<Label id="votesCaption">Votes</Label>                    
+                	<Label bindId="votes" id="votesCount" formFactor="tablet"/>   
+                	<Label id="votesCaption" formFactor="tablet">Votes</Label>                    
                     <Label bindId="answers" id="answersCount" />
                     <Label id="answersCaption">Answers</Label>                                
                     <Label bindId="title" id="title" />
-                    <Label bindId="when" id="when" />
+                    <Label bindId="when" id="when" formFactor="tablet"/>
                     <Label bindId="message" id="message" />	                                       
                 </ItemTemplate>
             </Templates>

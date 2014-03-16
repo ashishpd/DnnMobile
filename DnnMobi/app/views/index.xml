@@ -12,8 +12,10 @@
 		<TextField id="txtUserName" hintText="username"></TextField>
 		<Label>Password</Label>
 		<TextField id="txtPassword" hintText="password" passwordMask="true"></TextField>
-		<Button id="btnLogin" onClick="doLogin" title="Login" />
-		<Button id="btnSkip" onClick="doSkip" title="Skip" />
+		<View id="buttonStrip">			
+			<Button id="btnLogin" onClick="doLogin" title="Login" />
+			<Button id="btnSkip" onClick="doSkip" title="Skip" />
+		</View>
 		<Label id="txtError"></Label>
 	</Window>
 </Alloy>

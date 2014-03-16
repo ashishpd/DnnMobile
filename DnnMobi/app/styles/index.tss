@@ -12,8 +12,8 @@
 
 "Picker": {
         font: {fontFamily:'Arial', fontSize: '10dp'},
-        left: '20dp',
-        color: "#000"
+        
+        backgroundColor:"white"
 }
 
 "TextField": {
@@ -27,8 +27,16 @@
         returnKeyType: Ti.UI.RETURNKEY_DONE	
 }
 
-"#btnLogin":{
-        top: '1%',
-        barColor: '#a00'
+"#buttonStrip":{
+        top: '1%',  
+        height: '80dp',
+        layout: 'horizontal'
 }
 
+"#btnLogin":{
+      	left: '35%'
+}
+
+"#btnSkip":{
+        left: '10%'
+}

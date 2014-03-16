@@ -1,23 +1,36 @@
 "#votesCount":{
 		top: '0dp',
-        left: '20dp'
+        left: '20dp',
+        font: {fontFamily:'Arial', fontSize: '14dp'},
 }
 
 "#votesCaption":{
-        left: '5dp',
-        top: '20dp',
-        width: '100dp',
-        align: 'center',
+        left: '7dp',
+        top: '15dp',
+        width: '50dp',
         font: {fontFamily:'Arial', fontSize: '12dp'}
 }
 
-"#answersCount":{
-		top: '30dp',
-        left: '20dp'
+"#answersCount[formFactor=handheld]":{
+		top: '0dp',
+        left: '20dp',
+        font: {fontFamily:'Arial', fontSize: '14dp'},
 }
 
-"#answersCaption":{
-        left: '0dp',
+"#answersCaption[formFactor=handheld]":{
+        left: '5dp',
+        top: '20dp',
+        font: {fontFamily:'Arial', fontSize: '12dp'}
+}
+
+"#answersCount[formFactor=tablet]":{
+		top: '30dp',
+        left: '20dp',
+        font: {fontFamily:'Arial', fontSize: '14dp'},
+}
+
+"#answersCaption[formFactor=tablet]":{
+        left: '5dp',
         top: '50dp',
         font: {fontFamily:'Arial', fontSize: '12dp'}
 }
@@ -26,12 +39,14 @@
 		color: 'gray',
 		font: {fontFamily:'Arial', fontSize: '20dp', fontWeight: 'bold'},
         top: '0',
-        left: '60dp'
+        left: '60dp',
+        width: '80%'
 }
 
 "#when":{
 		color: 'gray',
-		font: {fontFamily:'Arial', fontSize: '14dp'}
+		font: {fontFamily:'Arial', fontSize: '14dp'},
+		left: '91%'
 }
 
 "#message":{

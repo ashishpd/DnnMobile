@@ -58,18 +58,17 @@ var args = arguments[0] || {};
 		$.activityIndicator.hide();
     };
 	
-	function reload() {
-		$.btnLoadMore.visible = false;
+	function reload() {		
 		$.activityIndicator.show();
 		var url = '/DesktopModules/DNNCorp/Answers/API/List/Query';
 		var data = {category: null, 
 					pageIndex: currentPage,
-					pageSize: 10,
+					pageSize: Alloy.Globals.pageSize,
 					sortColumn: 'lastactive',
 					sortAscending: false,
 					tags: [],
 					groupId: -1,
-					sequence: 6};
+					sequence: 0};
 		
 		//{"category":null,"pageIndex":1,"pageSize":25,"sortColumn":"lastactive","sortAscending":false,"tags":[],"groupId":-1,"sequence":0}
 		
@@ -77,13 +76,12 @@ var args = arguments[0] || {};
 		
 		$.activityIndicator.show();
 		WebApiHelper.PostAsJson('Answers', url, data, success, failure);
-	
-	
 	}
 	
 	function refresh() {
 		recordsLoaded = 0;
 		currentPage = 0;	
+		$.btnLoadMore.visible = false;
 		 
 		var section = $.listView.sections[0];	
 		if(section.items.length > 0) {
