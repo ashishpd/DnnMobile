@@ -36,7 +36,7 @@ var discussionsTab = Titanium.UI.createTab({
     icon:'icon-discussions-32px.png'
 });
 $.tabGroup.addTab(discussionsTab);
-
+*/
 
 var messagesWin = Alloy.createController('messages').getView();
 var messagesTab = Titanium.UI.createTab({
@@ -46,7 +46,7 @@ var messagesTab = Titanium.UI.createTab({
 });
 $.tabGroup.addTab(messagesTab);
 
-
+/*
 var membersWin = Titanium.UI.createWindow({title: "Members"});
 var membersTab = Titanium.UI.createTab({
     window:membersWin,

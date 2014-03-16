@@ -1,6 +1,6 @@
 <Alloy>
 	<Window class="mainTab" id="winAnswers" title="Answers" >
-		<ActivityIndicator id="activityIndicator" style=Ti.UI.iPhone.ActivityIndicatorStyle.DARK />
+		<ActivityIndicator id="activityIndicator" style="Ti.UI.iPhone.ActivityIndicatorStyle.DARK" />
 		<ListView id="listView" defaultItemTemplate="template">
 			<HeaderView>
                 <View height="Ti.UI.SIZE">
@@ -10,10 +10,10 @@
             </HeaderView>
             <Templates>
                 <ItemTemplate name="template">
+                	<Label bindId="votes" id="votesCount" />   
                 	<Label id="votesCaption">Votes</Label>                    
-                    <Label id="answersCaption">Answers</Label>
-                    <Label bindId="votes" id="votes" />               
-                    <Label bindId="answers" id="answers" />
+                    <Label bindId="answers" id="answersCount" />
+                    <Label id="answersCaption">Answers</Label>                                
                     <Label bindId="title" id="title" />
                     <Label bindId="when" id="when" />
                     <Label bindId="message" id="message" />	                                       

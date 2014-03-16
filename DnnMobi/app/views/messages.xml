@@ -1,6 +1,6 @@
 <Alloy>
 	<Window class="mainTab" id="winMessages" title="Messages" >
-		<ActivityIndicator id="activityIndicator" style=Ti.UI.iPhone.ActivityIndicatorStyle.DARK />
+		<ActivityIndicator id="activityIndicator" style="Ti.UI.iPhone.ActivityIndicatorStyle.DARK" />
 		<ListView id="listView" defaultItemTemplate="template">
 			<HeaderView>
                 <View height="Ti.UI.SIZE">
@@ -12,7 +12,7 @@
                     <ImageView bindId="profilePic" id="profilePic" />
                     <Label bindId="from" id="from" />
                     <Label bindId="when" id="when" />
-                    <Label bindId="message" id="message" />
+                    <Label bindId="body" id="body" />
                 </ItemTemplate>
             </Templates>
             <ListSection>

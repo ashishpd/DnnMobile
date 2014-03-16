@@ -17,6 +17,6 @@
 		<Switch id="switchSubscribe" value="true"/>
 		<Button id="btnAsk" onClick="doAsk" title="Ask" enabled="false"/>
 		<Label id="txtError"></Label>
-		<ActivityIndicator id="activityIndicator" message="Posting..." style=Ti.UI.iPhone.ActivityIndicatorStyle.DARK />
+		<ActivityIndicator id="activityIndicator" message="Posting..." style="Ti.UI.iPhone.ActivityIndicatorStyle.DARK" />
 	</Window>
 </Alloy>

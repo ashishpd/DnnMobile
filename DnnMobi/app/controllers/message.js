@@ -33,7 +33,7 @@
 			    data.push({
 			        from : { text: conversation.From },
 			        when : { text: conversation.DisplayDate },
-			        message : { text: conversation.Body },
+			        body : { text: conversation.Body },
 			        profilePic : { image: WebApiHelper.profilePic(conversation.SenderUserID) },
 			        properties : {
 			            itemId: conversation.MessageID,

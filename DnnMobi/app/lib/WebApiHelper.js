@@ -248,7 +248,7 @@ exports.PostAsJson = function(module, query, postdata, success, failure) {
 	Ti.API.info('PostAsJson called with data: ', json);
 	if(!_isLoggedIn) {
 		Ti.API.error('not logged-in');
-		return;
+		//return;
 	}
 	var url = _site+query;
 	Ti.API.info('xhrPost url ' + url);

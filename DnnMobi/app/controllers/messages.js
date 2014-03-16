@@ -45,7 +45,7 @@ var args = arguments[0] || {};
 			        // Sets the text property of the Label component
 			        from : { text: conversation.From, font: fromFont },
 			        when : { text: conversation.DisplayDate },
-			        message : { text: message },
+			        body : { text: message },
 			        profilePic : { image: WebApiHelper.profilePic(conversation.SenderUserID) },
 			        // Sets the regular list data properties
 			        properties : {

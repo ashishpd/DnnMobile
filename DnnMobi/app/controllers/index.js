@@ -55,7 +55,7 @@ function doSkip(e){
     };
     
     $.activityIndicator.show();
-	WebApiHelper.pingSite($.txtSiteName.value, success, failure);
+	WebApiHelper.pingSite($.txtSiteName.value, success, success);
 };
 
 function doLogin(e){
@@ -116,5 +116,5 @@ $.winLogin.addEventListener('android:back', function (e) {
 loadKnownSites();
 
 if (Titanium.Platform.name == 'iPhone OS') {
-    doSkip(null);
+    //doSkip(null);
 }

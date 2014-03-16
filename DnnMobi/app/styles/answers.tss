@@ -1,27 +1,25 @@
-".itemRow": {
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        left: '0'
+"#votesCount":{
+		top: '0dp',
+        left: '20dp'
 }
 
-".firstColumn": {
-        width: '50dp',
-        height: Ti.UI.SIZE,
-        left: '0'
+"#votesCaption":{
+        left: '5dp',
+        top: '20dp',
+        width: '100dp',
+        align: 'center',
+        font: {fontFamily:'Arial', fontSize: '12dp'}
 }
 
-
-".firstColumn": {
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        left: '0'
+"#answersCount":{
+		top: '30dp',
+        left: '20dp'
 }
 
-
-"#profilePic":{
-        width: '50dp',
-        height: '50dp',
-        left: '50dp'
+"#answersCaption":{
+        left: '0dp',
+        top: '50dp',
+        font: {fontFamily:'Arial', fontSize: '12dp'}
 }
 
 "#title":{

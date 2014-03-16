@@ -23,7 +23,7 @@
         right: '80dp'
 }
 
-"#message":{
+"#body":{
 		color: 'gray',
 		font: {fontFamily:'Arial', fontSize: '14dp'},
         top: '25dp',

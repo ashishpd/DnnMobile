@@ -1,6 +1,6 @@
 <Alloy>
 	<Window class="mainTab" id="winMessage" backButtonTitle="back" title="xxx">
-		<ActivityIndicator id="activityIndicator" style=Ti.UI.iPhone.ActivityIndicatorStyle.DARK />
+		<ActivityIndicator id="activityIndicator" style="Ti.UI.iPhone.ActivityIndicatorStyle.DARK" />
 		<Toolbar platform="ios" bottom="0" borderTop="true" borderBottom="false">
             <!-- The Items tag sets the Toolbar.items property. -->
             <Items>
@@ -21,7 +21,7 @@
                     <ImageView bindId="profilePic" id="profilePic" />
                     <Label bindId="from" id="from" />
                     <Label bindId="when" id="when" />
-                    <Label bindId="message" id="message" />
+                    <Label bindId="body" id="body" />
                 </ItemTemplate>
             </Templates>
         
