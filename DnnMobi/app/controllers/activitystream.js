@@ -17,7 +17,7 @@ var args = arguments[0] || {};
 	function parseJournalRow(html) {
 		html = html.replace("&w=","").replace("&h=","");					
 		//Ti.API.info('parseJournalRow ' + html);
-		
+
 		var xmlDomDoc = Ti.XML.parseString(html); 
 		
 			// Get all the item tags and their contents

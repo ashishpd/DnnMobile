@@ -70,10 +70,6 @@ var args = arguments[0] || {};
 					groupId: -1,
 					sequence: 0};
 		
-		//{"category":null,"pageIndex":1,"pageSize":25,"sortColumn":"lastactive","sortAscending":false,"tags":[],"groupId":-1,"sequence":0}
-		
-		//var parms = {"category":"answered","pageIndex":0,"pageSize":25,"sortColumn":"lastactive","sortAscending":false,"tags":[],"sequence":2};
-		
 		$.activityIndicator.show();
 		WebApiHelper.PostAsJson('Answers', url, data, success, failure);
 	}
@@ -91,6 +87,23 @@ var args = arguments[0] || {};
 	    reload();
 	}	
 	
-	refresh();
+	//refresh();
 	
+	var dummyData = new Object();
+	var json = {TotalRecords: 2, 
+		Results: [
+		{contentTitle: 'title', 
+		lastActiveRelativeDate: '1 minute ago', 
+		contentSummary:'summary', 
+		questionVotes: 1, 
+		totalAnswers: 3},
+		{contentTitle: 'title', 
+		lastActiveRelativeDate: '1 minute ago', 
+		contentSummary:'summary', 
+		questionVotes: 1, 
+		totalAnswers: 3}]
+	};	
+	dummyData.responseText = JSON.stringify(json);
 	
+	Ti.API.info('DUMMYDATA' + dummyData);
+	success(dummyData);

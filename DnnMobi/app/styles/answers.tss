@@ -1,60 +1,68 @@
+"#row":{
+	top: '0dp',
+	height: '100dp',
+    borderWidth: 1,
+	borderColor: 'blue'
+}
+
+"#firstColumn":{
+	layout: 'vertical',
+	top: '0dp',
+	left: '0dp',
+	width: '60dp',
+	borderWidth: 2,
+	borderColor: 'red'
+}
+
+"#secondColumn":{
+	left: '65dp',
+	top: '0dp',
+	layout: 'vertical',
+	borderWidth: 2,
+	borderColor: 'green'
+}
+
 "#votesCount":{
-		top: '0dp',
-        left: '20dp',
         font: {fontFamily:'Arial', fontSize: '14dp'},
 }
 
 "#votesCaption":{
-        left: '7dp',
-        top: '15dp',
-        width: '50dp',
         font: {fontFamily:'Arial', fontSize: '12dp'}
 }
 
-"#answersCount[formFactor=handheld]":{
-		top: '0dp',
-        left: '20dp',
+"#answersCount":{	 
         font: {fontFamily:'Arial', fontSize: '14dp'},
 }
 
-"#answersCaption[formFactor=handheld]":{
-        left: '5dp',
-        top: '20dp',
+"#answersCaption":{        
         font: {fontFamily:'Arial', fontSize: '12dp'}
 }
 
-"#answersCount[formFactor=tablet]":{
-		top: '30dp',
-        left: '20dp',
-        font: {fontFamily:'Arial', fontSize: '14dp'},
-}
-
-"#answersCaption[formFactor=tablet]":{
-        left: '5dp',
-        top: '50dp',
-        font: {fontFamily:'Arial', fontSize: '12dp'}
-}
-
-"#title":{
+"#title[formFactor=handheld]":{
 		color: 'gray',
-		font: {fontFamily:'Arial', fontSize: '20dp', fontWeight: 'bold'},
-        top: '0',
-        left: '60dp',
-        width: '80%'
+		height: Ti.UI.SIZE,
+		left: '0dp',
+		font: {fontFamily:'Arial', fontSize: '14dp'}
 }
 
-"#when":{
-		color: 'gray',
-		font: {fontFamily:'Arial', fontSize: '14dp'},
-		left: '91%'
+"#title[formFactor=tablet]":{
+		color: 'gray',		
+		height: Ti.UI.SIZE,
+		left: '0dp',
+		font: {fontFamily:'Arial', fontSize: '18dp', fontWeight: 'bold'}
 }
 
 "#message":{
 		color: 'gray',
-		font: {fontFamily:'Arial', fontSize: '14dp'},
-        top: '25dp',
-        left: '60dp'
+		left: '0dp',
+		font: {fontFamily:'Arial', fontSize: '14dp'} 
 }
+
+"#when":{
+		color: 'gray',
+		left: '0dp',
+		font: {fontFamily:'Arial', fontSize: '14dp'}
+} 
 
 "#btnLoadMore":{
         top: '20dp',
