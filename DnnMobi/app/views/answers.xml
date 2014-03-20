@@ -12,10 +12,10 @@
                 <ItemTemplate name="template">
                 	<View id="row">	
 	                	<View id="firstColumn">	
-		                	<Label bindId="votes" id="votesCount" />   
-		                	<Label id="votesCaption">Votes</Label>                    
-		                    <Label bindId="answers" id="answersCount" />
-		                    <Label id="answersCaption">Answers</Label>                                
+	                		<Label bindId="answers" id="answersCount" />
+		                    <Label id="answersCaption">Answers</Label>            
+		                	<Label bindId="votes" id="votesCount" formFactor="tablet" />   
+		                	<Label id="votesCaption" formFactor="tablet">Votes</Label>                                        
 	                   </View>
 	                    <View id="secondColumn">	
 		                    <Label bindId="title" id="title" />		                    

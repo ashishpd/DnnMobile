@@ -116,5 +116,6 @@ $.winLogin.addEventListener('android:back', function (e) {
 loadKnownSites();
 
 //if (Titanium.Platform.name == 'iPhone OS') {
-    doSkip(null);
+    //doSkip(null);
 //}
+Alloy.createController("main").getView().open();

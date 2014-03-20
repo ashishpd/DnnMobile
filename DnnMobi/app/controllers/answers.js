@@ -90,18 +90,23 @@ var args = arguments[0] || {};
 	//refresh();
 	
 	var dummyData = new Object();
-	var json = {TotalRecords: 2, 
+	var json = {TotalRecords: 3, 
 		Results: [
 		{contentTitle: 'title', 
 		lastActiveRelativeDate: '1 minute ago', 
 		contentSummary:'summary', 
-		questionVotes: 1, 
-		totalAnswers: 3},
+		questionVotes: 999, 
+		totalAnswers: 888},
 		{contentTitle: 'title', 
 		lastActiveRelativeDate: '1 minute ago', 
 		contentSummary:'summary', 
-		questionVotes: 1, 
-		totalAnswers: 3}]
+		questionVotes: 22, 
+		totalAnswers: 33},
+		{contentTitle: 'title', 
+		lastActiveRelativeDate: '5 minutes ago', 
+		contentSummary:'summary', 
+		questionVotes: 5, 
+		totalAnswers: 6}]
 	};	
 	dummyData.responseText = JSON.stringify(json);
 	
