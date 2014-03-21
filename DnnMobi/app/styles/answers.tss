@@ -1,51 +1,49 @@
 "#row":{
-	top: '0dp',
-    borderWidth: 1,
-	borderColor: 'blue',
-	layout: 'horizontal'
+	top: '0dp'
 }
 
 "#firstColumn[formFactor=handheld]":{
-	layout: 'horizontal',
-	top: '0dp',
+	top: '2dp',
 	left: '5dp',
-	width: '70dp',
-	borderWidth: 2,
-	borderColor: 'red'
+	width: '50dp'
 }
 
 "#firstColumn[formFactor=tablet]":{
 	top: '2dp',
 	left: '5dp',
-	width: '75dp',
-	borderWidth: 2,
-	borderColor: 'red'
+	width: '75dp'
 }
 
-"#secondColumn":{
-	left: '5dp',
+"#secondColumn[formFactor=handheld]":{
+	left: '60dp',
 	top: '2dp',
-	layout: 'vertical',
-	borderWidth: 2,
-	borderColor: 'green'
+	right: '5dp',
+	layout: 'vertical'
 }
 
 
 "#secondColumn[formFactor=tablet]":{
-	left: '5dp',
+	left: '80dp',
 	top: '2dp',
-	layout: 'vertical',
-	borderWidth: 2,
-	borderColor: 'green'
+	right: '5dp',
+	layout: 'vertical'
 }
 
-"#answersCount":{	
+"#answersCount[formFactor=handheld]":{	
+		top: '0dp',
+		left: '10dp', 
+        font: {fontFamily:'Arial', fontSize: '14dp'},
+}
+
+"#answersCount[formFactor=tablet]":{	
 		top: '0dp',
 		left: '0dp', 
         font: {fontFamily:'Arial', fontSize: '14dp'},
 }
 
 "#answersCaption[formFactor=handheld]":{        
+		top: '15dp',
+		left: '0dp',
         font: {fontFamily:'Arial', fontSize: '12dp'}
 }
 
@@ -73,7 +71,6 @@
 
 "#title[formFactor=handheld]":{
 		color: 'gray',
-		height: Ti.UI.SIZE,
 		left: '0dp',
 		font: {fontFamily:'Arial', fontSize: '14dp'}
 }
