@@ -25,7 +25,22 @@ var args = arguments[0] || {};
 		};
 		Alloy.createController('message', arg).getView().open();    
 	});	
+	
+	var refreshControl = Ti.UI.createRefreshControl({
+	    tintColor:'red' 
+		});
 		
+	$.listView.refreshControl = refreshControl;	
+	
+	refreshControl.addEventListener('refreshstart',function(e){
+	    Ti.API.info('refreshstart');
+	    setTimeout(function(){
+	        Ti.API.debug('Timeout');
+	        refresh();
+	        refreshControl.endRefreshing();
+	    }, 2000);
+	});
+			
     var success = function(e) {		
     		$.activityIndicator.hide();	
 			Ti.API.info(e.responseText);
@@ -87,7 +102,7 @@ var args = arguments[0] || {};
 	    reload();
 	}	
 	
-	//refresh();
+	refresh();
 	
 	var dummyData = new Object();
 	var json = {TotalRecords: 3, 
@@ -111,4 +126,4 @@ var args = arguments[0] || {};
 	dummyData.responseText = JSON.stringify(json);
 	
 	Ti.API.info('DUMMYDATA' + dummyData);
-	success(dummyData);
+	//success(dummyData);

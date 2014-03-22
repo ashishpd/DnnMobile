@@ -118,4 +118,4 @@ loadKnownSites();
 //if (Titanium.Platform.name == 'iPhone OS') {
     //doSkip(null);
 //}
-Alloy.createController("main").getView().open();
+//Alloy.createController("main").getView().open();
