@@ -16,7 +16,7 @@
 
 "#secondColumn[formFactor=handheld]":{
 	left: '60dp',
-	top: '2dp',
+	top: '0dp',
 	right: '5dp',
 	layout: 'vertical'
 }
@@ -25,8 +25,28 @@
 "#secondColumn[formFactor=tablet]":{
 	left: '80dp',
 	top: '2dp',
+	right: '80dp',
+	layout: 'vertical'
+}
+
+"#thirdColumn[formFactor=tablet]":{
+	left: '140dp',
+	top: '2dp',
+	right: '10%',
+	layout: 'vertical'
+}
+
+"#fourthColumn[formFactor=tablet]":{
+	left: '90%',
+	top: '2dp',
 	right: '5dp',
 	layout: 'vertical'
+}
+
+"#profilePic":{
+        width: '50dp',
+        height: '50dp',
+        left: '0'
 }
 
 "#answersCount[formFactor=handheld]":{	

@@ -17,10 +17,15 @@
 		                	<Label bindId="votes" id="votesCount" formFactor="tablet" />   
 		                	<Label id="votesCaption" formFactor="tablet">Votes</Label>                                        
 	                   </View>
-	                    <View id="secondColumn">	
+	                  	<View id="secondColumn">	
+		                    <ImageView bindId="profilePic" id="profilePic" />
+	                    </View>	                   
+	                    <View id="thirdColumn">	
 		                    <Label bindId="title" id="title" />		                    
 		                    <Label bindId="message" id="message" />
-		                    <Label bindId="when" id="when" formFactor="tablet"/>
+	                    </View>
+	                 	<View id="fourthColumn">	
+		                    <Label bindId="when" id="when"/>
 	                    </View>
                     </View>		                                       
                 </ItemTemplate>

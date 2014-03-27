@@ -48,13 +48,19 @@ var args = arguments[0] || {};
 			var response = JSON.parse(e.responseText); 
 			for (var i = 0; i < response.Results.length; i++) {
 				var question = response.Results[i];		
+				var title = question.contentTitle ;
+				if (Alloy.isTablet) {
+					title = question.authorDisplayName + ' - ' + title;
+				}
+				
 				
 			    data.push({
-			        title : { text: question.contentTitle },
+			        title : { text: title },
 			        when : { text: question.lastActiveRelativeDate },
 			        message : { text: question.contentSummary },
 			        votes :  { text: question.questionVotes },
 			        answers :  { text: question.totalAnswers },
+			        profilePic : { image: WebApiHelper.profilePic(question.createdUserId) },
 			        properties : {
 			            itemId: question.postId,
 			            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE
@@ -102,28 +108,33 @@ var args = arguments[0] || {};
 	    reload();
 	}	
 	
-	refresh();
-	
 	var dummyData = new Object();
 	var json = {TotalRecords: 3, 
 		Results: [
 		{contentTitle: 'title', 
+		authorDisplayName: 'Ash Prasad',
 		lastActiveRelativeDate: '1 minute ago', 
 		contentSummary:'summary', 
-		questionVotes: 999, 
+		questionVotes: 999,
+		createdUserId: 1, 
 		totalAnswers: 888},
 		{contentTitle: 'title', 
 		lastActiveRelativeDate: '1 minute ago', 
 		contentSummary:'summary', 
+		createdUserId: 2,
 		questionVotes: 22, 
+		authorDisplayName: 'John Doe',
 		totalAnswers: 33},
 		{contentTitle: 'Playing video games well can get you into a top South Korean university', 
-		lastActiveRelativeDate: '5 minutes ago', 
+		lastActiveRelativeDate: '45 minutes ago', 
 		contentSummary:'this is a long summary line. There are a plethora of geo-location-based apps that make it incredibly convenient to do friendly things, like chat with nearby peers about local hotspots or meet up with a coworker on the fly. A new iOS app called Cloak, however, utilizes services from Foursquare and Instagram for a more anti-social purpose. The brainchild of Brian Moore and former Buzzfeed director creative director Chris Baker, Cloak identifies the location of friends (read: those youd rather not bump into) based upon their latest check-in. While perusing the map, you can choose to "flag" certain undesirables, like exes or annoying third-wheels, to be notified when they wander within a preset distance of your personal bubble. Or you could, ya know, skip town altogether just to be safe.', 
 		questionVotes: 5, 
-		totalAnswers: 7}]
+		createdUserId: 3,
+		authorDisplayName: 'Batman Jr.',
+		totalAnswers: 8}]
 	};	
 	dummyData.responseText = JSON.stringify(json);
 	
 	Ti.API.info('DUMMYDATA' + dummyData);
-	//success(dummyData);
+	success(dummyData);
+	//refresh();
