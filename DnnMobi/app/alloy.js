@@ -9,4 +9,4 @@
 // object. For example:
 //
 // Alloy.Globals.someGlobalFunction = function(){};
-Alloy.Globals.pageSize = (Alloy.isTablet) ? 20 : 5;
+Alloy.Globals.pageSize = (Alloy.isTablet) ? 20 : 10;

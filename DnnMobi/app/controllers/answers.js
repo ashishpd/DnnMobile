@@ -48,12 +48,8 @@ var args = arguments[0] || {};
 			var response = JSON.parse(e.responseText); 
 			for (var i = 0; i < response.Results.length; i++) {
 				var question = response.Results[i];		
-				var title = question.contentTitle ;
-				if (Alloy.isTablet) {
-					title = question.authorDisplayName + ' - ' + title;
-				}
-				
-				
+				var title = Alloy.isTablet ? question.authorDisplayName + ' - ' + title : question.contentTitle;
+									
 			    data.push({
 			        title : { text: title },
 			        when : { text: question.lastActiveRelativeDate },
@@ -123,7 +119,7 @@ var args = arguments[0] || {};
 		contentSummary:'summary', 
 		createdUserId: 2,
 		questionVotes: 22, 
-		authorDisplayName: 'John Doe',
+		authorDisplayName: 'John Doe First',
 		totalAnswers: 33},
 		{contentTitle: 'Playing video games well can get you into a top South Korean university', 
 		lastActiveRelativeDate: '45 minutes ago', 

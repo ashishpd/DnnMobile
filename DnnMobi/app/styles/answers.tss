@@ -36,8 +36,22 @@
 	layout: 'vertical'
 }
 
+"#thirdColumn[formFactor=handheld]":{
+	left: '60dp',
+	top: '2dp',
+	right: '20%',
+	layout: 'vertical'
+}
+
 "#fourthColumn[formFactor=tablet]":{
 	left: '90%',
+	top: '2dp',
+	right: '5dp',
+	layout: 'vertical'
+}
+
+"#fourthColumn[formFactor=handheld]":{
+	left: '80%',
 	top: '2dp',
 	right: '5dp',
 	layout: 'vertical'

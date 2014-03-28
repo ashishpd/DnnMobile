@@ -17,7 +17,7 @@
 		                	<Label bindId="votes" id="votesCount" formFactor="tablet" />   
 		                	<Label id="votesCaption" formFactor="tablet">Votes</Label>                                        
 	                   </View>
-	                  	<View id="secondColumn">	
+	                  	<View id="secondColumn" formFactor="tablet">	
 		                    <ImageView bindId="profilePic" id="profilePic" />
 	                    </View>	                   
 	                    <View id="thirdColumn">	
