@@ -12,19 +12,18 @@
                 <ItemTemplate name="template">
                 	<View id="row">	
 	                	<View id="firstColumn">	
-	                		<Label bindId="answers" id="answersCount" />
-		                    <Label id="answersCaption">Answers</Label>            
+	                		<Label bindId="answersCount" id="answersCount" />	              	                    
 		                	<Label bindId="votes" id="votesCount" formFactor="tablet" />   
 		                	<Label id="votesCaption" formFactor="tablet">Votes</Label>                                        
 	                   </View>
-	                  	<View id="secondColumn" formFactor="tablet">	
+	                  	<View id="secondColumn">	
 		                    <ImageView bindId="profilePic" id="profilePic" />
 	                    </View>	                   
 	                    <View id="thirdColumn">	
-		                    <Label bindId="title" id="title" />		                    
+	                    	<Label bindId="title" id="title" />				                    	                    
 		                    <Label bindId="message" id="message" />
 	                    </View>
-	                 	<View id="fourthColumn">	
+	                 	<View id="fourthColumn" formFactor="tablet">	
 		                    <Label bindId="when" id="when"/>
 	                    </View>
                     </View>		                                       

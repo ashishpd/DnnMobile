@@ -1,6 +1,7 @@
 var args = arguments[0] || {};
 
 	var WebApiHelper = require('WebApiHelper');
+	var Utility = require('Utility');
 	var recordsLoaded = 0;
 	var currentPage = 0;
 	
@@ -26,20 +27,22 @@ var args = arguments[0] || {};
 		Alloy.createController('message', arg).getView().open();    
 	});	
 	
-	var refreshControl = Ti.UI.createRefreshControl({
-	    tintColor:'red' 
-		});
-		
-	$.listView.refreshControl = refreshControl;	
+	if (Titanium.Platform.name == 'iPhone OS') {	
+		var refreshControl = Ti.UI.createRefreshControl({
+		    tintColor:'red' 
+			});
+			
+		$.listView.refreshControl = refreshControl;		
 	
-	refreshControl.addEventListener('refreshstart',function(e){
-	    Ti.API.info('refreshstart');
-	    setTimeout(function(){
-	        Ti.API.debug('Timeout');
-	        refresh();
-	        refreshControl.endRefreshing();
-	    }, 2000);
-	});
+		refreshControl.addEventListener('refreshstart',function(e){
+		    Ti.API.info('refreshstart');
+		    setTimeout(function(){
+		        Ti.API.debug('Timeout');
+		        refreshControl.endRefreshing();
+		        refresh();
+		    }, 1500);
+		});
+	}
 			
     var success = function(e) {		
     		$.activityIndicator.hide();	
@@ -48,18 +51,33 @@ var args = arguments[0] || {};
 			var response = JSON.parse(e.responseText); 
 			for (var i = 0; i < response.Results.length; i++) {
 				var question = response.Results[i];		
-				var title = Alloy.isTablet ? question.authorDisplayName + ' - ' + title : question.contentTitle;
-									
+				var title;
+				var message;
+				var answersCount;
+				var background = question.answerId > 0 ? '33FF00' : 'transparent';
+				if(Alloy.isTablet == true) {
+					author = question.authorDisplayName + ' ';
+					title =  Utility.trimWithEllipsis(question.contentTitle, 70);
+					message = Utility.trimWithEllipsis(question.authorDisplayName + ' - ' + question.contentSummary, 80);
+					answersCount = question.totalAnswers + " answers"; 
+				}
+				else {
+					title = question.contentTitle + ' - ' + question.contentSummary;
+					title = Utility.trimWithEllipsis(title, 65);
+					answersCount = question.totalAnswers + " ans, " + Utility.trimTime(question.lastActiveRelativeDate);
+				}
+										
 			    data.push({
 			        title : { text: title },
+			        message : { text: message },
 			        when : { text: question.lastActiveRelativeDate },
-			        message : { text: question.contentSummary },
 			        votes :  { text: question.questionVotes },
-			        answers :  { text: question.totalAnswers },
+			        answersCount :  { text: answersCount },
 			        profilePic : { image: WebApiHelper.profilePic(question.createdUserId) },
 			        properties : {
 			            itemId: question.postId,
-			            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE
+			            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
+			            backgroundColor: background
 			        }
 			    });
 			    recordsLoaded++;
@@ -119,6 +137,7 @@ var args = arguments[0] || {};
 		contentSummary:'summary', 
 		createdUserId: 2,
 		questionVotes: 22, 
+		answerId:5,
 		authorDisplayName: 'John Doe First',
 		totalAnswers: 33},
 		{contentTitle: 'Playing video games well can get you into a top South Korean university', 

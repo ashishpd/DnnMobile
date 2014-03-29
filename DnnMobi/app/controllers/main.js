@@ -18,7 +18,7 @@ var answersTab = Titanium.UI.createTab({
 });
 $.tabGroup.addTab(answersTab);
 
-/*
+
 var ideasWin = Alloy.createController('ideas').getView();
 var ideasTab = Titanium.UI.createTab({
     window:ideasWin,
@@ -28,7 +28,6 @@ var ideasTab = Titanium.UI.createTab({
 $.tabGroup.addTab(ideasTab);
 
 
-
 var discussionsWin = Alloy.createController('discussions').getView();
 var discussionsTab = Titanium.UI.createTab({
     window:discussionsWin,
@@ -36,9 +35,8 @@ var discussionsTab = Titanium.UI.createTab({
     icon:'icon-discussions-32px.png'
 });
 $.tabGroup.addTab(discussionsTab);
-*/
 
-/*
+
 var messagesWin = Alloy.createController('messages').getView();
 var messagesTab = Titanium.UI.createTab({
     window:messagesWin,
@@ -46,9 +44,8 @@ var messagesTab = Titanium.UI.createTab({
     icon:'messaging_32x32.png'
 });
 $.tabGroup.addTab(messagesTab);
-*/
 
-/*
+
 var membersWin = Titanium.UI.createWindow({title: "Members"});
 var membersTab = Titanium.UI.createTab({
     window:membersWin,
@@ -65,12 +62,11 @@ var searchTab = Titanium.UI.createTab({
 });
 $.tabGroup.addTab(searchTab);
 
-var searchWin = Titanium.UI.createWindow({title: "Digital Assets"});
-var searchTab = Titanium.UI.createTab({
-    window:searchWin,
+var damWin = Titanium.UI.createWindow({title: "Digital Assets"});
+var damTab = Titanium.UI.createTab({
+    window:damWin,
     title:'Documents',
     icon:'Files_32X32.png'
 });
-$.tabGroup.addTab(searchTab);
+$.tabGroup.addTab(damTab);
 
-*/

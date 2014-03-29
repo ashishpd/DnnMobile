@@ -3,9 +3,9 @@ $.winLogin.open();
 
 var defaultSites = [
 	{site:'mobile-wizards.evoqtrial.com', user:'99J1P7_manager', pwd:'aJ2s3lM7hA52'},
+	{site:'www.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'},	
 	{site:'dnnq8v9be.cloudapp.net', user:'ash.prasad', pwd:'Mypassword1'},
-	{site:'ashprasad.com', user:'user1', pwd:'1234567'},
-	{site:'www.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'},
+	{site:'ashprasad.com', user:'user1', pwd:'1234567'},	
 	{site:'catalyst.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'}	
 ];
 
@@ -116,6 +116,6 @@ $.winLogin.addEventListener('android:back', function (e) {
 loadKnownSites();
 
 //if (Titanium.Platform.name == 'iPhone OS') {
-    doSkip(null);
+    //doSkip(null);
 //}
 //Alloy.createController("main").getView().open();
