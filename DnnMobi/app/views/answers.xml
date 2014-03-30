@@ -3,9 +3,10 @@
 		<ActivityIndicator id="activityIndicator" style="Ti.UI.iPhone.ActivityIndicatorStyle.DARK" />
 		<ListView id="listView" defaultItemTemplate="template">
 			<HeaderView>
-             	<View height="Ti.UI.SIZE" id="topButtons">
-                    <Button id="btnRefresh" onClick="doRefresh" title="Refresh" />
-                    <Button id="btnNew" onClick="doNew" title="Ask a Question" />
+             	<View id="topButtons">
+                    <Button id="btnNew" onClick="doNew" title="Ask" />
+                    <Button id="btnRefresh" onClick="doRefresh" title="Refresh" platform="android" />                    
+                    <Label id="totals"/>  
                 </View>>
             </HeaderView>
             <Templates>

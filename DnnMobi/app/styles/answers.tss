@@ -1,5 +1,21 @@
 "#topButtons":{
-	top: '0dp'
+	top: '0dp',
+	height: '40dp',
+	left: '0dp'
+}
+
+"#btnNew":{
+	left: '100dp',
+	width: '30dp'
+}
+
+"#btnRefresh":{
+	left: '0dp'
+}
+
+"#totals":{
+	right: '25dp',
+	font: {fontFamily:'Arial', fontSize: '12dp'},
 }
 
 "#row":{
@@ -82,7 +98,7 @@
 "#answersCount[formFactor=tablet]":{	
 		top: '0dp',
 		left: '0dp', 
-        font: {fontFamily:'Arial', fontSize: '14dp'},
+        font: {fontFamily:'Arial', fontSize: '14dp'}
 }
 
 "#votesCount":{

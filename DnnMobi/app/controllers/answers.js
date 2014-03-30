@@ -50,6 +50,7 @@ var args = arguments[0] || {};
 			Ti.API.info(e.responseText);
 			var data = [];
 			var response = JSON.parse(e.responseText); 
+			$.totals.setText(response.TotalRecords + " questions");
 			for (var i = 0; i < response.Results.length; i++) {
 				var question = response.Results[i];		
 				var title;
@@ -115,6 +116,7 @@ var args = arguments[0] || {};
 		recordsLoaded = 0;
 		currentPage = 0;	
 		$.btnLoadMore.visible = false;
+		$.totals.setText('');
 		 
 		var section = $.listView.sections[0];	
 		if(section.items.length > 0) {
