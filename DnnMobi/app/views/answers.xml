@@ -3,7 +3,7 @@
 		<ActivityIndicator id="activityIndicator" style="Ti.UI.iPhone.ActivityIndicatorStyle.DARK" />
 		<ListView id="listView" defaultItemTemplate="template">
 			<HeaderView>
-                <View id="topButtons">
+             	<View height="Ti.UI.SIZE" id="topButtons">
                     <Button id="btnRefresh" onClick="doRefresh" title="Refresh" />
                     <Button id="btnNew" onClick="doNew" title="Ask a Question" />
                 </View>>
