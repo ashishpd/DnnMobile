@@ -5,7 +5,7 @@
             <PickerColumn id="columnSite">
             </PickerColumn>
         </Picker>		
-		<ActivityIndicator id="activityIndicator" message="Logging In..." style="Ti.UI.iPhone.ActivityIndicatorStyle.DARK" />        
+		<ActivityIndicator id="activityIndicator" message="Logging In..."/>        
 		<Label>Site</Label>
 		<TextField id="txtSiteName">www.ashprasad.com</TextField>
 		<Label>User</Label>
