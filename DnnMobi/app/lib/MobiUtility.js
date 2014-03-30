@@ -1,4 +1,3 @@
-
 exports.trimWithEllipsis = function(data, max){
 	if (data.length > (max - 3)) {
 		return data.substring(0, max - 3) + '...';
