@@ -3,7 +3,15 @@
 	var WebApiHelper = require('WebApiHelper');
 	
 	function doBack(e) {
-    	$.winNewQuestion.close();
+    	closeMe();
+	};
+	
+	$.winNewQuestion.addEventListener('android:back', function (e) {
+	  closeMe();  
+	});	
+	
+	function closeMe() {
+		$.winNewQuestion.close();
 	};
 	
 	var onContentChanged = function(e) {

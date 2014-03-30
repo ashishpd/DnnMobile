@@ -1,7 +1,8 @@
 var args = arguments[0] || {};
 
 	var WebApiHelper = require('WebApiHelper');
-	var Utility = require('Utility');
+	var MobiUtility = require('MobiUtility');
+
 	var recordsLoaded = 0;
 	var currentPage = 0;
 	
@@ -54,17 +55,18 @@ var args = arguments[0] || {};
 				var title;
 				var message;
 				var answersCount;
-				var background = question.answerId > 0 ? '33FF00' : 'transparent';
+				var background = question.answerId > 0 ? '#33FF00' : 'transparent';
+				//Ti.API.info('Alloy.isTablet ' + Alloy.isTablet);
 				if(Alloy.isTablet == true) {
 					author = question.authorDisplayName + ' ';
-					title =  Utility.trimWithEllipsis(question.contentTitle, 70);
-					message = Utility.trimWithEllipsis(question.authorDisplayName + ' - ' + question.contentSummary, 80);
+					title =  MobiUtility.trimWithEllipsis(question.contentTitle, 70);
+					message = MobiUtility.trimWithEllipsis(question.authorDisplayName + ' - ' + question.contentSummary, 80);
 					answersCount = question.totalAnswers + " answers"; 
 				}
 				else {
 					title = question.contentTitle + ' - ' + question.contentSummary;
-					title = Utility.trimWithEllipsis(title, 65);
-					answersCount = question.totalAnswers + " ans, " + Utility.trimTime(question.lastActiveRelativeDate);
+					title = MobiUtility.trimWithEllipsis(title, 65);
+					answersCount = question.totalAnswers + " ans, " + MobiUtility.trimTime(question.lastActiveRelativeDate);
 				}
 										
 			    data.push({

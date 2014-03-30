@@ -1,3 +1,7 @@
+"#topButtons":{
+	top: '0dp'
+}
+
 "#row":{
 	top: '0dp'
 }
@@ -38,7 +42,7 @@
 }
 
 "#thirdColumn[formFactor=handheld]":{
-	left: '95dp',
+	left: '100dp',
 	top: '2dp',
 	layout: 'vertical'
 }
