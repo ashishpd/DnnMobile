@@ -7,15 +7,16 @@
             </Items>
             <!-- Place additional views for the Toolbar here. -->
         </Toolbar>			
-		<Label>Title</Label>
-		<TextField id="txtTitle" onChange="onContentChanged"></TextField>
+		<Label id="title"/>
+		<ImageView id="profilePic" />
+		<Label id="author"/>
+		<Label id="when"/>		
+		<Label id="summary"/>
+		<TextField id="txtTitle"></TextField>
 		<Label>Question</Label>
-		<TextArea id="txtQuestion" onChange="onContentChanged"></TextArea>
+		<TextArea id="txtQuestion"></TextArea>
 		<Label>Tags</Label>
-		<TextField id="txtTags" hintText="Enter tags separated by a comma" onChange="onContentChanged"></TextField>
-		<Label>Subscribe</Label>
-		<Switch id="switchSubscribe" value="true"/>
-		<Button id="btnAsk" onClick="doAsk" title="Ask" enabled="false"/>
+		<TextField id="txtTags" hintText="Enter tags separated by a comma"></TextField>
 		<Label id="txtError"></Label>
 		<ActivityIndicator id="activityIndicator" message="Posting..." style="Ti.UI.iPhone.ActivityIndicatorStyle.DARK" />
 	</Window>

@@ -23,9 +23,9 @@ var args = arguments[0] || {};
 		var item = e.section.getItemAt(e.itemIndex);
 		//Ti.API.info(item);
 		var arg = {
-	        conversationId: item.properties.itemId
+	        question: item.properties.question
 		};
-		Alloy.createController('message', arg).getView().open();    
+		Alloy.createController('answer', arg).getView().open();    
 	});	
 	
 	if (Titanium.Platform.name == 'iPhone OS') {	
@@ -78,7 +78,7 @@ var args = arguments[0] || {};
 			        answersCount :  { text: answersCount },
 			        profilePic : { image: WebApiHelper.profilePic(question.createdUserId) },
 			        properties : {
-			            item: question,
+			            question: question,
 			            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
 			            backgroundColor: background
 			        }
