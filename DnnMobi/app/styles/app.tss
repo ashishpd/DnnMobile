@@ -2,3 +2,7 @@
         backgroundColor:"white",
         layout: 'vertical'
 }
+
+"Label": {
+    font: {fontFamily:'Arial', fontSize: '14dp'}
+}

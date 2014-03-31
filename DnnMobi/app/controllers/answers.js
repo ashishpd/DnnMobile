@@ -78,7 +78,7 @@ var args = arguments[0] || {};
 			        answersCount :  { text: answersCount },
 			        profilePic : { image: WebApiHelper.profilePic(question.createdUserId) },
 			        properties : {
-			            itemId: question.postId,
+			            item: question,
 			            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
 			            backgroundColor: background
 			        }
