@@ -1,4 +1,23 @@
+".container[platform=ios]": {
+        top: '10dp',
+}
 
-".container" : {
-  
+"#authorRow":{
+	layout: 'vertical'
+}
+
+"#author":{
+	left: '4dp'
+}
+
+"#when":{
+	left: '10dp'
+}
+
+"#summaryRow":{
+	layout: 'vertical'
+}
+
+"#summary":{
+	left: '0dp'
 }

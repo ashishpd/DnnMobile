@@ -67,7 +67,9 @@ var args = arguments[0] || {};
 				else {
 					title = question.contentTitle + ' - ' + question.contentSummary;
 					title = MobiUtility.trimWithEllipsis(title, 65);
+					//answersCount = question.totalAnswers + " a, " + question.views + " v, " + MobiUtility.trimTime(question.lastActiveRelativeDate);
 					answersCount = question.totalAnswers + " ans, " + MobiUtility.trimTime(question.lastActiveRelativeDate);
+				
 				}
 										
 			    data.push({
@@ -134,6 +136,7 @@ var args = arguments[0] || {};
 		lastActiveRelativeDate: '1 minute ago', 
 		contentSummary:'summary', 
 		questionVotes: 999,
+		views: 53,
 		createdUserId: 1, 
 		totalAnswers: 888},
 		{contentTitle: 'title', 
@@ -141,6 +144,7 @@ var args = arguments[0] || {};
 		contentSummary:'summary', 
 		createdUserId: 2,
 		questionVotes: 22, 
+		views: 78,
 		answerId:5,
 		authorDisplayName: 'John Doe First',
 		totalAnswers: 33},
@@ -150,6 +154,7 @@ var args = arguments[0] || {};
 		questionVotes: 5, 
 		createdUserId: 3,
 		authorDisplayName: 'Batman Jr.',
+		views: 153,
 		totalAnswers: 8}]
 	};	
 	dummyData.responseText = JSON.stringify(json);

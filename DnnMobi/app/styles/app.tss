@@ -1,6 +1,5 @@
 ".container": {
         backgroundColor:"white",
-        top: '2%',
         layout: 'vertical'
 }
 
@@ -11,4 +10,16 @@
 
 "Label": {
     font: {fontFamily:'Arial', fontSize: '14dp'}
+}
+
+"#profilePic":{
+        width: '50dp',
+        height: '50dp',
+        left: '2dp'
+}
+
+"#profilePic[formFactor=handheld]":{
+        width: '40dp',
+        height: '40dp',
+        left: '2dp'
 }
