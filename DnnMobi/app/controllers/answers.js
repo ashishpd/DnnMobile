@@ -159,6 +159,8 @@ var args = arguments[0] || {};
 	};	
 	dummyData.responseText = JSON.stringify(json);
 	
-	Ti.API.info('DUMMYDATA' + dummyData);
-	success(dummyData);
+	//Ti.API.info('DUMMYDATA' + dummyData);
+	success(dummyData);	
+	Alloy.createController('answer', {question: json.Results[2]}).getView().open();   
+	
 	//refresh();
