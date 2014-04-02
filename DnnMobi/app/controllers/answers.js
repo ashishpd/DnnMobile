@@ -67,8 +67,8 @@ var args = arguments[0] || {};
 				else {
 					title = question.contentTitle + ' - ' + question.contentSummary;
 					title = MobiUtility.trimWithEllipsis(title, 65);
-					//answersCount = question.totalAnswers + " a, " + question.views + " v, " + MobiUtility.trimTime(question.lastActiveRelativeDate);
-					answersCount = question.totalAnswers + " ans, " + MobiUtility.trimTime(question.lastActiveRelativeDate);
+					answersCount = question.totalAnswers + " a  " + question.score + " v  " + MobiUtility.trimTime(question.lastActiveRelativeDate);
+					//answersCount = question.totalAnswers + " ans, " + MobiUtility.trimTime(question.lastActiveRelativeDate);
 				
 				}
 										
@@ -132,6 +132,7 @@ var args = arguments[0] || {};
 	var json = {TotalRecords: 3, 
 		Results: [
 		{contentTitle: 'title', 
+		score: 0,
 		authorDisplayName: 'Ash Prasad',
 		lastActiveRelativeDate: '1 minute ago', 
 		contentSummary:'summary', 
@@ -142,6 +143,7 @@ var args = arguments[0] || {};
 		{contentTitle: 'title', 
 		lastActiveRelativeDate: '1 minute ago', 
 		contentSummary:'summary', 
+		score: 1,
 		createdUserId: 2,
 		questionVotes: 22, 
 		views: 78,
@@ -153,6 +155,7 @@ var args = arguments[0] || {};
 		contentSummary:'this is a long summary line. There are a plethora of geo-location-based apps that make it incredibly convenient to do friendly things, like chat with nearby peers about local hotspots or meet up with a coworker on the fly. A new iOS app called Cloak, however, utilizes services from Foursquare and Instagram for a more anti-social purpose. The brainchild of Brian Moore and former Buzzfeed director creative director Chris Baker, Cloak identifies the location of friends (read: those youd rather not bump into) based upon their latest check-in. While perusing the map, you can choose to "flag" certain undesirables, like exes or annoying third-wheels, to be notified when they wander within a preset distance of your personal bubble. Or you could, ya know, skip town altogether just to be safe.', 
 		questionVotes: 5, 
 		createdUserId: 3,
+		score: 2,
 		authorDisplayName: 'Batman Jr.',
 		views: 153,
 		totalAnswers: 8}]

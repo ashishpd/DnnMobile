@@ -23,3 +23,12 @@
         height: '40dp',
         left: '2dp'
 }
+
+".line": {
+    height: '2dp',
+    bottom: '2dp',
+    left: '0dp',
+    right: '0dp',
+    borderWidth: '1',
+    borderColor:'#aaa'
+}

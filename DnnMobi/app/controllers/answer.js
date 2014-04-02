@@ -21,6 +21,8 @@
 	$.when.setText(question.lastActiveRelativeDate);
 	$.summary.setText(question.contentSummary);
 	$.profilePic.setImage(WebApiHelper.profilePic(question.createdUserId));
+	$.score.setText(question.score + " votes");
+	$.answerCount.setText(question.totalAnswers + " answers");
 
 	var success = function(e) {		
 		$.activityIndicator.hide();	

@@ -1,9 +1,28 @@
-".container[platform=ios]": {
-        top: '10dp',
+".container": {
+    top: '10dp',
+    layout: 'horizontal',
+    left: '0dp'     
+}
+
+"#mainView": {
+    left: '7dp',
+    layout: 'horizontal'       
+}
+
+"#title":{
+	top: '2dp'
+}
+
+"#titleRow":{
+	layout: 'vertical',
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL
 }
 
 "#authorRow":{
-	layout: 'vertical'
+	layout: 'horizontal',
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL
 }
 
 "#author":{
@@ -14,10 +33,28 @@
 	left: '10dp'
 }
 
+"#answerCount":{
+	left: '10dp'
+}
+
+"#votesRow":{
+	layout: 'horizontal',
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL
+}
+
+"#score":{
+	left: '10dp'
+}
+
 "#summaryRow":{
-	layout: 'vertical'
+	layout: 'vertical',
+	top: '0dp',
+	left: '2dp',
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL
 }
 
 "#summary":{
-	left: '0dp'
+	left: '2dp'
 }

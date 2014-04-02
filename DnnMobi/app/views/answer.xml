@@ -6,16 +6,28 @@
                 <Button id="back" onClick="doBack" title="Back" />
             </Items>
             <!-- Place additional views for the Toolbar here. -->
-        </Toolbar>			
-		<Label id="title"/>
-		<View id="summaryRow">
-			<Label id="summary"/>
-		</View>	
-		<View id="authorRow">
-			<ImageView id="profilePic" />
-			<Label id="author"/>
-			<Label id="when"/>	
-		</View>	
+        </Toolbar>	
+        <View id="mainView">		
+			<View id="titleRow">
+				<Label id="title"/>
+				<View class="line"></View>
+			</View>
+			<View id="authorRow">
+				<ImageView id="profilePic" />
+				<Label id="author"/>
+				<Label id="when"/>
+				<Label id="answerCount"/>	
+			</View>
+			<View id="votesRow">
+				<Label id="score"/>
+				<Button id="upQ" title="Up" />
+				<Button id="downQ" title="Down" />				
+			</View>
+			<View id="summaryRow">
+				<View class="line"></View>
+				<Label id="summary"/>
+			</View>	
+		</View>
 
 		<TextField id="txtTitle"></TextField>
 		<Label>Question</Label>
