@@ -8,10 +8,10 @@ else {
 }
 
 var defaultSites = [
+	{site:'dnnq8v9be.cloudapp.net', user:'ash.prasad', pwd:'Mypassword1'},
 	{site:'www.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'},	
 	{site:'mobile-wizards.evoqtrial.com', user:'99J1P7_manager', pwd:'aJ2s3lM7hA52'},	
-	{site:'ashprasad.com', user:'user1', pwd:'1234567'},	
-	{site:'dnnq8v9be.cloudapp.net', user:'ash.prasad', pwd:'Mypassword1'},
+	{site:'ashprasad.com', user:'user1', pwd:'1234567'},		
 	{site:'catalyst.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'}	
 ];
 
@@ -123,8 +123,9 @@ loadKnownSites();
 
 //if (Titanium.Platform.name == 'iPhone OS') {
     //doSkip(null);
+if(Alloy.Globals.autoSkipLogin) {	
     WebApiHelper.setSite($.txtSiteName.value);
     Alloy.createController("main").getView().open();
-
+}
 //}
 //Alloy.createController("main").getView().open();

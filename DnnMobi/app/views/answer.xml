@@ -20,8 +20,8 @@
 			</View>
 			<View id="votesRow">
 				<Label id="score"/>
-				<Button id="upQ" title="Up" />
-				<Button id="downQ" title="Down" />				
+				<Button id="upQ" title="Up" onClick="doVoteQ"/>
+				<Button id="downQ" title="Down" onClick="doVoteQ" />				
 			</View>
 			<View id="summaryRow">
 				<View class="line"></View>

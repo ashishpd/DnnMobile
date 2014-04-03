@@ -36,16 +36,38 @@
 		
 	function reload() {		
 		$.activityIndicator.show();
-		var url = '/DesktopModules/DNNCorp/Answers/API/List/Query';
-		var data = {category: null, 
-					pageIndex: currentPage,
-					pageSize: Alloy.Globals.pageSize,
-					sortColumn: 'lastactive',
-					sortAscending: false,
-					tags: [],
-					groupId: -1,
-					sequence: 0};
+		var url = '/DesktopModules/DNNCorp/Answers/API/Detail/GetAnswers';
+		var data = {postId: question.PostId, 
+					pageIndex: 0,
+					pageSize: 5,
+					sortColumn: 'score',
+					sortAscending: false};
 		
 		$.activityIndicator.show();
 		WebApiHelper.PostAsJson('Answers', url, data, success, failure);
 	}
+	
+function doVoteQ(e){
+    var success = function(e) {
+		$.activityIndicator.hide();
+		Ti.API.info(e.responseText);
+		var response = JSON.parse(e.responseText); 
+		$.score.setText(response.score + " votes");		
+    };
+
+    var failure = function(e) {
+		Titanium.API.info("failure called after logoff");
+    	$.txtError.text="Error - " + WebApiHelper.error();
+    	$.activityIndicator.hide();
+    };
+    
+	$.activityIndicator.show();
+	var url = '/DesktopModules/DNNCorp/Answers/API/Detail/Upvote';
+	var data = {postId: question.postId, 
+					parentId: 0,
+					groupId: -1};
+	
+	//Ti.API.info("post json: " + JSON.stringify(data));
+	$.activityIndicator.show();
+	WebApiHelper.PostAsJson('Answers', url, data, success, failure);    
+};
