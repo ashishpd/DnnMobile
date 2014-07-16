@@ -9,10 +9,10 @@ else {
 
 var defaultSites = [
 	//{site:'dnnq8v9be.cloudapp.net', user:'ash.prasad', pwd:'Mypassword1'},
-	{site:'www.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'},	
-	{site:'mobile-wizards.evoqtrial.com', user:'99J1P7_manager', pwd:'aJ2s3lM7hA52'},	
-	{site:'ashprasad.com', user:'user1', pwd:'1234567'},		
-	{site:'store.dnnsoftware.com', user:'user1', pwd:'1234567'},		
+	//{site:'www.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'},	
+	{site:'social201upg.azurewebsites.net', user:'debbie.wall', pwd:'dnnhost'},	
+	//{site:'ashprasad.com', user:'user1', pwd:'1234567'},		
+	//{site:'store.dnnsoftware.com', user:'user1', pwd:'1234567'},		
 
 	//{site:'catalyst.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'}	
 ];
@@ -51,6 +51,9 @@ function doSelectSite(e){
 };
 
 function doSkip(e){
+	Alloy.createController("main").getView().open();
+
+/*
     var success = function(e) {
     	$.activityIndicator.hide();
       	Alloy.createController("main").getView().open();
@@ -64,6 +67,7 @@ function doSkip(e){
     
     $.activityIndicator.show();
 	WebApiHelper.pingSite($.txtSiteName.value, success, success);
+*/
 };
 
 function doLogin(e){
@@ -91,6 +95,8 @@ function doLogin(e){
 function login(){
     var success = function(e) {
     	$.activityIndicator.hide();
+		$.btnLogin.enabled = true;
+		$.btnSkip.enabled = false;
 		if(WebApiHelper.isLoggedIn() == true) {   			 		      		
       		Alloy.createController("main").getView().open();
 		} else if (WebApiHelper.isError() == true) {
@@ -100,11 +106,14 @@ function login(){
 
     var failure = function(e) {
     	$.activityIndicator.hide();
+		$.btnLogin.enabled = true;
 		Titanium.API.info("failure called after login");
     	$.txtError.text="Error - " + WebApiHelper.error();
     };
     
 	Titanium.API.info("Calling Login");
+	$.btnLogin.enabled = false;
+	$.btnSkip.enabled = false;
 	WebApiHelper.login($.txtSiteName.value, $.txtUserName.value, $.txtPassword.value, success, failure);
 	Titanium.API.info("Called Login");
 	
