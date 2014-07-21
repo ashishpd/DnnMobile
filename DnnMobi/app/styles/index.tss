@@ -7,7 +7,8 @@
 "Label": {
         font: {fontFamily:'Arial', fontSize: '14dp', fontWeight:'bold'},
         left: '20dp',
-        color: "#000"
+        color: "#000",
+        top: '1%'
 }
 
 "Picker": {
@@ -27,16 +28,23 @@
         returnKeyType: Ti.UI.RETURNKEY_DONE	
 }
 
+"#switchRemember":{
+        top: '0%',  
+        left: '20dp',
+        layout: 'vertical'
+}
+
 "#buttonStrip":{
-        top: '1%',  
+        top: '2%',  
         height: '80dp',
         layout: 'horizontal'
 }
 
-"#btnLogin":{
-      	left: '35%'
+"#btnLogin":{	
+        top: '25dp',  
+      	left: '40%'
 }
 
-"#btnSkip":{
-        left: '10%'
-}
+// "#btnSkip":{
+        // left: '10%'
+// }

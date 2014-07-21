@@ -19,7 +19,7 @@
 	$.title.setText(question.contentTitle);
 	$.author.setText(question.authorDisplayName);
 	$.when.setText(question.lastActiveRelativeDate);
-	$.summary.setText(question.contentSummary);
+	$.body.setText(question.contentSummary);
 	$.profilePic.setImage(WebApiHelper.profilePic(question.createdUserId));
 	$.score.setText(question.score + " votes");
 	$.answerCount.setText(question.totalAnswers + " answers");
@@ -27,6 +27,9 @@
 	var success = function(e) {		
 		$.activityIndicator.hide();	
 		Ti.API.info(e.responseText);
+		var response = JSON.parse(e.responseText); 
+		var post = response.Post;
+		$.body.setHtml(post.body);
 	};
 	
     var failure = function(e) {
@@ -36,15 +39,9 @@
 		
 	function reload() {		
 		$.activityIndicator.show();
-		var url = '/DesktopModules/DNNCorp/Answers/API/Detail/GetAnswers';
-		var data = {postId: question.PostId, 
-					pageIndex: 0,
-					pageSize: 5,
-					sortColumn: 'score',
-					sortAscending: false};
 		
-		$.activityIndicator.show();
-		WebApiHelper.PostAsJson('Answers', url, data, success, failure);
+		var url = '/DesktopModules/DNNCorp/Answers/API/Detail/GetPost?contentItemId=' + question.contentItemId;
+		WebApiHelper.Get('Answers',url, success, failure);
 	}
 	
 function doVoteQ(e){
@@ -71,3 +68,5 @@ function doVoteQ(e){
 	$.activityIndicator.show();
 	WebApiHelper.PostAsJson('Answers', url, data, success, failure);    
 };
+
+reload();

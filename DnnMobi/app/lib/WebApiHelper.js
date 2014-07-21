@@ -205,7 +205,7 @@ exports.Get = function(module, query, success, failure) {
 		Ti.API.error('not logged-in');
 		if (typeof failure !== 'undefined')
 			failure(this);	
-		return;
+		//return;
 	}
 	
 	var url = _site+query;

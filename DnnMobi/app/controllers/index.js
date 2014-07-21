@@ -9,8 +9,8 @@ else {
 
 var defaultSites = [
 	//{site:'dnnq8v9be.cloudapp.net', user:'ash.prasad', pwd:'Mypassword1'},
-	//{site:'www.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'},	
-	{site:'social201upg.azurewebsites.net', user:'debbie.wall', pwd:'dnnhost'},	
+	{site:'www.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'},	
+	//{site:'social201upg.azurewebsites.net', user:'debbie.wall', pwd:'dnnhost'},	
 	//{site:'ashprasad.com', user:'user1', pwd:'1234567'},		
 	//{site:'store.dnnsoftware.com', user:'user1', pwd:'1234567'},		
 
@@ -22,18 +22,19 @@ var knownSites = Ti.App.Properties.getList('knownsites', defaultSites);
 function loadKnownSites(){
 	var len = knownSites.length;
 	var data = [];
-	for (var i = 0; i < len; i++) {
-		var knownSite = knownSites[i];
-		data.push(Ti.UI.createPickerRow(
-			{title:knownSite.site, 
-			user:knownSite.user,
-			pwd:knownSite.pwd}));
-	}	
-	$.pickerSites.add(data);
-	$.pickerSites.selectionIndicator = true;
+	// for (var i = 0; i < len; i++) {
+		// var knownSite = knownSites[i];
+		// data.push(Ti.UI.createPickerRow(
+			// {title:knownSite.site, 
+			// user:knownSite.user,
+			// pwd:knownSite.pwd}));
+	// }	
+	//$.pickerSites.add(data);
+	//$.pickerSites.selectionIndicator = true;
 	
-	var row = data[0];
-	$.txtSiteName.value=row.title;
+	//var row = data[0];
+	var row = knownSites[0];
+	$.txtSiteName.value=row.site;
 	$.txtUserName.value=row.user;
 	$.txtPassword.value=row.pwd;
 };
@@ -51,6 +52,7 @@ function doSelectSite(e){
 };
 
 function doSkip(e){
+	WebApiHelper.setSite($.txtSiteName.value);
 	Alloy.createController("main").getView().open();
 
 /*
@@ -96,7 +98,7 @@ function login(){
     var success = function(e) {
     	$.activityIndicator.hide();
 		$.btnLogin.enabled = true;
-		$.btnSkip.enabled = false;
+		// $.btnSkip.enabled = false;
 		if(WebApiHelper.isLoggedIn() == true) {   			 		      		
       		Alloy.createController("main").getView().open();
 		} else if (WebApiHelper.isError() == true) {
@@ -113,7 +115,7 @@ function login(){
     
 	Titanium.API.info("Calling Login");
 	$.btnLogin.enabled = false;
-	$.btnSkip.enabled = false;
+	// $.btnSkip.enabled = false;
 	WebApiHelper.login($.txtSiteName.value, $.txtUserName.value, $.txtPassword.value, success, failure);
 	Titanium.API.info("Called Login");
 	

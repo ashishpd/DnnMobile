@@ -134,6 +134,7 @@ var args = arguments[0] || {};
 		{contentTitle: 'title', 
 		score: 0,
 		postId: 1,
+		contentItemId: 436219,
 		authorDisplayName: 'Ash Prasad',
 		lastActiveRelativeDate: '1 minute ago', 
 		contentSummary:'summary', 

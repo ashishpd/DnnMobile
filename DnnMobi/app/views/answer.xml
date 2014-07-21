@@ -25,8 +25,12 @@
 			</View>
 			<View id="summaryRow">
 				<View class="line"></View>
-				<Label id="summary"/>
+				<WebView id="body" />
 			</View>	
+			<View id="answersTitleRow">
+				<View class="line"></View>
+				<Label title="Answers"/>
+			</View>				
 		</View>
 
 		<TextField id="txtTitle"></TextField>
@@ -35,6 +39,6 @@
 		<Label>Tags</Label>
 		<TextField id="txtTags" hintText="Enter tags separated by a comma"></TextField>
 		<Label id="txtError"></Label>
-		<ActivityIndicator id="activityIndicator" message="Posting..." style="Ti.UI.iPhone.ActivityIndicatorStyle.DARK" />
+		<ActivityIndicator id="activityIndicator" message="Posting.." style="Ti.UI.iPhone.ActivityIndicatorStyle.DARK" />
 	</Window>
 </Alloy>

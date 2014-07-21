@@ -1,20 +1,24 @@
 <Alloy>
 	<Window id="winLogin" class="container" exitOnClose="true">
 		<Label visible="false">Your Sites</Label>
-		<Picker id="pickerSites" selectionIndicator="true" useSpinner="true" onChange="doSelectSite">
+		<!-- <Picker id="pickerSites" selectionIndicator="true" useSpinner="true" onChange="doSelectSite" visible="false">
             <PickerColumn id="columnSite">
             </PickerColumn>
-        </Picker>		
+        </Picker> -->		
 		<ActivityIndicator id="activityIndicator" message="Logging In..."/>        
 		<Label>Site</Label>
-		<TextField id="txtSiteName">www.ashprasad.com</TextField>
+		<TextField id="txtSiteName" editable="false">www.ashprasad.com</TextField>
 		<Label>User</Label>
 		<TextField id="txtUserName" hintText="username"></TextField>
 		<Label>Password</Label>
 		<TextField id="txtPassword" hintText="password" passwordMask="true"></TextField>
+		
 		<View id="buttonStrip">			
+			<Label>Remember Me</Label>
+			<Switch id="switchRemember" value="true"/>
 			<Button id="btnLogin" onClick="doLogin" title="Login" />
-			<Button id="btnSkip" onClick="doSkip" title="Skip" />
+			<!-- <Button id="btnSkip" onClick="doSkip" title="I don't want to Login" /> -->
+			
 		</View>
 		<Label id="txtError"></Label>
 	</Window>

@@ -11,4 +11,4 @@
 // Alloy.Globals.someGlobalFunction = function(){};
 Alloy.Globals.pageSize = (Alloy.isTablet) ? 20 : 10;
 Alloy.Globals.testMode = false;
-Alloy.Globals.autoSkipLogin = false;
+Alloy.Globals.autoSkipLogin = true;
