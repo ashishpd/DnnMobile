@@ -9,14 +9,16 @@
     layout: 'horizontal'       
 }
 
-"#title":{
-	top: '2dp'
-}
-
 "#titleRow":{
 	layout: 'vertical',
 	height: Ti.UI.SIZE,
 	width: Ti.UI.FILL
+}
+
+"#title":{
+	color: '#900',
+	top: '2dp',
+	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT
 }
 
 "#authorRow":{
@@ -48,13 +50,34 @@
 }
 
 "#summaryRow":{
+	layout: 'horizontal',
+	top: '0dp',
+	left: '2dp',
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	borderWidth: 2
+}
+
+"#body":{
+	layout: 'horizontal',
+	top: '0dp',
+	left: '2dp',
+	height: '100dp',
+	width: Ti.UI.FILL
+}
+
+"#answersTitleRow":{
 	layout: 'vertical',
 	top: '0dp',
 	left: '2dp',
 	height: Ti.UI.SIZE,
-	width: Ti.UI.FILL
+	width: Ti.UI.SIZE
 }
 
-"#summary":{
-	left: '2dp'
+"#answersRow":{
+	layout: 'vertical',
+	top: '0dp',
+	left: '2dp',
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE
 }
