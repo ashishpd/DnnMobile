@@ -58,7 +58,7 @@
 	borderWidth: 2
 }
 
-"#body":{
+"#questionBody":{
 	layout: 'horizontal',
 	top: '0dp',
 	left: '2dp',
@@ -80,4 +80,13 @@
 	left: '2dp',
 	height: Ti.UI.SIZE,
 	width: Ti.UI.SIZE
+}
+
+"#answerBody":{
+	layout: 'horizontal',
+	top: '0dp',
+	left: '2dp',
+	height: Ti.UI.FILL,
+	width: Ti.UI.FILL,
+	borderWidth: 2
 }

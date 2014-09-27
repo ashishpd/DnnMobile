@@ -1,4 +1,4 @@
-	var args = arguments[0] || {};
+var args = arguments[0] || {};
 	var question = args.question;
 
 	var WebApiHelper = require('WebApiHelper');
@@ -19,7 +19,7 @@
 	$.title.setText(question.contentTitle);
 	$.author.setText(question.authorDisplayName);
 	$.when.setText(question.lastActiveRelativeDate);
-	$.body.setHtml(question.contentSummary);
+	$.questionBody.setHtml(question.contentSummary);
 	$.profilePic.setImage(WebApiHelper.profilePic(question.createdUserId));
 	$.score.setText(question.score + " votes");
 	$.answerCount.setText(question.totalAnswers + " answers");
@@ -28,19 +28,36 @@
 		$.activityIndicator.hide();	
 		//Ti.API.info(e.responseText);
 		var response = JSON.parse(e.responseText); 
+		var data = [];
 		for (var i = 0; i < response.Posts.length; i++) {
 			var answer = response.Posts[i];
-			Ti.API.info(answer.postId + ' ' + answer.body);
-			var webView = Ti.UI.createWebView({ 
-				width: Ti.UI.FILL, 
-				height: '100dp', 
-				borderWidth: 2,
-				scalesPageToFit:true, 
-				autoDetect:[Ti.UI.AUTODETECT_NONE] 
-			});
-			webView.setHtml(answer.body);
-			$.answersRow.add(webView);
+			Ti.API.info('answer.postId ' + answer.postId);
+		    data.push({
+		        answerBody : { html: answer.body.trim() },
+		        properties : {
+		            itemId: answer.postId,
+		            accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE
+		        }
+		    });
+
+			// var webView = Ti.UI.createWebView({ 
+			// 	width: Ti.UI.FILL, 
+			// 	height: '100dp', 
+			// 	borderWidth: 2,
+			// 	scalesPageToFit:true, 
+			// 	autoDetect:[Ti.UI.AUTODETECT_NONE] 
+			// });
+			// webView.setHtml(answer.body);
+			// $.answersRow.add(webView);
 		}
+
+					var section = Titanium.UI.createListSection({
+			    // properties
+			    items: data,
+			    //headerTitle: header
+			});
+			
+			$.listView.sections = [section];
 	};
 
 	var successGetPost = function(e) {		
@@ -48,7 +65,7 @@
 		//Ti.API.info(e.responseText);
 		var response = JSON.parse(e.responseText); 
 		var post = response.Post;
-		$.body.setHtml(post.body.trim());
+		$.questionBody.setHtml(post.body.trim());
 		var url = '/DesktopModules/DNNCorp/Answers/API/Detail/GetAnswers?postId=' + question.postId + '&pageIndex=0&pageSize=5&sortColumn=score&sortAscending=false';
 		WebApiHelper.Get('Answers',url, successGetAnswers, failure);
 	};
