@@ -3,7 +3,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Helpers;
 using DnnMobiHelper.Models;
 using DotNetNuke.Application;
 using DotNetNuke.Common;
@@ -20,6 +19,7 @@ namespace DnnMobiHelper
     public class HelperController : DnnApiController
     {
         private readonly string _dnnVersion = Globals.FormatVersion(DotNetNukeContext.Current.Application.Version, false);
+        /*
         private readonly List<SiteDetail> _knownSites = KnownSites();
 
         private static List<SiteDetail> KnownSites()
@@ -60,6 +60,7 @@ namespace DnnMobiHelper
 
             return sites;
         }
+        */
 
         /*
         [AllowAnonymous]

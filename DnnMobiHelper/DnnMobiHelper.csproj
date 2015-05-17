@@ -68,13 +68,18 @@
     <Compile Include="RouteMapper.cs" />
     <Compile Include="HelperController.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="DnnMobiHelper.dnn">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  <PropertyGroup>
+    <Extension>zip</Extension>
+    <DNNFileName>DnnMobiHelper</DNNFileName>
+    <PackageName>DnnMobiHelper</PackageName>
+  </PropertyGroup>
+  <Import Project="BuildScripts\ModulePackage.Targets" />
+  <Target Name="AfterBuild" DependsOnTargets="PackageModule">
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

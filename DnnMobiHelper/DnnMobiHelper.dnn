@@ -1,0 +1,25 @@
+<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="DnnMobiHelper" type="Library" version="08.01.00" isSystem="true">
+      <friendlyName>Dnn Mobi Helper</friendlyName>
+      <description></description>      
+      <owner>
+        <name>DNNMobi</name>
+        <organization>DNNMobi</organization>
+        <url>http://www.dnnmobi.com</url>
+        <email>dnnmobi@dnnmobi.com</email>
+      </owner>
+      <azureCompatible>true</azureCompatible>
+      <components> 
+        <component type="Assembly">
+          <assemblies>
+            <assembly>
+              <name>DnnMobiHelper.dll</name>
+              <sourceFileName>DnnMobiHelper.dll</sourceFileName>
+            </assembly>
+          </assemblies>
+        </component>
+      </components> 
+    </package>
+  </packages>
+</dotnetnuke>
