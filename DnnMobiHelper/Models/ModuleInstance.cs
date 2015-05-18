@@ -16,5 +16,8 @@ namespace DnnMobiHelper.Models
 
         [DataMember]
         public int ModuleId { get; set; }
+
+        [DataMember]
+        public string Definition { get; set; }
     }
 }

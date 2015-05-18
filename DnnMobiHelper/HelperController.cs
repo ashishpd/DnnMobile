@@ -84,10 +84,12 @@ namespace DnnMobiHelper
             var siteDetails = new SiteDetail
                 {
                     SiteName = PortalSettings.PortalName,
-                    DnnVersion = _dnnVersion,
                     IsHost = UserInfo.IsSuperUser,
                     IsAdmin = UserInfo.IsInRole("Administrators")
                 };
+
+            if (siteDetails.IsHost) siteDetails.DnnVersion = _dnnVersion;
+
             foreach (var moduleName in moduleList.Split(','))
             {
                 
@@ -104,7 +106,8 @@ namespace DnnMobiHelper
                                                              TabId = tabmodule.TabInfo.TabID,
                                                              ModuleId = tabmodule.ModuleInfo.ModuleID,
                                                              PageName = tabmodule.TabInfo.TabName,
-                                                             PagePath = tabmodule.TabInfo.TabPath
+                                                             PagePath = tabmodule.TabInfo.TabPath,
+                                                             Definition = tabmodule.ModuleInfo.ModuleDefinition.DefinitionName
                                                          });
                     siteDetails.Modules.Add(moduleDetail);
                 }
@@ -133,6 +136,9 @@ namespace DnnMobiHelper
             return new List<TabModule>(); 
         }
 
+        /// <summary>
+        /// Returns a List of TabModules
+        /// </summary>
         private static object GetTabModulesCallback(CacheItemArgs cacheItemArgs)
         {
 
