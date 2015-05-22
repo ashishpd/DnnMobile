@@ -137,7 +137,7 @@ namespace DnnMobiHelper
         }
 
         /// <summary>
-        /// Returns a List of TabModules
+        /// Returns a List of TabModules for Desktopmodule
         /// </summary>
         private static object GetTabModulesCallback(CacheItemArgs cacheItemArgs)
         {

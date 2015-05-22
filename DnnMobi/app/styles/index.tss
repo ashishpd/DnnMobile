@@ -41,10 +41,10 @@
 }
 
 "#btnLogin":{	
-        top: '25dp',  
-      	left: '40%'
+        //top: '25dp',  
+      	left: '10%'
 }
 
-// "#btnSkip":{
-        // left: '10%'
-// }
+"#btnSkip":{
+        left: '10%'
+}

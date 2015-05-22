@@ -67,11 +67,15 @@ var args = arguments[0] || {};
     };
 	
 	function reload() {
-		$.btnLoadMore.visible = false;
-		$.activityIndicator.show();
-		var url = '/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=' + earliestMessageId + '&numberOfRecords=10';
-		WebApiHelper.Get('DotNetNuke.Modules.CoreMessaging',url, success, failure);
-	
+		//Ti.API.info("calling isLoggedIn " + WebApiHelper.isLoggedIn());
+		if(!WebApiHelper.isLoggedIn()) {
+			Alloy.createController("index").getView().open();
+		} else {
+			$.btnLoadMore.visible = false;
+			$.activityIndicator.show();
+			var url = '/DesktopModules/CoreMessaging/API/MessagingService/Inbox?afterMessageId=' + earliestMessageId + '&numberOfRecords=10';
+			WebApiHelper.Get('DotNetNuke.Modules.CoreMessaging',url, success, failure);
+		}	
 	}
 	
 	function refresh() {

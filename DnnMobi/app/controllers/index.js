@@ -1,3 +1,11 @@
+var args = arguments[0] || {};
+
+Ti.API.info("argsp12" + args);
+
+if(args.AllowSiteEditing) {
+	$.txtSiteName.editable = false;
+}
+
 $.winLogin.open();
 
 if (Ti.Platform.name === 'iPhone OS'){

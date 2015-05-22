@@ -7,17 +7,17 @@
         </Picker> -->		
 		<ActivityIndicator id="activityIndicator" message="Logging In..."/>        
 		<Label>Site</Label>
-		<TextField id="txtSiteName" editable="false">www.ashprasad.com</TextField>
+		<TextField id="txtSiteName">www.dnnsoftware.com</TextField>
 		<Label>User</Label>
 		<TextField id="txtUserName" hintText="username"></TextField>
 		<Label>Password</Label>
 		<TextField id="txtPassword" hintText="password" passwordMask="true"></TextField>
 		
 		<View id="buttonStrip">			
-			<Label>Remember Me</Label>
-			<Switch id="switchRemember" value="true"/>
+			<!--<Label>Remember Me</Label>-->
+			<!--<Switch id="switchRemember" value="true"/>-->
 			<Button id="btnLogin" onClick="doLogin" title="Login" />
-			<!-- <Button id="btnSkip" onClick="doSkip" title="I don't want to Login" /> -->
+			<Button id="btnSkip" onClick="doSkip" title="Skip" />
 			
 		</View>
 		<Label id="txtError"></Label>

@@ -14,11 +14,11 @@ var answersWin = Alloy.createController('answers').getView();
 var answersTab = Titanium.UI.createTab({
     window:answersWin,
     title:'Answers',
-    icon:'icon-answers-32px.png'
+    icon:'icon-answers-32px.pngk'
 });
 $.tabGroup.addTab(answersTab);
 
-
+/*
 var ideasWin = Alloy.createController('ideas').getView();
 var ideasTab = Titanium.UI.createTab({
     window:ideasWin,
@@ -35,7 +35,7 @@ var discussionsTab = Titanium.UI.createTab({
     icon:'icon-discussions-32px.png'
 });
 $.tabGroup.addTab(discussionsTab);
-
+*/
 
 var messagesWin = Alloy.createController('messages').getView();
 var messagesTab = Titanium.UI.createTab({
@@ -45,7 +45,7 @@ var messagesTab = Titanium.UI.createTab({
 });
 $.tabGroup.addTab(messagesTab);
 
-
+/*
 var membersWin = Titanium.UI.createWindow({title: "Members"});
 var membersTab = Titanium.UI.createTab({
     window:membersWin,
@@ -69,4 +69,4 @@ var damTab = Titanium.UI.createTab({
     icon:'Files_32X32.png'
 });
 $.tabGroup.addTab(damTab);
-
+*/
