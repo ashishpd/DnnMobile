@@ -18,7 +18,7 @@ var args = arguments[0] || {};
 		if(!WebApiHelper.isLoggedIn()) {
 			Alloy.createController("index").getView().open();
 		} else {
-			Alloy.createController('newquestion').getView().open();
+			Alloy.createController('newquestion').getView().open({modal: true});
 		}	
 	};	
 		
@@ -29,7 +29,7 @@ var args = arguments[0] || {};
 		var arg = {
 	        question: item.properties.question
 		};
-		Alloy.createController('answer', arg).getView().open();    
+		Alloy.createController('answer', arg).getView().open({modal: true});    
 	});	
 	
 	if (Titanium.Platform.name == 'iPhone OS') {	

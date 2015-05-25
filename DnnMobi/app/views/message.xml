@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="mainTab" id="winMessage" backButtonTitle="back">
+	<Window class="mainTab" id="winMessage" backButtonTitle="back" exitOnClose="false">
 		<ActivityIndicator id="activityIndicator" style="Ti.UI.iPhone.ActivityIndicatorStyle.DARK" />
 		<Toolbar platform="ios" bottom="0" borderTop="true" borderBottom="false">
             <!-- The Items tag sets the Toolbar.items property. -->

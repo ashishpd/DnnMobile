@@ -1,5 +1,5 @@
 <Alloy>
-	<Window id="winNewQuestion" class="container" exitOnClose="true">
+	<Window id="winNewQuestion" class="container" exitOnClose="false">
 		<Toolbar platform="ios" bottom="0" borderTop="true" borderBottom="false">
             <!-- The Items tag sets the Toolbar.items property. -->
             <Items>

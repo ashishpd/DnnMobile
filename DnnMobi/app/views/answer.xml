@@ -1,5 +1,5 @@
 <Alloy>
-    <Window class="container" exitOnClose="true" id="winAnswer">
+    <Window class="container" exitOnClose="false" id="winAnswer">
         <Toolbar borderBottom="false" borderTop="true" bottom="0" platform="ios">
             <!-- The Items tag sets the Toolbar.items property. -->
             <Items>
@@ -28,8 +28,8 @@
                 <WebView id="questionBody" scalesPageToFit="true"/>
             </View>
             <View id="replyRow">
-            	<TextArea id="txtReply" hintText="Write a message" onChange="txtReplyChanged"></TextArea>
-	            <Button id="btnReply" onClick="doReply" title="Reply" enabled="false" />
+            	<Button id="btnReply" onClick="doReply" title="Reply" enabled="false" />
+            	<TextArea id="txtReply" hintText="Write a message" onChange="txtReplyChanged"></TextArea>	            
 	            <Label id="txtError"></Label>
             </View>               
             <View id="answersTitleRow">
@@ -42,7 +42,7 @@
                     <Templates>
                         <ItemTemplate name="template">
                             <View class="line"/>
-                            <WebView id="answerBody" bindId="answerBody" scalesPageToFit="true"/>
+                            <WebView id="answerBody" bindId="answerBody" scalesPageToFit="true" borderRadius="1" />
                         </ItemTemplate>
                     </Templates>
                     <ListSection/>

@@ -17,8 +17,8 @@ else {
 
 var defaultSites = [
 	//{site:'dnnq8v9be.cloudapp.net', user:'ash.prasad', pwd:'Mypassword1'},
-	//{site:'www.dnnsoftware.com', user:'ashishpd', pwd:'dotdot1'},	
-	{site:'dnntgepby.azurewebsites.net/', user:'host', pwd:'dnnhost'},	
+	{site:'www.dnnsoftware.com', user:'', pwd:''},	
+	//{site:'dnntgepby.azurewebsites.net/', user:'host', pwd:'dnnhost'},	
 	//{site:'social201upg.azurewebsites.net', user:'debbie.wall', pwd:'dnnhost'},	
 	//{site:'ashprasad.com', user:'user1', pwd:'1234567'},		
 	//{site:'store.dnnsoftware.com', user:'user1', pwd:'1234567'},		
@@ -123,6 +123,7 @@ function login(){
     };
     
 	Titanium.API.info("Calling Login");
+	$.txtError.text="";
 	$.btnLogin.enabled = false;
 	// $.btnSkip.enabled = false;
 	WebApiHelper.login($.txtSiteName.value, $.txtUserName.value, $.txtPassword.value, success, failure);

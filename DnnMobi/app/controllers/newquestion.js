@@ -22,7 +22,7 @@
 		$.activityIndicator.hide();
 		var response = JSON.parse(e.responseText); 
 		if(response.approved  == true) {
-			$.winNewQuestion.close();
+			closeMe();
 		} else {	
 			$.txtError.text = 'Your question has been submitted and is awaiting moderation';
 		}

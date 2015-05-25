@@ -69,7 +69,7 @@ var args = arguments[0] || {};
 	function reload() {
 		//Ti.API.info("calling isLoggedIn " + WebApiHelper.isLoggedIn());
 		if(!WebApiHelper.isLoggedIn()) {
-			Alloy.createController("index").getView().open();
+			Alloy.createController("index").getView().open({modal: true});
 		} else {
 			$.btnLoadMore.visible = false;
 			$.activityIndicator.show();

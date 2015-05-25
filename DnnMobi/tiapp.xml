@@ -5,8 +5,8 @@
     <version>1.0</version>
     <publisher>ashishprasad</publisher>
     <url>http://www.dnnmobi.com</url>
-    <description>not specified</description>
-    <copyright>2014 by ashishprasad</copyright>
+    <description>DnnMobi app to conenct to Dnn Sites</description>
+    <copyright>2014-15 by ashishprasad</copyright>
     <icon>appicon.png</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
