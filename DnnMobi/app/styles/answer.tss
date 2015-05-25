@@ -66,6 +66,46 @@
 	width: Ti.UI.FILL
 }
 
+"#replyRow":{
+	layout: 'horizontal',
+	top: '0dp',
+	left: '2dp',
+	height: '110dp',
+	width: Ti.UI.FILL,
+	borderWidth: 2
+}
+
+"TextArea": {
+        width: '90%',
+        top: '2%',
+        left: '20dp',
+        height: '60dp',
+        color: 'gray',
+        font: {fontFamily:'Arial', fontSize: '14dp'},
+        textAlign: 'left',
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+		borderColor: '#bbb',
+		borderRadius: 5,
+        returnKeyType: Ti.UI.RETURNKEY_DONE	
+}
+
+"#txtReply":{
+        width: '90%',
+        top: '10dp',
+        left: '20dp',
+        color: 'gray',
+        font: {fontFamily:'Arial', fontSize: '14dp'},
+        textAlign: 'left',
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        returnKeyType: Ti.UI.RETURNKEY_DONE
+}
+
+"#btnReply":{
+        top: '5dp',
+        barColor: '#a00',
+        left: '20dp'
+}
+
 "#answersTitleRow":{
 	layout: 'vertical',
 	top: '0dp',
@@ -90,3 +130,5 @@
 	width: Ti.UI.FILL,
 	borderWidth: 2
 }
+
+

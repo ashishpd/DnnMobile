@@ -12,14 +12,14 @@ var _requestVerificationToken;
 var _siteDetail;
 var _knownModuleList = [
 	'DotNetNuke.Modules.CoreMessaging',
-	'DotNetNuke.Modules.DigitalAssets',
+	/*'DotNetNuke.Modules.DigitalAssets',
 	'DotNetNuke.Modules.MemberDirectory',
 	'Journal',
 	'Activities',
 	'User Badges',
-	'Activity Stream',
+	'Activity Stream',*/
 	'Answers',
-	'Blogs',
+	/*'Blogs',
 	'CommunityDashboard',
 	'ProfileDashboard',
 	'Discussions',
@@ -32,7 +32,8 @@ var _knownModuleList = [
 	'RelatedContent',
 	'Social Events',
 	'SocialSharing',
-	'Wiki'];
+	'Wiki'
+	*/];
 
 exports.isLoggedIn = function(){
 	return _isLoggedIn;
@@ -128,10 +129,10 @@ var getIds = function (moduleName) {
 		(_site.toLowerCase().indexOf('.azurewebsites.net') > 0)) {
 		switch (moduleName) {
 		    case "DotNetNuke.Modules.CoreMessaging":
-		        return {tabid: 74, moduleid: 428};
+		        return {tabid: 69, moduleid: 412};
 		        break;
 		    case "Answers":
-		        return {tabid: 56, moduleid: 375};
+		        return {tabid: 95, moduleid: 440};
 		        break;
 		    case "Discussions":
 		        return {tabid: 57, moduleid: 378};
@@ -260,7 +261,8 @@ exports.PostAsJson = function(module, query, postdata, success, failure) {
 		var ids = getIds(module);
 		if (ids != undefined) {
 			http.xhrCaller.setRequestHeader('TabID',ids.tabid);
-			http.xhrCaller.setRequestHeader('ModuleID',ids.moduleid);			
+			http.xhrCaller.setRequestHeader('ModuleID',ids.moduleid);	
+			Ti.API.info('using tabid ' + ids.tabid + ' , moduleid ' + ids.moduleid);		
 		}	
 	}     
 	http.xhrCaller.setRequestHeader('RequestVerificationToken',_requestVerificationToken);
@@ -285,7 +287,8 @@ exports.Post = function(module, query, postdata, success, failure) {
 		var ids = getIds(module);
 		if (ids != undefined) {
 			http.xhrCaller.setRequestHeader('TabID',ids.tabid);
-			http.xhrCaller.setRequestHeader('ModuleID',ids.moduleid);			
+			http.xhrCaller.setRequestHeader('ModuleID',ids.moduleid);
+			Ti.API.info('using tabid ' + ids.tabid + ' , moduleid ' + ids.moduleid);			
 		}	
 	}     
 	http.xhrCaller.setRequestHeader('RequestVerificationToken',_requestVerificationToken);
@@ -334,7 +337,7 @@ exports.login = function(site, user, password, success, failure) {
     
     var siteInfoLoaded = function(e){
 		Ti.API.info('siteInfoLoaded: ' + e.responseText.length);
-		//Ti.API.info('siteInfoLoaded: ' + e.responseText);
+		Ti.API.info('siteInfoLoaded: ' + e.responseText);
 		_siteDetail = JSON.parse(e.responseText);
 					
 		if (typeof success !== 'undefined')

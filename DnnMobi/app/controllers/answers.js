@@ -14,8 +14,12 @@ var args = arguments[0] || {};
 	    refresh();
 	};
 	
-	function doNew(e){	
-	    Alloy.createController('newquestion').getView().open(); 
+	function doNew(e){			
+		if(!WebApiHelper.isLoggedIn()) {
+			Alloy.createController("index").getView().open();
+		} else {
+			Alloy.createController('newquestion').getView().open();
+		}	
 	};	
 		
 	$.listView.addEventListener('itemclick', function(e){
@@ -57,6 +61,7 @@ var args = arguments[0] || {};
 				var message;
 				var answersCount;
 				var background = question.answerId > 0 ? '#33FF00' : 'transparent';
+				Ti.API.info('question.contentTitle  ' + question.contentTitle);
 				//Ti.API.info('Alloy.isTablet ' + Alloy.isTablet);
 				if(Alloy.isTablet == true) {
 					author = question.authorDisplayName + ' ';

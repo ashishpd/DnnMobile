@@ -1,17 +1,21 @@
 "#topButtons":{
 	top: '0dp',
 	height: '40dp',
-	left: '0dp'
+	left: '0dp',
+	layout: 'horizontal',
+	borderWidth: 2
 }
 
 "#btnNew":{
-	left: '100dp',
-	width: '30dp'
+	left: '30dp',
+	borderWidth: 2
+	//,width: '30dp'
 }
 
-"#btnRefresh":{
-	left: '0dp'
-}
+//"#btnRefresh":{
+//	left: '5dp',
+//	borderWidth: 2
+//}
 
 "#totals":{
 	right: '25dp',

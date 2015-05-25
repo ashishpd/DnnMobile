@@ -15,6 +15,36 @@ var args = arguments[0] || {};
 		$.winAnswer.close();
 	};
 	
+	var txtReplyChanged = function(e) {
+		//Ti.API.info($.txtReply.value);
+		$.btnReply.enabled = ($.txtReply.value != '');
+	};
+	
+	function doReply(e){	    
+	    var success = function(e) {
+			reload();
+	    };
+	
+	    var failure = function(e) {
+			$.activityIndicator.hide();
+	    	$.txtError.text="Error - " + WebApiHelper.error();
+	    };
+	    
+	    if(!WebApiHelper.isLoggedIn()) {
+			Alloy.createController("index").getView().open();
+		} else {
+			$.activityIndicator.show();
+		    var data = {parentId: question.postId, 
+						contentTitle: '',
+						content: '<p>' + $.txtReply.value + '</p>' };		    		
+			//{"parentId":1,"contentTitle":"","content":"<p>a1</p>"}			
+			var url = "/DesktopModules/DNNCorp/Answers/API/Detail/PostAnswer";
+			$.activityIndicator.show();
+			WebApiHelper.Post('Answers', url, data, success, failure);
+		}			    	    
+
+	};
+	
 	Ti.API.info('question.contentTitle  ' + question.contentTitle);
 	$.title.setText(question.contentTitle);
 	$.author.setText(question.authorDisplayName);
@@ -78,6 +108,7 @@ var args = arguments[0] || {};
 	function reload() {		
 		$.activityIndicator.show();
 		
+		$.txtReply.value = '';
 		var url = '/DesktopModules/DNNCorp/Answers/API/Detail/GetPost?contentItemId=' + question.contentItemId;
 		WebApiHelper.Get('Answers',url, successGetPost, failure);
 	}
@@ -96,15 +127,19 @@ var args = arguments[0] || {};
 			$.activityIndicator.hide();
 		};
 		
-		$.activityIndicator.show();
-		var url = '/DesktopModules/DNNCorp/Answers/API/Detail/Upvote';
-		var data = {postId: question.postId, 
-			parentId: 0,
-			groupId: -1};
-			
-	//Ti.API.info("post json: " + JSON.stringify(data));
-	$.activityIndicator.show();
-	WebApiHelper.PostAsJson('Answers', url, data, success, failure);    
+		if(!WebApiHelper.isLoggedIn()) {
+			Alloy.createController("index").getView().open();
+		} else {
+			$.activityIndicator.show();
+			var url = '/DesktopModules/DNNCorp/Answers/API/Detail/Upvote';
+			var data = {postId: question.postId, 
+				parentId: 0,
+				groupId: -1};
+				
+			//Ti.API.info("post json: " + JSON.stringify(data));
+			$.activityIndicator.show();
+			WebApiHelper.PostAsJson('Answers', url, data, success, failure);  
+		}		
 };
 
 reload();

@@ -1,4 +1,3 @@
-$.tabGroup.open();
 
 /*
 var activitystreamWin = Alloy.createController('activitystream').getView();
@@ -70,3 +69,6 @@ var damTab = Titanium.UI.createTab({
 });
 $.tabGroup.addTab(damTab);
 */
+
+$.tabGroup.open();
+

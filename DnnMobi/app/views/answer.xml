@@ -27,11 +27,16 @@
                 <View class="line"/>
                 <WebView id="questionBody" scalesPageToFit="true"/>
             </View>
+            <View id="replyRow">
+            	<TextArea id="txtReply" hintText="Write a message" onChange="txtReplyChanged"></TextArea>
+	            <Button id="btnReply" onClick="doReply" title="Reply" enabled="false" />
+	            <Label id="txtError"></Label>
+            </View>               
             <View id="answersTitleRow">
                 <View class="line"/>
                 <Label text="Answers"/>
                 <View class="line"/>
-            </View>
+            </View>          
             <View id="answersRow">
                 <ListView defaultItemTemplate="template" id="listView">
                     <Templates>
@@ -42,7 +47,7 @@
                     </Templates>
                     <ListSection/>
                 </ListView>
-            </View>
+            </View>           
         </View>
         <TextField id="txtTitle"/>
         <Label>Question</Label>
